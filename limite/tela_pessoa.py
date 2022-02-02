@@ -27,7 +27,7 @@ class TelaPessoa():
         opcao = leiaInt('Sua opção: ')
         return opcao
 
-    def pega_dados(self):
+    def pega_dados_usuario(self):
 
         cabecalho('Insira os dados abaixo')
 
@@ -42,8 +42,18 @@ class TelaPessoa():
 
     def pega_dado_adm(self):
 
+        cabecalho('Insira os dados abaixo')
+
+        nome = input("Nome: ")
+        cpf = input("CPF: ")
+        telefone = input("Telefone: ")
+        endereco = input("Endereço: ")
+        email = input("E-mail: ")
+        senha = input("Senha: ")
         salario = input("Salário: ")
 
+        return {'salario': salario, 'nome': nome, 'cpf': cpf, 'telefone': telefone, 'endereco': endereco,  'email': email, 'senha':  senha}
+        
     def mostra_pessoa(self, dados_pessoa):
         print("NOME: ", dados["nome"])
         print("CPF: ", dados["cpf"])
