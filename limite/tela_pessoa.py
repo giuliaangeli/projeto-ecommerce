@@ -38,6 +38,8 @@ class TelaPessoa():
         email = input("E-mail: ")
         senha = input("Senha: ")
 
+        return {'nome': nome, 'cpf': cpf, 'telefone': telefone, 'endereco': endereco,  'email': email, 'senha':  senha}
+
     def pega_dado_adm(self):
 
         salario = input("Salário: ")
@@ -46,7 +48,7 @@ class TelaPessoa():
         print("NOME: ", dados["nome"])
         print("CPF: ", dados["cpf"])
         print("TELEFONE: ", dados["telefone"])
-        print("ENDEREÇO: ", dados["endereco"])
+        print("ENDEREÇO: ", dados["endereco"]) 
         print("E-MAIL: ", dados["email"])
         print("SENHA: ", dados["senha"])
 
