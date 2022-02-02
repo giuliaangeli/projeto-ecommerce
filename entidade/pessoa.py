@@ -1,4 +1,6 @@
-class Pessoa:
+
+class Pessoa():
+    
     def __init__(self, nome:str, cpf: str, telefone:str, endereco: str, email: str, senha: str):
         self.__nome = nome
         self.__cpf = cpf

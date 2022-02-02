@@ -52,8 +52,8 @@ class TelaPessoa():
         senha = input("Senha: ")
         salario = input("Salário: ")
 
-        return {'salario': salario, 'nome': nome, 'cpf': cpf, 'telefone': telefone, 'endereco': endereco,  'email': email, 'senha':  senha}
-        
+        return {'nome': nome, 'cpf': cpf, 'telefone': telefone, 'endereco': endereco,  'email': email, 'senha':  senha, 'salario': salario}
+
     def mostra_pessoa(self, dados_pessoa):
         print("NOME: ", dados["nome"])
         print("CPF: ", dados["cpf"])
