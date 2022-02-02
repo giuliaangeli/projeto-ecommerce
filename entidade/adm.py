@@ -2,7 +2,7 @@ from pessoa import Pessoa
 
 class Adm(Pessoa):
 
-    def __init__(self, nome:str, cpf: str, telefone: str, endereco: str, email: str, senha: str, salario: float):
+    def __init__(self, nome:str, cpf: str, telefone: str, endereco: str, email: str, senha: str, salario: str):
         super().__init__(nome, cpf, telefone, endereco, email, senha)
         self.__salario = salario
 
