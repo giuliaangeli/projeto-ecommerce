@@ -23,3 +23,31 @@ class TelaHistorico():
         senha = input('Senha: ')
 
         return {'email': email, 'senha': senha}
+
+    def seleciona_usuario(self):
+        cpf = input('Qual o CPF da pessoa que você deseja consultar o histórico?')
+        
+        return cpf
+
+    def menu_historico_adm(self):
+        
+        opcoes = ['[1] Consultar Histórico','[2] Excluir Venda']
+        
+        for item in opcoes:
+            print(item)
+
+        print(linha())
+
+        opcao = leiaInt('Sua opção: ')
+        return opcao
+
+    def mostra_historico(self):
+
+        cabecalho('HISTÓRIO DE COMPRA')
+        
+        for compra in historico:
+            print(compra)
+
+        print(linha())
+
+    
