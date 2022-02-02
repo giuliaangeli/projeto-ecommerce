@@ -54,14 +54,23 @@ class TelaPessoa():
 
         return {'nome': nome, 'cpf': cpf, 'telefone': telefone, 'endereco': endereco,  'email': email, 'senha':  senha, 'salario': salario}
 
-    def mostra_pessoa(self, dados_pessoa):
-        print("NOME: ", dados["nome"])
-        print("CPF: ", dados["cpf"])
-        print("TELEFONE: ", dados["telefone"])
-        print("ENDEREÇO: ", dados["endereco"]) 
-        print("E-MAIL: ", dados["email"])
-        print("SENHA: ", dados["senha"])
+    def mostra_adm(self, dados_adm):
+        print("NOME: ", dados_adm["nome"])
+        print("CPF: ", dados_adm["cpf"])
+        print("TELEFONE: ", dados_adm["telefone"])
+        print("ENDEREÇO: ", dados_adm["endereco"]) 
+        print("E-MAIL: ", dados_adm["email"])
+        print("SENHA: ", dados_adm["senha"])
+        print("SALÁRIO: ", dados_adm["salario"])
 
+    def mostra_adm(self, dados_usuario):
+        print("NOME: ", dados_usuario["nome"])
+        print("CPF: ", dados_usuario["cpf"])
+        print("TELEFONE: ", dados_usuario["telefone"])
+        print("ENDEREÇO: ", dados_usuario["endereco"]) 
+        print("E-MAIL: ", dados_usuario["email"])
+        print("SENHA: ", dados_usuario["senha"])
+    
     def seleciona_pessoa(self):
         cpf = input("Digite seu CPF: ")
         senha = input("Digite a sua senha: ")
