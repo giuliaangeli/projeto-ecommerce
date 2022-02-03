@@ -1,5 +1,4 @@
 from limite.tela_abstrata import *
-from controle.controle_pessoas import ControladorPessoa
 
 class TelaPessoa():
 
@@ -14,6 +13,34 @@ class TelaPessoa():
         print(linha())
 
         opcao = leiaInt('Digite sua opção: ')
+        return opcao
+
+    def tela_pessoa_adm(self):
+        
+        cabecalho('ESCOLHA UMA OPÇÃO')
+        opcoes = ['[1] Incluir Administradore','[2] Listar Administradores','[3] Alterar Administradore', '[4] Excluir Administrador', '[5] Incluir Usuário','[6] Listar Usuários','[7] Alterar Usuário', '[8] Excluir Usuário']
+        
+        for item in opcoes:
+            print(item)
+
+        print(linha())
+
+        opcao = leiaInt('Digite sua opção: ')
+
+        return opcao
+
+    def tela_pessoa_usuario(self):
+
+        cabecalho('ESCOLHA UMA OPÇÃO')
+        opcoes = ['[1] Consultar Dados','[2] Alterar Dados', '[3] Excluir Conta']
+        
+        for item in opcoes:
+            print(item)
+
+        print(linha())
+
+        opcao = leiaInt('Digite sua opção: ')
+
         return opcao
 
     def tela_opcoes(self):
