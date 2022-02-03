@@ -8,9 +8,9 @@ class ControladorCategorias():
     self.__controlador_sistema = controlador_sistema
     self.__tela_categoria = TelaCategoria()
 
-  def pega_categoria_por_codigo(self, codigo: int):
+  def pega_categoria_por_codigo(self, tipo: str):#comentei
     for categoria in self.__categorias:
-      if(categoria.codigo == codigo):
+      if(categoria.tipo == tipo):#comentei
         return categoria
     return None
 
