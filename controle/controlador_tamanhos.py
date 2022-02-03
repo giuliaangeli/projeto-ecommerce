@@ -8,9 +8,9 @@ class ControladorTamanhos():
     self.__controlador_sistema = controlador_sistema
     self.__tela_tamanho = TelaTamanho()
 
-  def pega_tamanho_por_codigo(self, codigo: int):
+  def pega_tamanho_por_codigo(self, descricao: str):#comentei
     for tamanho in self.__tamanhos:
-      if(tamanho.codigo == codigo):
+      if(tamanho.descricao == descricao):#comentei
         return tamanho
     return None
 
