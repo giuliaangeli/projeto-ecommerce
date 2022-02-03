@@ -29,8 +29,8 @@ class TelaCor():
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def seleciona_cor(self):
-    codigo = input("Código do cor que deseja selecionar: ")
-    return codigo
+    nome = input("Nome da cor que deseja selecionar: ")
+    return nome
 
   def mostra_mensagem(self, msg):
     print(msg)
