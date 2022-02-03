@@ -29,8 +29,8 @@ class TelaCategoria():
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def seleciona_categoria(self):
-    codigo = input("Código do categoria que deseja selecionar: ")
-    return codigo
+    tipo = input("Tipo da categoria que deseja selecionar: ")
+    return tipo
 
   def mostra_mensagem(self, msg):
     print(msg)
