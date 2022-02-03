@@ -1,4 +1,5 @@
 from limite.tela_abstrata import *
+from controle.controle_pessoas import ControladorPessoa
 
 class TelaPessoa():
 
@@ -63,7 +64,7 @@ class TelaPessoa():
         print("SENHA: ", dados_adm["senha"])
         print("SALÁRIO: ", dados_adm["salario"])
 
-    def mostra_adm(self, dados_usuario):
+    def mostra_usuario(self, dados_usuario):
         print("NOME: ", dados_usuario["nome"])
         print("CPF: ", dados_usuario["cpf"])
         print("TELEFONE: ", dados_usuario["telefone"])
@@ -71,9 +72,10 @@ class TelaPessoa():
         print("E-MAIL: ", dados_usuario["email"])
         print("SENHA: ", dados_usuario["senha"])
     
-    def seleciona_pessoa(self):
-        cpf = input("Digite seu CPF: ")
+    def seleciona_pessoa(self, tipo_pessoa):
+        email = input("Digite seu e-mail: ")
         senha = input("Digite a sua senha: ")
+        return {'email': email, 'senha': senha}
 
     
 
