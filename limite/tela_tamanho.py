@@ -29,8 +29,8 @@ class TelaTamanho():
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def seleciona_tamanho(self):
-    codigo = input("Código do tamanho que deseja selecionar: ")
-    return codigo
+    descricao = input("Descricao do tamanho que deseja selecionar: ")
+    return descricao
 
   def mostra_mensagem(self, msg):
     print(msg)

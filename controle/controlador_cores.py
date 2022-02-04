@@ -8,9 +8,9 @@ class ControladorCores():
     self.__controlador_sistema = controlador_sistema
     self.__tela_cor = TelaCor()
 
-  def pega_cor_por_codigo(self, codigo: int):
+  def pega_cor_por_codigo(self, nome: str):
     for cor in self.__cores:
-      if(cor.codigo == codigo):
+      if(cor.nome == nome):
         return cor
     return None
 

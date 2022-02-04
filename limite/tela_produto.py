@@ -1,7 +1,7 @@
 class TelaProduto():
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def tela_opcoes(self):
-    print("-------- EMPRESTIMOS ----------")
+    print("-------- PRODUTO ----------")
     print("Escolha a opcao")
     print("1 - Fazer Produto")
     print("2 - Listar Produto")
@@ -25,7 +25,7 @@ class TelaProduto():
     print("CODIGO DO PRODUTO: ", dados_prooduto["codigo"])
     print("NOME DO COR: ", dados_prooduto["nome_cor"])
     print("CODIGO DO COR: ", dados_prooduto["codigo_cor"])
-    print("DESCRICAO DO TAMANHO: ", dados_prooduto["tamanho_descricao"])
+    print("DESCRICAO DO TAMANHO: ", dados_prooduto["descricao_tamanho"])
     print("CODIGO DO TAMANHO: ", dados_prooduto["codigo_tamanho"])
     print("TIPO DO CATEGORIA: ", dados_prooduto["tipo_categoria"])
     print("CODIGO DO CATEGORIA: ", dados_prooduto["codigo_categoria"])

@@ -4,7 +4,7 @@ from entidade.categoria import Categoria
 
 
 class Produto:
-  def __init__(self, cor: Cor, tamanho: Tamanho,categoria:Categoria, codigo: int, preco: int):
+  def __init__(self, cor: Cor, tamanho: Tamanho,categoria:Categoria, codigo: int):
     if (isinstance(cor, Cor)):
         self.__cor = cor
     if (isinstance(tamanho, Tamanho)):
@@ -12,7 +12,6 @@ class Produto:
     if (isinstance(categoria, Categoria)):
         self.__categoria = categoria
     self.__codigo = codigo
-    self.__preco = preco
 
   @property
   def cor(self):
@@ -29,10 +28,6 @@ class Produto:
   @property
   def codigo(self):
     return self.__codigo
-
-  @property
-  def preco(self):
-    return self.__preco
 
   @cor.setter
   def cor(self, cor: Cor):
@@ -54,6 +49,4 @@ class Produto:
   def codigo(self, codigo: int):
     self.__codigo = codigo
 
-  @preco.setter
-  def preco(self, preco: int):
-    self.__preco = preco
+ 
