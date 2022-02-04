@@ -57,3 +57,14 @@ class ControladorCategorias():
     continua = True
     while continua:
       lista_opcoes[self.__tela_categoria.tela_opcoes()]()
+
+  def instancia_categorias(self):
+    categoria1 = Categoria('calça',1)
+    categoria2 = Categoria('blusa manga curta',2)
+    categoria3 = Categoria('blusa manga longa',3)
+    categoria4 = Categoria('short',4)
+
+    self.__categorias.append(categoria1)
+    self.__categorias.append(categoria2)
+    self.__categorias.append(categoria3)
+    self.__categorias.append(categoria4)
