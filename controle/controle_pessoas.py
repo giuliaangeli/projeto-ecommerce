@@ -151,15 +151,24 @@ class ControladorPessoa():
     def retornar(self):
         self.__controlador_sistema.abre_tela()
 
-    def abre_tela(self):
+    def abre_tela_adm(self):
 
-        lista_opcoes = {1: self.incluir_pessoa, 2: self.alterar_pessoa, 3: self.listar_dados, 4: self.excluir_pessoa, 0: self.retornar}
+        lista_opcoes = {1: self.incluir_adm, 2: self.alterar_pessoa, 3: self.listar_dados, 4: self.excluir_pessoa, 0: self.retornar}
+
+        continua = True
+        while continua:
+            lista_opcoes[self.__tela_pessoa.tela_opcoes()]()
+    
+    def abre_tela_usuario(self):
+
+        lista_opcoes = {1: self.incluir_usuario, 2: self.alterar_pessoa, 3: self.listar_dados, 4: self.excluir_pessoa, 0: self.retornar}
 
         continua = True
         while continua:
             lista_opcoes[self.__tela_pessoa.tela_opcoes()]()
     
     def instancia_pessoas(self):
+
         #Instanciando 2 adms na lista
         adm1 = Adm('Giulia Angeli','09641787969','47997930839','João Pio Duarte Silva','giulia@gmail.com','1234','5000')
         adm2 = Adm('Guilherme Ferreira','99900011199','13996893954','Lauro Linhares','guilherme@gmail.com','1234','5000')
@@ -170,3 +179,5 @@ class ControladorPessoa():
         usuario2 = Usuario('Guilherme Ferreira','99900011199','13996893954','Lauro Linhares','guilherme@gmail.com','1234')
         self.__usuarios.append(usuario1)
         self.__usuarios.append(usuario2)
+
+        # Adicionei o abre_tela_adm e o abre_tela_usuario, pois cada um apresenta escolhas diferentes no menu
