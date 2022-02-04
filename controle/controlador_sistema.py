@@ -58,22 +58,39 @@ class ControladorSistema:
 
     def abre_tela_inicial(self):
         self.__controle_pessoas.instancia_pessoas()
-        opcao_escolhida = self.__tela_sistema.tela_inicial()
 
-        #Pessoa escolhe fazer Login
-        if opcao_escolhida == 1:
-            opcao_escolhida = self.__tela_sistema.tela_login()
-
-            #Pessoa escolhe fazer login como Administrador
-            if opcao_escolhida == 1:
-                adm = self.__controle_pessoas.confere_login(1)
-
-
-                if adm is not None:
-                    opcao_escolhida = self.__tela_sistema.tela_opcoes_adm()
+        while True:
             
-            #Pessoa escolhe fazer login como usuário
-            else:
-                usuario = self.__controle_pessoas.confere_login(2)
-                if usuario is not None:
-                    opcao_escolhida = self.__tela_sistema.tela_opções_usuario()
+            opcao_escolhida = self.__tela_sistema.tela_inicial()
+
+            #Pessoa escolhe fazer Login
+            if opcao_escolhida == 1:
+                opcao_escolhida = self.__tela_sistema.tela_login()
+
+                #Pessoa escolhe fazer login como Administrador
+                if opcao_escolhida == 1:
+                    adm = self.__controle_pessoas.confere_login(1)
+
+
+                    if adm is not None:
+                        opcao_escolhida = self.__tela_sistema.tela_opcoes_adm()
+                        #opcao 1 - Pessoas
+                        #opcao 2 - Produto
+                        #opcao 3 - Historico
+                        #opcao 4 - Finalizar sessão
+                        lista_opcoes = {1:  self.__controle_pessoas.abre_tela_adm}
+                        while True:
+                            opcao_escolhida = self.__tela_sistema.tela_opcoes_adm
+                            funcao_escolhida = lista_opcoes[opcao_escolhida]
+                            funcao_escolhida()
+
+                
+                #Pessoa escolhe fazer login como usuário
+                else:
+                    usuario = self.__controle_pessoas.confere_login(2)
+                    if usuario is not None:
+                        opcao_escolhida = self.__tela_sistema.tela_opções_usuario()
+            
+            else: 
+                self.__controle_pessoas.incluir_usuario()
+        
