@@ -43,18 +43,6 @@ class TelaPessoa():
 
         return opcao
 
-    def tela_opcoes(self):
-
-        opcoes = ['[1] Incluir','[2] Alterar', '[3] Excluir', '[4] Listar', '[0] Retornar']
-        
-        for item in opcoes:
-            print(item)
-
-        print(linha())
-
-        opcao = leiaInt('Sua opção: ')
-        return opcao
-
     def pega_dados_usuario(self):
 
         cabecalho('Insira os dados abaixo')
@@ -99,7 +87,8 @@ class TelaPessoa():
         print("E-MAIL: ", dados_usuario["email"])
         print("SENHA: ", dados_usuario["senha"])
     
-    def seleciona_pessoa(self, tipo_pessoa):
+    # tirei o tipo de pessoa (adm ou usuário) pq não vai precisar
+    def pega_dados_login(self):
         email = input("Digite seu e-mail: ")
         senha = input("Digite a sua senha: ")
         return {'email': email, 'senha': senha}
