@@ -57,3 +57,17 @@ class ControladorCores():
     continua = True
     while continua:
       lista_opcoes[self.__tela_cor.tela_opcoes()]()
+
+  def instancia_cor(self):
+    vermelho = Cor('vermelho',1)
+    laranja = Cor('laranja',2)
+    rosa = Cor('rosa',3)
+    amarelo = Cor('amarelo ',4)
+    verde = Cor('verde ',5)
+    
+    self.__cores.append(vermelho)
+    self.__cores.append(laranja)
+    self.__cores.append(rosa)
+    self.__cores.append(amarelo)
+    self.__cores.append(verde)
+    
