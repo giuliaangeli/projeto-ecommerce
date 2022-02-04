@@ -154,11 +154,14 @@ class ControladorPessoa():
 
     def abre_tela_adm(self):
 
+
         lista_opcoes = {1: self.incluir_adm, 2: self.alterar_pessoa, 3: self.listar_dados, 4: self.excluir_pessoa, 0: self.retornar}
 
         continua = True
         while continua:
-            lista_opcoes[self.__tela_pessoa.tela_opcoes()]()
+            opcao_escolhida = self.__tela_pessoa.tela_pessoa_adm()
+            funcao_escolhida = lista_opcoes[opcao_escolhida]
+            funcao_escolhida()
     
     def abre_tela_usuario(self):
 

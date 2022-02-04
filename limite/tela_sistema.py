@@ -36,9 +36,10 @@ class TelaSistema:
         print(linha())
 
         opcao = leiaInt('Digite sua opção: ')
+        return opcao
 
 
-    def tela_opções_usuario(self):
+    def tela_opcoes_usuario(self):
         
         cabecalho('ESCOLHA UMA OPÇÃO')
         opcoes = ['[1] Ir as Compras','[2] Histórico de Compras','[3] Dados Pessoais', '[4] Finalizar Sessão']
@@ -49,3 +50,4 @@ class TelaSistema:
         print(linha())
 
         opcao = leiaInt('Digite sua opção: ')
+        return opcao

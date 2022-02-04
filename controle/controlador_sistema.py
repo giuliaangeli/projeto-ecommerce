@@ -59,38 +59,44 @@ class ControladorSistema:
     def abre_tela_inicial(self):
         self.__controle_pessoas.instancia_pessoas()
 
-        while True:
+        #while True:
             
-            opcao_escolhida = self.__tela_sistema.tela_inicial()
+        opcao_escolhida = self.__tela_sistema.tela_inicial()
 
-            #Pessoa escolhe fazer Login
+        #Pessoa escolhe fazer Login
+        if opcao_escolhida == 1:
+            opcao_escolhida = self.__tela_sistema.tela_login()
+
+            #Pessoa escolhe fazer login como Administrador
             if opcao_escolhida == 1:
-                opcao_escolhida = self.__tela_sistema.tela_login()
-
-                #Pessoa escolhe fazer login como Administrador
-                if opcao_escolhida == 1:
-                    adm = self.__controle_pessoas.confere_login(1)
+                adm = self.__controle_pessoas.confere_login(1)
 
 
-                    if adm is not None:
-                        opcao_escolhida = self.__tela_sistema.tela_opcoes_adm()
-                        #opcao 1 - Pessoas
-                        #opcao 2 - Produto
-                        #opcao 3 - Historico
-                        #opcao 4 - Finalizar sessão
-                        lista_opcoes = {1:  self.__controle_pessoas.abre_tela_adm}
-                        while True:
-                            opcao_escolhida = self.__tela_sistema.tela_opcoes_adm
-                            funcao_escolhida = lista_opcoes[opcao_escolhida]
-                            funcao_escolhida()
+                if adm is not None:
+                    opcao_escolhida = self.__tela_sistema.tela_opcoes_adm()
+                    print(opcao_escolhida)
+                    
+                    #opcao 1 - Pessoas
+                    if opcao_escolhida == 1:
+                        print("entrei na opção 1")
+                        opcao_escolhida = self.__controle_pessoas.abre_tela_adm()
+                    #opcao 2 - Produto
+                    elif opcao_escolhida == 2:
+                        opcao_escolhida = self.__controlador_produtos.abre_tela()
+                    #opcao 3 - Historico
+                    elif opcao_escolhida == 3:
+                        print('Ainda em desenvolvimento')
+                    #opcao 4 - Finalizar sessão
+                    else:
+                        self.encerra_sistema
 
-                
-                #Pessoa escolhe fazer login como usuário
-                else:
-                    usuario = self.__controle_pessoas.confere_login(2)
-                    if usuario is not None:
-                        opcao_escolhida = self.__tela_sistema.tela_opções_usuario()
             
-            else: 
-                self.__controle_pessoas.incluir_usuario()
+            #Pessoa escolhe fazer login como usuário
+            else:
+                usuario = self.__controle_pessoas.confere_login(2)
+                if usuario is not None:
+                    opcao_escolhida = self.__tela_sistema.tela_opções_usuario()
+        
+        else: 
+            self.__controle_pessoas.incluir_usuario()
         
