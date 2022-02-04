@@ -18,7 +18,7 @@ class TelaPessoa():
     def tela_pessoa_adm(self):
         
         cabecalho('ESCOLHA UMA OPÇÃO')
-        opcoes = ['[1] Incluir Administrador','[2] Listar Administradores','[3] Alterar Administradore', '[4] Excluir Administrador', '[5] Incluir Usuário','[6] Listar Usuários','[7] Alterar Usuário', '[8] Excluir Usuário']
+        opcoes = ['[1] Incluir Administrador','[2] Listar Administradores','[3] Alterar Administrador', '[4] Excluir Administrador', '[5] Incluir Usuário','[6] Listar Usuários','[7] Excluir Usuário', '[8] Voltar ao Menu Anterior']
         
         for item in opcoes:
             print(item)
@@ -78,6 +78,7 @@ class TelaPessoa():
         print("E-MAIL: ", dados_adm["email"])
         print("SENHA: ", dados_adm["senha"])
         print("SALÁRIO: ", dados_adm["salario"])
+        print("\n")
 
     def mostra_usuario(self, dados_usuario):
         print("NOME: ", dados_usuario["nome"])
@@ -86,6 +87,7 @@ class TelaPessoa():
         print("ENDEREÇO: ", dados_usuario["endereco"]) 
         print("E-MAIL: ", dados_usuario["email"])
         print("SENHA: ", dados_usuario["senha"])
+        print("\n")
     
     # tirei o tipo de pessoa (adm ou usuário) pq não vai precisar
     def pega_dados_login(self):
@@ -93,6 +95,9 @@ class TelaPessoa():
         senha = input("Digite a sua senha: ")
         return {'email': email, 'senha': senha}
 
+    def pega_cpf(self):
+        cpf = input()
+        return cpf
     
 
         
