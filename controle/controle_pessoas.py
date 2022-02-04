@@ -53,6 +53,7 @@ class ControladorPessoa():
         if usuario == None:
             novo_usuario = Usuario(dados_novo_usuario["nome"], dados_novo_usuario["cpf"], dados_novo_usuario["telefone"], dados_novo_usuario["endereco"], dados_novo_usuario["email"], dados_novo_usuario["senha"])
             self.__usuarios.append(novo_usuario)
+            print('Seu cadastro foi realizado com sucesso!')
         else:
             print('Esse CPF já está cadastrado')
         
@@ -179,5 +180,3 @@ class ControladorPessoa():
         usuario2 = Usuario('Guilherme Ferreira','99900011199','13996893954','Lauro Linhares','guilherme@gmail.com','1234')
         self.__usuarios.append(usuario1)
         self.__usuarios.append(usuario2)
-
-        # Adicionei o abre_tela_adm e o abre_tela_usuario, pois cada um apresenta escolhas diferentes no menu
