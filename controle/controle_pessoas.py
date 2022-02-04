@@ -64,104 +64,125 @@ class ControladorPessoa():
         if adm == None:
             novo_adm = Adm(dados_novo_adm["nome"], dados_novo_adm["cpf"], dados_novo_adm["telefone"], dados_novo_adm["endereco"], dados_novo_adm["email"], dados_novo_adm["senha"], dados_novo_adm["salario"])
             self.__adms.append(novo_adm)
+            print('Administrador adicionado com sucesso!')
 
         else:
             print('Esse CPF já está cadastrado')
 
-    def excluir_pessoa(self):
-        tipo_pessoa = self.__tela_pessoa.adm_ou_usuario
-        email = self.__tela_pessoa.seleciona_pessoa["email"]
-        senha = self.__tela_pessoa.seleciona_pessoa["senha"]
-
-        if tipo_pessoa == 1:
-            adm = self.confere_pessoa(tipo_pessoa, email, senha)
-            if (adm is not None):
-                self.__adms.remove(adm)
-
-            else:
-                print("ATENÇÃO: esse administrador não está cadastrado")
-
-        else:
-            usuario = self.confere_pessoa(tipo_pessoa, email, senha)
-            if (usuario is not None):
-                self.__adms.remove(usuario)
-
-            else:
-                print("ATENÇÃO: esse usuário não está cadastrado")
-
-    def alterar_pessoa(self):
-        tipo_pessoa = self.__tela_pessoa.adm_ou_usuario
-        email = self.__tela_pessoa.seleciona_pessoa["email"]
-        senha = self.__tela_pessoa.seleciona_pessoa["senha"]
+    def excluir_pessoa(self, pessoa, tipo_pessoa_excluir):
         
-        if tipo_pessoa == 1:
+        #tipo_pessoa_excluir diz qual lista que será varrida
+        #tipo_pessoa_excluir = 1 -> adm
+        #tipo_pessoa_excluir = 2 -> usuario
 
-            adm = self.confere_pessoa(tipo_pessoa, email, senha)
-            if (adm is not None):
-                novos_dados_adm = self.__tela_pessoa.pega_dado_adm()
-                adm.nome = novos_dados_adm["nome"]
-                adm.cpf = novos_dados_adm["cpf"]
-                adm.telefone = novos_dados_adm["telefone"]
-                adm.endereco = novos_dados_adm["endereco"]
-                adm.email = novos_dados_adm["email"]
-                adm.senha = novos_dados_adm["senha"]
-                adm.salario = novos_dados_adm["salario"]
-
-            else:
-                print("ATENÇÃO: esse administrador não está cadastrado")
-
-        else:
-            usuario = self.confere_pessoa(tipo_pessoa, email, senha)
-            if (usuario is not None):
-                novos_dados_usuario = self.__tela_pessoa.pega_dado_usuario()
-                usuario.nome = novos_dados_usuario["nome"]
-                usuario.cpf = novos_dados_usuario["cpf"]
-                usuario.telefone = novos_dados_usuario["telefone"]
-                usuario.endereco = novos_dados_usuario["endereco"]
-                usuario.email = novos_dados_usuario["email"]
-                usuario.senha = novos_dados_usuario["senha"]
-
-            else:
-                print("ATENÇÃO: esse usuário não está cadastrado")
-
-    def listar_dados(self):
         
-        tipo_pessoa = self.__tela_pessoa.adm_ou_usuario
-        email = self.__tela_pessoa.seleciona_pessoa["email"]
-        senha = self.__tela_pessoa.seleciona_pessoa["senha"]
+        cpf = self.__tela_pessoa.pega_cpf()
         
-        if tipo_pessoa == 1:
+        if isinstance(pessoa, Adm):
+            cabecalho('DIGITE O CPF DO ADM QUE DESEJA EXCLUIR')
+            if tipo_pessoa_excluir == 1:
+                for adm in self.__adms:
+                    if adm.cpf == cpf:
+                        self.__adms.remove(adm)
+                        print('Administrador removido!')
+                    else:
+                        print("ATENÇÃO: esse administrador não está cadastrado")
+
+            elif tipo_pessoa_excluir == 2:
+
+                cabecalho('DIGITE O CPF DO USUÁRIO QUE DESEJA EXCLUIR')
+                for usuario in self.__usuarios:
+                    if usuario.cpf == cpf:
+                        self.__adms.remove(usuario)
+                        print('Usuário removido!')
+                    else:
+                        print("ATENÇÃO: esse usuário não está cadastrado")
+
+        elif isinstance(pessoa, Usuario):
+            self.__usuarios.remove(pessoa)
+            print("ATENÇÃO: sua conta foi excluir!")
+            exit(0)
+
+    def alterar_pessoa(self, pessoa):
+        
+        if isinstance(pessoa, Adm):
             
-            adm = self.confere_pessoa(tipo_pessoa, email, senha)
-            if adm is not None:
+            novos_dados_adm = self.__tela_pessoa.pega_dado_adm()
+            pessoa.nome = novos_dados_adm["nome"]
+            pessoa.cpf = novos_dados_adm["cpf"]
+            pessoa.telefone = novos_dados_adm["telefone"]
+            pessoa.endereco = novos_dados_adm["endereco"]
+            pessoa.email = novos_dados_adm["email"]
+            pessoa.senha = novos_dados_adm["senha"]
+            pessoa.salario = novos_dados_adm["salario"]
+
+        elif isinstance(pessoa, Usuario):
+            
+            novos_dados_usuario = self.__tela_pessoa.pega_dados_usuario()
+            pessoa.nome = novos_dados_usuario["nome"]
+            pessoa.cpf = novos_dados_usuario["cpf"]
+            pessoa.telefone = novos_dados_usuario["telefone"]
+            pessoa.endereco = novos_dados_usuario["endereco"]
+            pessoa.email = novos_dados_usuario["email"]
+            pessoa.senha = novos_dados_usuario["senha"]
+
+    def listar_dados(self, pessoa, funcao = 0):
+
+        #funcao é o parametro que define o que será impresso
+        #funcao = 1 -> imprime os dados dos administradores
+        #funcao = 2 -> imprime os dados dos usuários
+
+        if isinstance(pessoa, Adm):
+
+            if funcao == 1:
                 cabecalho('ADMINISTRADORES')
                 for adm in self.__adms:
-                    self.__tela_pessoa.mostra_adm({'nome': adm.nome, 'telefone': adm.telefone})
+                    self.__tela_pessoa.mostra_adm({"nome": adm.nome, "cpf": adm.cpf, "telefone": adm.telefone, "endereco": adm.endereco, "email": adm.email, "senha": adm.senha, "salario": adm.salario})
 
+            elif funcao == 2:
                 cabecalho('USUÁRIOS')
                 for usuario in self.__usuarios:
-                    self.__tela_pessoa.mostra_usuario({'nome': usuario.nome, 'telefone': usuario.telefone})
+                    self.__tela_pessoa.mostra_usuario({"nome": usuario.nome, "cpf": usuario.cpf, "telefone": usuario.telefone, "endereco": usuario.endereco, "email": usuario.email, "senha": usuario.senha})
 
-        else:
-            usuario = self.confere_pessoa(tipo_pessoa, email, senha)
+        elif isinstance(pessoa, Usuario):
 
-            if usuario is not None:
-                cabecalho('SUAS INFORMAÇÕES')
-                self.__tela_pessoa.mostra_usuario(usuario)
+            cabecalho('SUAS INFORMAÇÕES')
+            self.__tela_pessoa.mostra_usuario({"nome": pessoa.nome, "cpf": pessoa.cpf, "telefone": pessoa.cpf, "endereco": pessoa.endereco, "email": pessoa.email, "senha": pessoa.senha})
 
     def retornar(self):
         self.__controlador_sistema.abre_tela()
 
-    def abre_tela_adm(self):
+    def abre_tela_adm(self, adm):
 
-
-        lista_opcoes = {1: self.incluir_adm, 2: self.alterar_pessoa, 3: self.listar_dados, 4: self.excluir_pessoa, 0: self.retornar}
+        lista_opcoes = {1: self.incluir_adm, 2: self.listar_dados(adm, 1), 3: self.alterar_pessoa(adm) , 4: self.excluir_pessoa(adm,1) , 5: self.incluir_usuario, 6: self.listar_dados(adm, 2), 8: self.excluir_pessoa(adm,2), 0: self.retornar}
 
         continua = True
         while continua:
-            opcao_escolhida = self.__tela_pessoa.tela_pessoa_adm()
-            funcao_escolhida = lista_opcoes[opcao_escolhida]
-            funcao_escolhida()
+            lista_opcoes[self.__tela_pessoa.tela_pessoa_adm()]()
+    
+    # def abre_tela_adm(self, adm):
+    #     opcao_escolhida = self.__tela_pessoa.tela_pessoa_adm()
+
+    #     if opcao_escolhida == 1:
+    #         self.incluir_adm()
+
+    #     elif opcao_escolhida == 2:
+    #         self.listar_dados(adm,1)
+
+    #     elif opcao_escolhida == 3:
+    #         self.alterar_pessoa(adm)
+        
+    #     elif opcao_escolhida == 4:
+    #         self.excluir_pessoa(adm,1)
+        
+    #     elif opcao_escolhida == 5:
+    #         self.incluir_usuario()
+
+    #     elif opcao_escolhida == 6:
+    #         self.listar_dados(adm,2)
+
+    #     elif opcao_escolhida == 7:
+    #         self.excluir_pessoa(adm,2)
     
     def abre_tela_usuario(self):
 
@@ -176,8 +197,11 @@ class ControladorPessoa():
         #Instanciando 2 adms na lista
         adm1 = Adm('Giulia Angeli','09641787969','47997930839','João Pio Duarte Silva','giulia@gmail.com','1234','5000')
         adm2 = Adm('Guilherme Ferreira','99900011199','13996893954','Lauro Linhares','guilherme@gmail.com','1234','5000')
+        adm3 = Adm('Guilherme Ferreira','111','111','111','1','1','5000')
         self.__adms.append(adm1)
         self.__adms.append(adm2)
+        self.__adms.append(adm3)
+
         #Instanciando 2 clientes na lista
         usuario1 = Usuario('Giulia Angeli','09641787969','47997930839','João Pio Duarte Silva','giulia@gmail.com','1234')
         usuario2 = Usuario('Guilherme Ferreira','99900011199','13996893954','Lauro Linhares','guilherme@gmail.com','1234')
