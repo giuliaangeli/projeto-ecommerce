@@ -57,3 +57,12 @@ class ControladorTamanhos():
     continua = True
     while continua:
       lista_opcoes[self.__tela_tamanho.tela_opcoes()]()
+
+  def instancia_tamanho(self):
+    tamanho1 = Tamanho('P',1)
+    tamanho2 = Tamanho('M',2)
+    tamanho3 = Tamanho('G',3)
+
+    self.__tamanhos.append(tamanho1)
+    self.__tamanhos.append(tamanho2)
+    self.__tamanhos.append(tamanho3)
