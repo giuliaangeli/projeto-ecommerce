@@ -1,8 +1,8 @@
-from pessoa import Pessoa
+from entidade.pessoa import Pessoa
 
 class Usuario(Pessoa):
 
-    def __init__(self, nome:str, cpf: str, telefone: str, endereco: str, email: str, senha: str, historico_compra: list):
+    def __init__(self, nome:str, cpf: str, telefone: str, endereco: str, email: str, senha: str):
         super().__init__(nome, cpf, telefone, endereco, email, senha)
         self.__historico_compra = list
 
