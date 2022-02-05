@@ -74,39 +74,41 @@ class ControladorPessoa():
         #tipo_pessoa_excluir diz qual lista que será varrida
         #tipo_pessoa_excluir = 1 -> adm
         #tipo_pessoa_excluir = 2 -> usuario
-
-        
-        cpf = self.__tela_pessoa.pega_cpf()
         
         if isinstance(pessoa, Adm):
-            cabecalho('DIGITE O CPF DO ADM QUE DESEJA EXCLUIR')
+
             if tipo_pessoa_excluir == 1:
+                cabecalho('DIGITE O CPF DO ADM QUE DESEJA EXCLUIR')
+                cpf = self.__tela_pessoa.pega_cpf()
                 for adm in self.__adms:
                     if adm.cpf == cpf:
                         self.__adms.remove(adm)
                         print('Administrador removido!')
-                    else:
-                        print("ATENÇÃO: esse administrador não está cadastrado")
+                        adm = True
+                if adm == False:
+                    print("ATENÇÃO: esse administrador não está cadastrado")
 
-            elif tipo_pessoa_excluir == 2:
-
+            else:
                 cabecalho('DIGITE O CPF DO USUÁRIO QUE DESEJA EXCLUIR')
+                cpf = self.__tela_pessoa.pega_cpf()
                 for usuario in self.__usuarios:
                     if usuario.cpf == cpf:
-                        self.__adms.remove(usuario)
+                        self.__usuarios.remove(usuario)
                         print('Usuário removido!')
-                    else:
-                        print("ATENÇÃO: esse usuário não está cadastrado")
+                        usuario = True
+            
+                if usuario == False:
+                    print("ATENÇÃO: esse usuário não está cadastrado")
 
         elif isinstance(pessoa, Usuario):
             self.__usuarios.remove(pessoa)
-            print("ATENÇÃO: sua conta foi excluir!")
+            print("ATENÇÃO: sua conta foi excluida!")
             exit(0)
 
     def alterar_pessoa(self, pessoa):
         
         if isinstance(pessoa, Adm):
-            
+        
             novos_dados_adm = self.__tela_pessoa.pega_dado_adm()
             pessoa.nome = novos_dados_adm["nome"]
             pessoa.cpf = novos_dados_adm["cpf"]
@@ -115,6 +117,7 @@ class ControladorPessoa():
             pessoa.email = novos_dados_adm["email"]
             pessoa.senha = novos_dados_adm["senha"]
             pessoa.salario = novos_dados_adm["salario"]
+            print('\n Dados alterados com sucesso!\n')
 
         elif isinstance(pessoa, Usuario):
             
@@ -125,6 +128,7 @@ class ControladorPessoa():
             pessoa.endereco = novos_dados_usuario["endereco"]
             pessoa.email = novos_dados_usuario["email"]
             pessoa.senha = novos_dados_usuario["senha"]
+            print('\nDados alterados com sucesso!')
 
     def listar_dados(self, pessoa, funcao = 0):
 
@@ -154,21 +158,20 @@ class ControladorPessoa():
 
     def abre_tela_adm(self, adm):
 
-        lista_opcoes = {1: self.incluir_adm, 2: self.listar_dados, 3: self.alterar_pessoa, 4: self.excluir_pessoa , 5: self.incluir_usuario, 6: self.listar_dados, 7: self.excluir_pessoa, 8: self.retornar}
+        lista_opcoes = {1: self.incluir_adm, 2: self.excluir_pessoa, 3: self.listar_dados, 4: self.alterar_pessoa , 5: self.incluir_usuario, 6: self.excluir_pessoa, 7: self.listar_dados , 8: self.retornar}
 
         continua = True
         while continua:
             opcao_escolhida = self.__tela_pessoa.tela_pessoa_adm()
-            if opcao_escolhida == 2 or opcao_escolhida == 4:
+            if opcao_escolhida == 2 or opcao_escolhida == 3:
                 lista_opcoes[opcao_escolhida](adm,1)
-            elif opcao_escolhida == 3:
+            elif opcao_escolhida == 4:
                 lista_opcoes[opcao_escolhida](adm)
             elif opcao_escolhida == 6 or opcao_escolhida == 7:
                 lista_opcoes[opcao_escolhida](adm,2)
             else:
                 lista_opcoes[opcao_escolhida]()
     
-    #ficou certo agora
     def abre_tela_usuario(self, usuario):
     
         lista_opcoes = {1: self.listar_dados, 2: self.alterar_pessoa , 3: self.excluir_pessoa, 0: self.retornar}
@@ -176,8 +179,10 @@ class ControladorPessoa():
         continua = True
         while continua:
             opcao_escolhida = self.__tela_pessoa.tela_pessoa_usuario()
-            if opcao_escolhida == 2 or opcao_escolhida == 3:
+            if opcao_escolhida == 1 or opcao_escolhida == 2:
                 lista_opcoes[opcao_escolhida](usuario)
+            elif opcao_escolhida == 3:
+                lista_opcoes[opcao_escolhida](usuario, 2)
             else:
                 lista_opcoes[opcao_escolhida]()
     
