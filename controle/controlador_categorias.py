@@ -68,3 +68,7 @@ class ControladorCategorias():
     self.__categorias.append(categoria2)
     self.__categorias.append(categoria3)
     self.__categorias.append(categoria4)
+
+  @property
+  def categorias(self):
+    return self.__categorias
