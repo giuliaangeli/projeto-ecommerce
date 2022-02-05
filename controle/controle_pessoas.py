@@ -154,43 +154,32 @@ class ControladorPessoa():
 
     def abre_tela_adm(self, adm):
 
-        lista_opcoes = {1: self.incluir_adm, 2: self.listar_dados(adm, 1), 3: self.alterar_pessoa(adm) , 4: self.excluir_pessoa(adm,1) , 5: self.incluir_usuario, 6: self.listar_dados(adm, 2), 8: self.excluir_pessoa(adm,2), 0: self.retornar}
+        lista_opcoes = {1: self.incluir_adm, 2: self.listar_dados, 3: self.alterar_pessoa, 4: self.excluir_pessoa , 5: self.incluir_usuario, 6: self.listar_dados, 7: self.excluir_pessoa, 8: self.retornar}
 
         continua = True
         while continua:
-            lista_opcoes[self.__tela_pessoa.tela_pessoa_adm()]()
+            opcao_escolhida = self.__tela_pessoa.tela_pessoa_adm()
+            if opcao_escolhida == 2 or opcao_escolhida == 4:
+                lista_opcoes[opcao_escolhida](adm,1)
+            elif opcao_escolhida == 3:
+                lista_opcoes[opcao_escolhida](adm)
+            elif opcao_escolhida == 6 or opcao_escolhida == 7:
+                lista_opcoes[opcao_escolhida](adm,2)
+            else:
+                lista_opcoes[opcao_escolhida]()
     
-    # def abre_tela_adm(self, adm):
-    #     opcao_escolhida = self.__tela_pessoa.tela_pessoa_adm()
-
-    #     if opcao_escolhida == 1:
-    #         self.incluir_adm()
-
-    #     elif opcao_escolhida == 2:
-    #         self.listar_dados(adm,1)
-
-    #     elif opcao_escolhida == 3:
-    #         self.alterar_pessoa(adm)
-        
-    #     elif opcao_escolhida == 4:
-    #         self.excluir_pessoa(adm,1)
-        
-    #     elif opcao_escolhida == 5:
-    #         self.incluir_usuario()
-
-    #     elif opcao_escolhida == 6:
-    #         self.listar_dados(adm,2)
-
-    #     elif opcao_escolhida == 7:
-    #         self.excluir_pessoa(adm,2)
+    #ficou certo agora
+    def abre_tela_usuario(self, usuario):
     
-    def abre_tela_usuario(self):
-
-        lista_opcoes = {1: self.incluir_usuario, 2: self.alterar_pessoa, 3: self.listar_dados, 4: self.excluir_pessoa, 0: self.retornar}
+        lista_opcoes = {1: self.listar_dados, 2: self.alterar_pessoa , 3: self.excluir_pessoa, 0: self.retornar}
 
         continua = True
         while continua:
-            lista_opcoes[self.__tela_pessoa.tela_opcoes()]()
+            opcao_escolhida = self.__tela_pessoa.tela_pessoa_usuario()
+            if opcao_escolhida == 2 or opcao_escolhida == 3:
+                lista_opcoes[opcao_escolhida](usuario)
+            else:
+                lista_opcoes[opcao_escolhida]()
     
     def instancia_pessoas(self):
 
