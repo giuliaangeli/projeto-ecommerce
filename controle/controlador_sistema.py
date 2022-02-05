@@ -79,14 +79,13 @@ class ControladorSistema:
                         
                         #opcao 1 - Pessoas
                         if opcao_escolhida == 1:
-                            print("entrei na opção 1")
                             opcao_escolhida = self.__controle_pessoas.abre_tela_adm(adm)
                         #opcao 2 - Produto
                         elif opcao_escolhida == 2:
                             opcao_escolhida = self.__controlador_produtos.abre_tela()
                         #opcao 3 - Historico
                         elif opcao_escolhida == 3:
-                            print('Ainda em desenvolvimento')
+                            print('...')
                         #opcao 4 - Finalizar sessão
                         else:
                             self.encerra_sistema
@@ -98,7 +97,15 @@ class ControladorSistema:
                     usuario = self.__controle_pessoas.confere_login(tipo_pessoa)
                     
                     if usuario is not None:
-                        opcao_escolhida = self.__tela_sistema.tela_opções_usuario()
+                        opcao_escolhida = self.__tela_sistema.tela_opcoes_usuario()
+                        # Opção 1 -> Ir as compras
+
+                        # Opção 2 -> Consultar Histórico
+
+                        # Opção 3 -> Dados Pessoais
+                        if opcao_escolhida == 3:
+                            self.__controle_pessoas.abre_tela_usuario(usuario)
+                        # Opção 4 -> Finalizar Sessão
             
             else: 
                 self.__controle_pessoas.incluir_usuario()
