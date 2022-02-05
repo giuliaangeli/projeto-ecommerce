@@ -32,7 +32,7 @@ class TelaPessoa():
     def tela_pessoa_usuario(self):
 
         cabecalho('ESCOLHA UMA OPÇÃO')
-        opcoes = ['[1] Consultar Dados','[2] Alterar Dados', '[3] Excluir Conta']
+        opcoes = ['[1] Consultar Dados','[2] Alterar Dados', '[3] Excluir Conta', '[4] Voltar ao Menu Anterior']
         
         for item in opcoes:
             print(item)
