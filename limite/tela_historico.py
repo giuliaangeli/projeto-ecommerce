@@ -2,11 +2,11 @@ from entidade.historico import *
 from limite.tela_abstrata import *
 
 class TelaHistorico():
-    
-    def adm_ou_usuario(self):
+
+    def menu_principal_adm(self):
         
         cabecalho('SELECIONE UMA DAS OPÇÕES')
-        opcoes = ['[1] Administrador','[2] Usuário']
+        opcoes = ['[1] Ver Histórico de Vendas','[2] Alterar Histórico de Vendas', '[3] Incluir uma Venda no Histórico', '[4] Excluir uma Venda do Histórico', '[5] Voltar ao Menu Anterior']
         
         for item in opcoes:
             print(item)
@@ -16,38 +16,97 @@ class TelaHistorico():
         opcao = leiaInt('Digite sua opção: ')
         return opcao
 
-    def login(self):
+    def menu_opcao_filtro(self):
 
-        cabecalho('INSIRA SEUS DADOS')
-        email = input('E-mail: ')
-        senha = input('Senha: ')
-
-        return {'email': email, 'senha': senha}
-
-    def seleciona_usuario(self):
-        cpf = input('Qual o CPF da pessoa que você deseja consultar o histórico?')
-        
-        return cpf
-
-    def menu_historico_adm(self):
-        
-        opcoes = ['[1] Consultar Histórico','[2] Excluir Venda']
+        cabecalho('SELECIONE UMA DAS OPÇÕES')
+        opcoes = ['[1] Ver Todas as Vendas','[2] Aplicar Filtro']
         
         for item in opcoes:
             print(item)
 
         print(linha())
 
-        opcao = leiaInt('Sua opção: ')
+        opcao = leiaInt('Digite sua opção: ')
         return opcao
 
-    def mostra_historico(self):
-
-        cabecalho('HISTÓRIO DE COMPRA')
+    def filtro_cor(self):
+        cabecalho('SELECIONE UMA DAS OPÇÕES')
+        opcoes = ['[1] Todas as Cores','[2] Escolher uma Cor']
         
-        for compra in historico:
-            print(compra)
+        for item in opcoes:
+            print(item)
 
         print(linha())
 
+        opcao = leiaInt('Digite sua opção: ')
+        return opcao
+
+    def filtro_tamanho(self):
+        cabecalho('SELECIONE UMA DAS OPÇÕES')
+        opcoes = ['[1] Todos os Tamanhos','[2] Escolher um Tamanho']
+        
+        for item in opcoes:
+            print(item)
+
+        print(linha())
+
+        opcao = leiaInt('Digite sua opção: ')
+        return opcao
+
+    def filtro_categoria(self):
+        cabecalho('SELECIONE UMA DAS OPÇÕES')
+        opcoes = ['[1] Todas as Categorias','[2] Escolher uma Categoria']
+        
+        for item in opcoes:
+            print(item)
+
+        print(linha())
+
+        opcao = leiaInt('Digite sua opção: ')
+        return opcao
+
+    def filtro_cliente(self):
+
+        cabecalho('SELECIONE UMA DAS OPÇÕES')
+        opcoes = ['[1] Todos os Clientes','[2] Escolher um Cliente']
+        
+        for item in opcoes:
+            print(item)
+
+        print(linha())
+
+        opcao = leiaInt('Digite sua opção: ')
+        return opcao
+
+    def escolha_cor(self):
+        cabecalho('DIGITE UMA COR')
+        cor = input().upper()
+        return cor
+
+    def escolha_tamanho(self):
+        cabecalho('DIGITE UM TAMANHO')
+        tamanho = input().upper()
+        return tamanho
+
+    def escolha_categoria(self):
+        cabecalho('DIGITE A CATEGORIA')
+        categoria = input().upper
+        return categoria
     
+    def escolha_cliente(self):
+        cabecalho('DIGITE O NOME DO CLIENTE')
+        nome = input().upper()
+        return nome
+
+    def imprime_historico_generico(self, dados_compra):
+        print("PRODUTO: ", dados_compra["categoria"])
+        print("COR: ", dados_compra["cor"])
+        print("TAMANHO: ", dados_compra["tamanho"])
+        #print("QUANTIDADE VENDIDA: ", quantidade)
+
+    def imprime_historico_filtrado(self, dados_compra, quantidade, nome):
+        print("CLIENTE: ", nome)
+        print("PRODUTO: ", dados_compra["categoria"])
+        print("COR: ", dados_compra["cor"])
+        print("TAMANHO: ", dados_compra["tamanho"])
+        print("QUANTIDADE VENDIDA: ", quantidade)
