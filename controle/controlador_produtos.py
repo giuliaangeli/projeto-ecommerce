@@ -58,3 +58,5 @@ class ControladorProdutos():
     while continua:
       lista_opcoes[self.__tela_produtos.tela_opcoes()]()
 
+  def instancia_produto(self):
+    self.__controlador
