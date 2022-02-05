@@ -1,20 +1,21 @@
+
 class Historico:
-    def __init__(self, usuario, compras):
+    def __init__(self, usuario, produto):
         self.__usuario =  usuario
-        self.__compras = list
+        self.__compra = produto
 
     @property
     def usuario(self):
         return self.__usuario
 
     @property
-    def compras(self):
-        return self.__usuario
+    def compra(self):
+        return self.__compra
 
     @usuario.setter
     def usuario(self, usuario):
         self.__usuario =  usuario
 
-    @compras.setter
-    def compras(self, compras):
-        self.__compras = compras
+    @compra.setter
+    def compra(self, compra):
+        self.__compra = compra
