@@ -16,20 +16,18 @@ class TelaCor():
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def pega_dados_cor(self):
     print("-------- DADOS COR ----------")
-    nome = input("Nome: ")
-    codigo = input("Codigo: ")
+    nome = input("Nome: ").upper()
 
-    return {"nome": nome, "codigo": codigo}
+    return {"nome": nome}
 
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def mostra_cor(self, dados_cor):
     print("NOME DO COR: ", dados_cor["nome"])
-    print("CODIGO DO COR: ", dados_cor["codigo"])
     print("\n")
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def seleciona_cor(self):
-    nome = input("Nome da cor que deseja selecionar: ")
+    nome = input("Nome da cor que deseja selecionar: ").upper()
     return nome
 
   def mostra_mensagem(self, msg):
