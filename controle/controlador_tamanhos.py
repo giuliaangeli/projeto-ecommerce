@@ -16,38 +16,50 @@ class ControladorTamanhos():
 
   def incluir_tamanho(self):
     dados_tamanho = self.__tela_tamanho.pega_dados_tamanho()
-    tamanho = Tamanho(dados_tamanho["descricao"], dados_tamanho["codigo"])
-    self.__tamanhos.append(tamanho)
+    nova_tamanho = self.confere_tamanho_descricao(dados_tamanho["descricao"])
+
+    if nova_tamanho == None:
+      tamanho = Tamanho(dados_tamanho["descricao"])
+      self.__tamanhos.append(tamanho)
+      print('Tamanho foi selecionada com sucesso!')
+    else:
+      print('Esse tamanho já está cadastrado')
 
   def alterar_tamanho(self):
-    self.lista_tamanho()
-    codigo_tamanho = self.__tela_tamanho.seleciona_tamanho()
-    tamanho = self.pega_tamanho_por_codigo(codigo_tamanho)
-
-    if(tamanho is not None):
-      novos_dados_tamanho = self.__tela_tamanho.pega_dados_tamanho()
-      tamanho.descricao = novos_dados_tamanho["descricao"]
-      tamanho.codigo = novos_dados_tamanho["codigo"]
-      self.lista_tamanho()
-    else:
-      self.__tela_tamanho.mostra_mensagem("ATENCAO: Tamanho não existente")
+    print("Digite a descricao do tamanho que você deseja alterar")
+    tamanhoAntigo = input().upper()
+    print("Digite a descricao do tamanho pelo qual você deseja substituir")
+    tamanhoNovo = input().upper()
+    verefica1 = False
+    verefica = False
+    for tamanho in self.__tamanhos:
+      if tamanho.descricao == tamanhoAntigo:
+        verefica = True
+      if tamanho.descricao == tamanhoNovo:
+        verefica1 = True
+        print("O tamanho que você deseja alterar já se encontra na lista")
+    if verefica == True and verefica1 != True:
+      for tamanho in self.__tamanhos:
+        if tamanho == tamanhoAntigo:
+          tamanho.descricao = tamanhoNovo
+          print("Tamanho alterada com sucesso")
+    if verefica == False:
+      print("O trabalho que deseja alterar não se encontra na lista de cores")
 
   # Sugestão: se a lista estiver vazia, mostrar a mensagem de lista vazia
   def lista_tamanho(self):
     for tamanho in self.__tamanhos:
-      self.__tela_tamanho.mostra_tamanho({"descricao": tamanho.descricao, "codigo": tamanho.codigo})
+      self.__tela_tamanho.mostra_tamanho({"descricao": tamanho.descricao})
 
   def excluir_tamanho(self):
-    self.lista_tamanho()
-    codigo_tamanho = self.__tela_tamanho.seleciona_tamanho()
-    tamanho = self.pega_tamanho_por_codigo(codigo_tamanho)
-
-    if(tamanho is not None):
-      self.__tamanhos.remove(tamanho)
-      self.lista_tamanho()
-    else:
-      self.__tela_tamanho.mostra_mensagem("ATENCAO: Tamanho não existente")
-
+    descricao = self.__tela_tamanho.seleciona_tamanho()
+    for tamanho in self.__tamanhos:
+      if tamanho.descricao == descricao:
+        self.__tamanhos.remove(tamanho)
+        print('Tamanho removido!')
+      else:
+        print("ATENÇÃO: esse tamanho não está cadastrado")
+ 
   def retornar(self):
     self.__controlador_sistema.abre_tela()
 
@@ -57,6 +69,12 @@ class ControladorTamanhos():
     continua = True
     while continua:
       lista_opcoes[self.__tela_tamanho.tela_opcoes()]()
+
+  def confere_tamanho_descricao(self, descricao):
+    for tamanho in self.__tamanhos:
+      if (tamanho.descricao == descricao):
+        return tamanho
+    return None
 
   def instancia_tamanho(self):
     tamanho1 = Tamanho('P',1)
