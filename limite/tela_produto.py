@@ -1,14 +1,41 @@
+from limite.tela_abstrata import *
+
 class TelaProduto():
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
-  def tela_opcoes(self):
-    print("-------- PRODUTO ----------")
-    print("Escolha a opcao")
-    print("1 - Fazer Produto")
-    print("2 - Listar Produto")
-    print("3 - Devolver Produto")
-    print("0 - Retornar")
+  def tela_produtos_inicial_adm(self):
+    cabecalho('ESCOLHA UMA OPÇÃO')
+    opcoes = ['[1] Incluir Produto','[2] Listar Produtos','[3] Alterar Produto', '[4] Excluir Produto', '[5] Voltar ao Menu Anterior', '[6] Finalizar Sessão']
+    
+    for item in opcoes:
+        print(item)
 
-    opcao = int(input("Escolha a opcao: "))
+    print(linha())
+
+    opcao = leiaInt('Digite sua opção: ')
+    return opcao
+
+  def tela_produtos__adm(self):
+    cabecalho('ESCOLHA UMA OPÇÃO')
+    opcoes = ['[1] Incluir Produto Agora','[2] Menu Cor','[3] Menu Tamanho', '[4] Menu Categoria', '[5] Voltar ao Menu Anterior', '[6] Finalizar Sessão']
+    
+    for item in opcoes:
+        print(item)
+
+    print(linha())
+
+    opcao = leiaInt('Digite sua opção: ')
+    return opcao
+
+  def tela_produto_usuario(self):
+    cabecalho('ESCOLHA UMA OPÇÃO')
+    opcoes = ['[1] Ver Produtos Disponíveis','[2] Comprar um Produto Agora','[3] Voltar ao Menu Anterior', '[4] Finalizar Sessão']
+    
+    for item in opcoes:
+        print(item)
+
+    print(linha())
+
+    opcao = leiaInt('Digite sua opção: ')
     return opcao
 
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
