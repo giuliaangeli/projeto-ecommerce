@@ -1,3 +1,5 @@
+from controle.controle_historico import ControladorHistorico
+from limite.tela_abstrata import *
 from limite.tela_sistema  import TelaSistema
 from controle.controlador_cores import ControladorCores
 from controle.controlador_tamanhos import ControladorTamanhos
@@ -13,6 +15,7 @@ class ControladorSistema:
         self.__controlador_categorias = ControladorCategorias(self)
         self.__controlador_produtos = ControladorProdutos(self)
         self.__controle_pessoas = ControladorPessoa(self)
+        self.__controlador_historico = ControladorHistorico(self)
         self.__tela_sistema = TelaSistema()
 
     @property
@@ -31,82 +34,107 @@ class ControladorSistema:
     def controlador_produtos(self):
         return self.__controlador_produtos
 
+    @property
+    def controlador_pessoas(self):
+        return self.__controle_pessoas
+    
+    @property
+    def controlador_historico(self):
+        return self.__controlador_historico
+
     def inicializa_sistema(self):
+        self.__controle_pessoas.instancia_pessoas()
         self.abre_tela_inicial()
-
-    def cadastra_cores(self):
-        self.__controlador_cores.abre_tela()
-
-    def cadastra_tamanhos(self):
-        self.__controlador_tamanhos.abre_tela()
-
-    def cadastra_categorias(self):
-        self.__controlador_categorias.abre_tela()
-
-    def cadastra_produtos(self):
-        self.__controlador_produtos.abre_tela()
-
-    def cadastra_pessoas(self):
-        self.__controle_pessoas.abre_tela()
-
-    #def cadastra_carrinho(self):
-
-    #def cadastra_historico(self):
 
     def encerra_sistema(self):
         exit(0)
 
+    def controla_menu_principal_adm(self, adm):
+        lista_opcoes = {1: self.controla_pessoas_adm, 2: self.controla_produto_adm, 3: self.controla_historico_adm, 4: self.encerra_sistema}
+        opcao_escolhida = self.__tela_sistema.tela_opcoes_adm()
+        if opcao_escolhida == 4:
+            lista_opcoes[opcao_escolhida]()
+        else:
+            lista_opcoes[opcao_escolhida](adm)
+    
+    def controla_pessoas_adm(self, adm):
+        self.__controle_pessoas.abre_tela_adm(adm)
+
+    def controla_produto_adm(self, adm):
+        self.__controlador_produtos.abre_tela_produtos_adm(adm)
+
+    def controla_historico_adm(self, adm):
+        pass
+
+
+    def controla_menu_principal_usuario(self, usuario):
+        lista_opcoes = {1: self.controla_produto_usuario, 2: self.controla_historico_usuario, 3: self.controla_pessoas_usuario, 4: self.encerra_sistema}
+        opcao_escolhida = self.__tela_sistema.tela_opcoes_usuario()
+        lista_opcoes[opcao_escolhida](usuario)
+
+    def controla_produto_usuario(self, usuario):
+        self.__controlador_produtos.abri_menu_usuario(usuario)
+
+    def controla_historico_usuario(self, usuario):
+        pass
+
+    def controla_pessoas_usuario(self, usuario):
+        self.__controle_pessoas.abre_tela_usuario(usuario)
+
+    def confere_login_adm(self):
+        adm = self.__controle_pessoas.confere_login(1)
+        if adm is not None:
+            self.controla_menu_principal_adm(adm)
+
+        else:
+            self.falha_login_adm
+
+    def confere_login_usuario(self):
+        usuario = self.__controle_pessoas.confere_login(2)
+        if usuario is not None:
+            self.controla_menu_principal_usuario(usuario)
+
+        else:
+            self.falha_login_usuario
+
+    def falha_login_adm(self):
+        lista_opcoes = {1: self.confere_login_adm, 2: self.controla_tela_login}
+        cabecalho('E-MAIL E/OU SENHA INCORRETOS')
+        opcao_escolhida = self.__tela_sistema.falha()
+        lista_opcoes[opcao_escolhida]()
+
+    def falha_login_usuario(self):
+        lista_opcoes = {1: self.confere_login_usuario, 2: self.controla_tela_login}
+        cabecalho('E-MAIL E/OU SENHA INCORRETOS')
+        opcao_escolhida = self.__tela_sistema.falha()
+        lista_opcoes[opcao_escolhida]()
+
+    def controla_tela_login(self):
+        lista_opcoes = {1:self.confere_login_adm, 2:self.confere_login_usuario}
+        opcao_escolhida = self.__tela_sistema.tela_login()
+
+        if opcao_escolhida != 1 and opcao_escolhida != 2:
+            print('A opção digitada é inválida, digite uma das opções dada!')
+            self.controla_tela_login()
+        
+        else:
+            lista_opcoes[opcao_escolhida]()
+    
+    def incluir_usuario(self):
+        usuario = self.__controle_pessoas.incluir_usuario()
+        if usuario is not None:
+            self.abre_tela_inicial()
+        else: 
+            self.falha_cpf_ja_cadastrado()
+
+    def falha_cpf_ja_cadastrado(self):
+        lista_opcoes = {1: self.incluir_usuario, 2: self.abre_tela_inicial}
+        opcao_escolhida = self.__tela_sistema.falha()
+        lista_opcoes[opcao_escolhida]()
+
     def abre_tela_inicial(self):
-        self.__controle_pessoas.instancia_pessoas()
+        lista_opcoes = {1: self.controla_tela_login, 2: self.incluir_usuario}
+        opcao_escolhida = self.__tela_sistema.tela_inicial()
+        lista_opcoes[opcao_escolhida]()
 
-        while True:
-            
-            opcao_escolhida = self.__tela_sistema.tela_inicial()
-
-            #Pessoa escolhe fazer Login
-            if opcao_escolhida == 1:
-                opcao_escolhida = self.__tela_sistema.tela_login()
-
-                #Pessoa escolhe fazer login como Administrador
-                if opcao_escolhida == 1:
-                    tipo_pessoa = 1
-                    adm = self.__controle_pessoas.confere_login(tipo_pessoa)
-
-
-                    if adm is not None:
-                        opcao_escolhida = self.__tela_sistema.tela_opcoes_adm()
-                        print(opcao_escolhida)
-                        
-                        #opcao 1 - Pessoas
-                        if opcao_escolhida == 1:
-                            opcao_escolhida = self.__controle_pessoas.abre_tela_adm(adm)
-                        #opcao 2 - Produto
-                        elif opcao_escolhida == 2:
-                            opcao_escolhida = self.__controlador_produtos.abre_tela()
-                        #opcao 3 - Historico
-                        elif opcao_escolhida == 3:
-                            print('...')
-                        #opcao 4 - Finalizar sessão
-                        else:
-                            self.encerra_sistema
-
-                
-                #Pessoa escolhe fazer login como usuário
-                else:
-                    tipo_pessoa = 2
-                    usuario = self.__controle_pessoas.confere_login(tipo_pessoa)
-                    
-                    if usuario is not None:
-                        opcao_escolhida = self.__tela_sistema.tela_opcoes_usuario()
-                        # Opção 1 -> Ir as compras
-
-                        # Opção 2 -> Consultar Histórico
-
-                        # Opção 3 -> Dados Pessoais
-                        if opcao_escolhida == 3:
-                            self.__controle_pessoas.abre_tela_usuario(usuario)
-                        # Opção 4 -> Finalizar Sessão
-            
-            else: 
-                self.__controle_pessoas.incluir_usuario()
             
