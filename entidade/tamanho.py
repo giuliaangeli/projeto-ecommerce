@@ -1,7 +1,6 @@
 class Tamanho:
-    def __init__(self,descricao:str,codigo:int):
+    def __init__(self,descricao:str):
         self.__descricao = descricao
-        self.__codigo = codigo
 
     @property
     def descricao(self):
@@ -10,12 +9,3 @@ class Tamanho:
     @descricao.setter
     def descricao(self,descricao:str):
         self.__descricao = descricao
-
-    @property
-    def codigo(self):
-        return self.__codigo
-
-    @codigo.setter
-    def codigo(self,codigo:int):
-        self.__codigo = codigo
-        
