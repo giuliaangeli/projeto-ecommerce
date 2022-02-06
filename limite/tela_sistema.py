@@ -24,6 +24,19 @@ class TelaSistema:
 
         opcao = leiaInt('Digite sua opção: ')
         return opcao
+
+    def falha(self):
+
+        print('Escolha uma das opções abaixo')
+        opcoes = ['[1] Tentar novamente','[2] Voltar ao menu anterior']
+        
+        for item in opcoes:
+            print(item)
+
+        print(linha())
+
+        opcao = leiaInt('Digite sua opção: ')
+        return opcao
         
     def tela_opcoes_adm(self):
         
