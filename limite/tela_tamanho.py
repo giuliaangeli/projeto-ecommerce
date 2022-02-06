@@ -1,16 +1,17 @@
+from limite.tela_abstrata import *
+
 class TelaTamanho():
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def tela_opcoes(self):
-    print("-------- TAMANHO ----------")
-    print("Escolha a opcao")
-    print("1 - Incluir Tamanho")
-    print("2 - Alterar Tamanho")
-    print("3 - Listar Tamanho")
-    print("4 - Excluir Tamanho")
-    print("0 - Retornar")
+    cabecalho('MENU TAMANHO')
+    opcoes = ['[1] Incluir Tamanho','[2] Alterar Tamanho','[3] Listar Tamanho', '[4] Excluir Tamanho', '[5] Voltar ao Menu Anterior', '[6] Sair']
+    
+    for item in opcoes:
+        print(item)
 
+    print(linha())
 
-    opcao = int(input("Escolha a opcao: "))
+    opcao = leiaInt('Digite sua opção: ')
     return opcao
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
