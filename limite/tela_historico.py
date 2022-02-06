@@ -6,7 +6,7 @@ class TelaHistorico():
     def menu_principal_adm(self):
         
         cabecalho('SELECIONE UMA DAS OPÇÕES')
-        opcoes = ['[1] Ver Histórico de Vendas','[2] Alterar Histórico de Vendas', '[3] Incluir uma Venda no Histórico', '[4] Excluir uma Venda do Histórico', '[5] Voltar ao Menu Anterior']
+        opcoes = ['[1] Ver Histórico de Vendas','[2] Alterar Histórico de Vendas', '[3] Incluir uma Venda no Histórico', '[4] Excluir uma Venda do Histórico', '[5] Voltar ao Menu Anterior', '[6] Encerrar Sessão']
         
         for item in opcoes:
             print(item)
@@ -19,7 +19,7 @@ class TelaHistorico():
     def menu_opcao_filtro(self):
 
         cabecalho('SELECIONE UMA DAS OPÇÕES')
-        opcoes = ['[1] Ver Todas as Vendas','[2] Aplicar Filtro']
+        opcoes = ['[1] Ver Todas as Vendas','[2] Aplicar Filtro','[3] Voltar ao Menu Anterior', '[4] Encerrar Sessão']
         
         for item in opcoes:
             print(item)
