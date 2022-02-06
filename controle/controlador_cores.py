@@ -44,12 +44,7 @@ class ControladorCores():
           cor.nome = corNova
           print("Cor alterada com sucesso")
     if verefica == False:
-      print("A cor que deseja alterar não se encontra na lista de cores")
-        
-
-
-
-   
+      print("A cor que deseja alterar não se encontra na lista de cores")   
 
   def lista_cor(self):
     for cor in self.__cores:
@@ -72,13 +67,20 @@ class ControladorCores():
       if (cor.nome == nome):
         return cor
     return None
+  
+  def retornar_menu__produto(self, adm):
+    self.__controlador_sistema.controlador_produtos.menu_incluir_produto(adm)
 
-  def abre_tela(self):
-    lista_opcoes = {1: self.incluir_cor, 2: self.alterar_cor, 3: self.lista_cor, 4: self.excluir_cor, 0: self.retornar}
+  def abre_tela(self, adm):
+    lista_opcoes = {1: self.incluir_cor, 2: self.alterar_cor, 3: self.lista_cor, 4: self.excluir_cor, 5: self.retornar_menu__produto, 6: self.__controlador_sistema.encerra_sistema}
 
     continua = True
     while continua:
-      lista_opcoes[self.__tela_cor.tela_opcoes()]()
+      opcao_escolhida = self.__tela_cor.tela_opcoes()
+      if opcao_escolhida == 5:
+        lista_opcoes[opcao_escolhida](adm)
+      else:
+        lista_opcoes[opcao_escolhida]()
 
   def instancia_cor(self):
     vermelho = Cor('VERMELHO')
