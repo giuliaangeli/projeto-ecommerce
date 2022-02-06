@@ -1,16 +1,17 @@
+from limite.tela_abstrata import *
+
 class TelaCor():
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def tela_opcoes(self):
-    print("-------- CORES ----------")
-    print("Escolha a opcao")
-    print("1 - Incluir Cor")
-    print("2 - Alterar Cor")
-    print("3 - Listar Cor")
-    print("4 - Excluir Cor")
-    print("0 - Retornar")
+    cabecalho('MENU CORES')
+    opcoes = ['[1] Incluir Cor','[2] Alterar Cor','[3] Listar Cores', '[4] Excluir Cor', '[5] Voltar ao Menu Anterior', '[6] Sair']
+    
+    for item in opcoes:
+        print(item)
 
+    print(linha())
 
-    opcao = int(input("Escolha a opcao: "))
+    opcao = leiaInt('Digite sua opção: ')
     return opcao
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
