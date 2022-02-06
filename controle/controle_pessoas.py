@@ -46,7 +46,6 @@ class ControladorPessoa():
             return None
 
     def incluir_usuario(self):
-
         dados_novo_usuario = self.__tela_pessoa.pega_dados_usuario()
         usuario = self.confere_usuario_cpf(dados_novo_usuario["cpf"])
 
@@ -54,8 +53,10 @@ class ControladorPessoa():
             novo_usuario = Usuario(dados_novo_usuario["nome"], dados_novo_usuario["cpf"], dados_novo_usuario["telefone"], dados_novo_usuario["endereco"], dados_novo_usuario["email"], dados_novo_usuario["senha"])
             self.__usuarios.append(novo_usuario)
             print('Seu cadastro foi realizado com sucesso!')
+            return novo_usuario
         else:
-            print('Esse CPF já está cadastrado')
+            cabecalho('Esse CPF já está cadastrado')
+            return None
         
     def incluir_adm(self):
         dados_novo_adm = self.__tela_pessoa.pega_dado_adm()
@@ -153,19 +154,22 @@ class ControladorPessoa():
             cabecalho('SUAS INFORMAÇÕES')
             self.__tela_pessoa.mostra_usuario({"nome": pessoa.nome, "cpf": pessoa.cpf, "telefone": pessoa.cpf, "endereco": pessoa.endereco, "email": pessoa.email, "senha": pessoa.senha})
 
-    def retornar(self):
-        self.__controlador_sistema.abre_tela()
+    def retornar_menu_adm(self, adm):
+        self.__controlador_sistema.controla_menu_principal_adm(adm)
+
+    def retornar_menu_usuario(self, usuario):
+        self.__controlador_sistema.controla_menu_principal_usuario(usuario)
 
     def abre_tela_adm(self, adm):
 
-        lista_opcoes = {1: self.incluir_adm, 2: self.excluir_pessoa, 3: self.listar_dados, 4: self.alterar_pessoa , 5: self.incluir_usuario, 6: self.excluir_pessoa, 7: self.listar_dados , 8: self.retornar}
+        lista_opcoes = {1: self.incluir_adm, 2: self.excluir_pessoa, 3: self.listar_dados, 4: self.alterar_pessoa , 5: self.incluir_usuario, 6: self.excluir_pessoa, 7: self.listar_dados , 8: self.retornar_menu_adm, 9: self.__controlador_sistema.encerra_sistema}
 
         continua = True
         while continua:
             opcao_escolhida = self.__tela_pessoa.tela_pessoa_adm()
             if opcao_escolhida == 2 or opcao_escolhida == 3:
                 lista_opcoes[opcao_escolhida](adm,1)
-            elif opcao_escolhida == 4:
+            elif opcao_escolhida == 4 or opcao_escolhida == 8:
                 lista_opcoes[opcao_escolhida](adm)
             elif opcao_escolhida == 6 or opcao_escolhida == 7:
                 lista_opcoes[opcao_escolhida](adm,2)
@@ -174,17 +178,15 @@ class ControladorPessoa():
     
     def abre_tela_usuario(self, usuario):
     
-        lista_opcoes = {1: self.listar_dados, 2: self.alterar_pessoa , 3: self.excluir_pessoa, 0: self.retornar}
+        lista_opcoes = {1: self.listar_dados, 2: self.alterar_pessoa , 3: self.excluir_pessoa, 4: self.retornar_menu_usuario}
 
         continua = True
         while continua:
             opcao_escolhida = self.__tela_pessoa.tela_pessoa_usuario()
-            if opcao_escolhida == 1 or opcao_escolhida == 2:
-                lista_opcoes[opcao_escolhida](usuario)
-            elif opcao_escolhida == 3:
+            if opcao_escolhida == 3:
                 lista_opcoes[opcao_escolhida](usuario, 2)
             else:
-                lista_opcoes[opcao_escolhida]()
+                lista_opcoes[opcao_escolhida](usuario)
     
     def instancia_pessoas(self):
 
