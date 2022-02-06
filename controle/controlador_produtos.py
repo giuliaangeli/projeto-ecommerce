@@ -87,10 +87,10 @@ class ControladorProdutos():
     continua = True
     while continua:
       opcao_escolhida = self.__tela_produtos.tela_produtos_inicial_adm()
-      if opcao_escolhida == 6:
-        lista_opcoes[opcao_escolhida]()
-      else:
+      if opcao_escolhida == 5:
         lista_opcoes[opcao_escolhida](adm)
+      else:
+        lista_opcoes[opcao_escolhida]()
   
   def abre_menu_cor(self, adm):
     self.__controlador_sistema.controlador_cores.abre_tela(adm)
