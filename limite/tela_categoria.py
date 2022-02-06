@@ -16,20 +16,18 @@ class TelaCategoria():
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def pega_dados_categoria(self):
     print("-------- DADOS CATEGORIA ----------")
-    tipo = input("Tipo: ")
-    codigo = input("Codigo: ")
+    tipo = input("Tipo: ").upper()
 
-    return {"tipo": tipo, "codigo": codigo}
+    return {"tipo": tipo}
 
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def mostra_categoria(self, dados_categoria):
     print("TIPO DE CATEGORIA: ", dados_categoria["tipo"])
-    print("CODIGO DO CATEGORIA: ", dados_categoria["codigo"])
     print("\n")
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def seleciona_categoria(self):
-    tipo = input("Tipo da categoria que deseja selecionar: ")
+    tipo = input("Tipo da categoria que deseja selecionar: ").upper()
     return tipo
 
   def mostra_mensagem(self, msg):
