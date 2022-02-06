@@ -16,38 +16,51 @@ class ControladorCategorias():
 
   def incluir_categoria(self):
     dados_categoria = self.__tela_categoria.pega_dados_categoria()
-    categoria = Categoria(dados_categoria["tipo"], dados_categoria["codigo"])
-    self.__categorias.append(categoria)
+    nova_categoria = self.confere_categoria_tipo(dados_categoria["tipo"])
+
+    if nova_categoria == None:
+      categoria = Categoria(dados_categoria["tipo"])
+      self.__categorias.append(categoria)
+      print('Categoria foi selecionada com sucesso!')
+    else:
+      print('Essa categoria já está cadastrado')
 
   def alterar_categoria(self):
-    self.lista_categoria()
-    codigo_categoria = self.__tela_categoria.seleciona_categoria()
-    categoria = self.pega_categoria_por_codigo(codigo_categoria)
-
-    if(categoria is not None):
-      novos_dados_categoria = self.__tela_categoria.pega_dados_categoria()
-      categoria.tipo = novos_dados_categoria["tipo"]
-      categoria.codigo = novos_dados_categoria["codigo"]
-      self.lista_categoria()
-    else:
-      self.__tela_categoria.mostra_mensagem("ATENCAO: Categoria não existente")
+    print("Digite o nome da cor que você deseja alterar")
+    corAntiga = input().upper()
+    print("Digite o nome da cor pelo qual você deseja substituir")
+    corNova = input().upper()
+    verefica1 = False
+    verefica = False
+    for cor in self.__categorias:
+      if cor.tipo == corAntiga:
+        verefica = True
+      if cor.tipo == corNova:
+        verefica1 = True
+        print("A cor que você deseja alterar já se encontra na lista")
+    if verefica == True and verefica1 != True:
+      for cor in self.__categorias:
+        if cor == corAntiga:
+          cor.tipo = corNova
+          print("Cor alterada com sucesso")
+    if verefica == False:
+      print("A cor que deseja alterar não se encontra na lista de cores")
+        
 
   # Sugestão: se a lista estiver vazia, mostrar a mensagem de lista vazia
   def lista_categoria(self):
     for categoria in self.__categorias:
-      self.__tela_categoria.mostra_categoria({"tipo": categoria.tipo, "codigo": categoria.codigo})
+      self.__tela_categoria.mostra_categoria({"tipo": categoria.tipo})
 
   def excluir_categoria(self):
-    self.lista_categoria()
-    codigo_categoria = self.__tela_categoria.seleciona_categoria()
-    categoria = self.pega_categoria_por_codigo(codigo_categoria)
-
-    if(categoria is not None):
-      self.__categorias.remove(categoria)
-      self.lista_categoria()
-    else:
-      self.__tela_categoria.mostra_mensagem("ATENCAO: Categoria não existente")
-
+    tipo = self.__tela_categoria.seleciona_categoria()
+    for categoria in self.__categorias:
+      if categoria.tipo == tipo:
+        self.__categorias.remove(categoria)
+        print('Categoria removido!')
+      else:
+        print("ATENÇÃO: essa categoria não está cadastrado")
+    
   def retornar(self):
     self.__controlador_sistema.abre_tela()
 
@@ -57,6 +70,12 @@ class ControladorCategorias():
     continua = True
     while continua:
       lista_opcoes[self.__tela_categoria.tela_opcoes()]()
+
+  def confere_categoria_tipo(self, tipo):
+    for categoria in self.__categorias:
+      if (categoria.tipo == tipo):
+        return categoria
+    return None
 
   def instancia_categorias(self):
     categoria1 = Categoria('calça',1)
