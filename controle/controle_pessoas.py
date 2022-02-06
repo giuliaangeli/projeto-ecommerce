@@ -178,13 +178,15 @@ class ControladorPessoa():
     
     def abre_tela_usuario(self, usuario):
     
-        lista_opcoes = {1: self.listar_dados, 2: self.alterar_pessoa , 3: self.excluir_pessoa, 4: self.retornar_menu_usuario}
+        lista_opcoes = {1: self.listar_dados, 2: self.alterar_pessoa , 3: self.excluir_pessoa, 4: self.retornar_menu_usuario, 5: self.__controlador_sistema.encerra_sistema}
 
         continua = True
         while continua:
             opcao_escolhida = self.__tela_pessoa.tela_pessoa_usuario()
             if opcao_escolhida == 3:
                 lista_opcoes[opcao_escolhida](usuario, 2)
+            elif opcao_escolhida == 5:
+                lista_opcoes[opcao_escolhida]()
             else:
                 lista_opcoes[opcao_escolhida](usuario)
     
