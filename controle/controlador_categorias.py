@@ -61,15 +61,19 @@ class ControladorCategorias():
       else:
         print("ATENÇÃO: essa categoria não está cadastrado")
     
-  def retornar(self):
-    self.__controlador_sistema.abre_tela()
+  def retornar_menu__produto(self, adm):
+    self.__controlador_sistema.controlador_produtos.menu_incluir_produto(adm)
 
-  def abre_tela(self):
-    lista_opcoes = {1: self.incluir_categoria, 2: self.alterar_categoria, 3: self.lista_categoria, 4: self.excluir_categoria, 0: self.retornar}
-
+  def abre_tela(self, adm):
+    lista_opcoes = {1: self.incluir_categoria, 2: self.alterar_categoria, 3: self.lista_categoria, 4: self.excluir_categoria, 5: self.retornar_menu__produto, 6: self.__controlador_sistema.encerra_sistema}
+    
     continua = True
     while continua:
-      lista_opcoes[self.__tela_categoria.tela_opcoes()]()
+      opcao_escolhida = self.__tela_categoria.tela_opcoes()
+      if opcao_escolhida == 5:
+        lista_opcoes[opcao_escolhida](adm)
+      else:
+        lista_opcoes[opcao_escolhida]()
 
   def confere_categoria_tipo(self, tipo):
     for categoria in self.__categorias:
