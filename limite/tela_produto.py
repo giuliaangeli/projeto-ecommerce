@@ -14,9 +14,9 @@ class TelaProduto():
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def pega_dados_produto(self):
     print("-------- DADOS PRODUTO ----------")
-    nome = input("Nome Cor: ")
-    descricao = input("Descricao Tamanho: ")
-    tipo = input("Tipo categoria: ")
+    nome = input("Nome Cor: ").upper()
+    descricao = input("Descricao Tamanho: ").upper()
+    tipo = input("Tipo categoria: ").upper()
 
     return {"nome": nome, "descricao": descricao, "tipo": tipo}
 
@@ -24,11 +24,11 @@ class TelaProduto():
   def mostra_produto(self, dados_prooduto):
     print("CODIGO DO PRODUTO: ", dados_prooduto["codigo"])
     print("NOME DO COR: ", dados_prooduto["nome_cor"])
-    print("CODIGO DO COR: ", dados_prooduto["codigo_cor"])
+   # ("CODIGO DO COR: ", dados_prooduto["codigo_cor"])
     print("DESCRICAO DO TAMANHO: ", dados_prooduto["descricao_tamanho"])
-    print("CODIGO DO TAMANHO: ", dados_prooduto["codigo_tamanho"])
+    #print("CODIGO DO TAMANHO: ", dados_prooduto["codigo_tamanho"])
     print("TIPO DO CATEGORIA: ", dados_prooduto["tipo_categoria"])
-    print("CODIGO DO CATEGORIA: ", dados_prooduto["codigo_categoria"])
+   # print("CODIGO DO CATEGORIA: ", dados_prooduto["codigo_categoria"])
     print("\n")
 
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
