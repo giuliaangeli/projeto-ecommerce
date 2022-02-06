@@ -1,7 +1,6 @@
 class Cor:
-    def __init__(self,nome:str,codigo:int):
+    def __init__(self,nome:str):
         self.__nome = nome
-        self.__codigo = codigo
 
     @property
     def nome(self):
@@ -11,13 +10,3 @@ class Cor:
     def nome(self,nome:str):
         self.__nome = nome
     
-    @property
-    def codigo(self):
-        return self.__codigo
-
-    @codigo.setter
-    def codigo(self,codigo:int):
-        self.__codigo = codigo
-
-
-
