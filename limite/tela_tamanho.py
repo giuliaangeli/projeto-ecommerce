@@ -16,20 +16,18 @@ class TelaTamanho():
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def pega_dados_tamanho(self):
     print("-------- DADOS TAMANHO ----------")
-    descricao = input("Descricao: ")
-    codigo = input("Codigo: ")
+    descricao = input("Descricao: ").upper()
 
-    return {"descricao": descricao, "codigo": codigo}
+    return {"descricao": descricao}
 
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def mostra_tamanho(self, dados_tamanho):
     print("DESCRICAO DO TAMANHO: ", dados_tamanho["descricao"])
-    print("CODIGO DO TAMANHO: ", dados_tamanho["codigo"])
     print("\n")
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def seleciona_tamanho(self):
-    descricao = input("Descricao do tamanho que deseja selecionar: ")
+    descricao = input("Descricao do tamanho que deseja selecionar: ").upper()
     return descricao
 
   def mostra_mensagem(self, msg):
