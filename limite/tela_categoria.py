@@ -1,17 +1,19 @@
+from limite.tela_abstrata import *
+
 class TelaCategoria():
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def tela_opcoes(self):
-    print("-------- CATEGORIAS ----------")
-    print("Escolha a opcao")
-    print("1 - Incluir Categoria")
-    print("2 - Alterar Categoria")
-    print("3 - Listar Categoria")
-    print("4 - Excluir Categoria")
-    print("0 - Retornar")
+    cabecalho('MENU CATEGORIA')
+    opcoes = ['[1] Incluir Categoria','[2] Alterar Categoria','[3] Listar Categorias', '[4] Excluir Categoria', '[5] Voltar ao Menu Anterior', '[6] Sair']
+    
+    for item in opcoes:
+        print(item)
 
+    print(linha())
 
-    opcao = int(input("Escolha a opcao: "))
+    opcao = leiaInt('Digite sua opção: ')
     return opcao
+
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def pega_dados_categoria(self):
