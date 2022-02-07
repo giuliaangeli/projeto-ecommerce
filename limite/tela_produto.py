@@ -60,7 +60,7 @@ class TelaProduto():
 
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def seleciona_produto(self):
-    codigo = input("Código do produto que deseja selecionar: ")
+    codigo = int(float(input("Código do produto que deseja selecionar: ")))
     return codigo
 
   def mostra_mensagem(self, msg):
