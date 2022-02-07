@@ -94,7 +94,7 @@ class ControladorSistema:
             self.controla_menu_principal_adm(adm)
 
         else:
-            self.falha_login_adm
+            self.falha_login_adm()
 
     def confere_login_usuario(self):
         usuario = self.__controle_pessoas.confere_login(2)
@@ -102,7 +102,7 @@ class ControladorSistema:
             self.controla_menu_principal_usuario(usuario)
 
         else:
-            self.falha_login_usuario
+            self.falha_login_usuario()
 
     def falha_login_adm(self):
         lista_opcoes = {1: self.confere_login_adm, 2: self.controla_tela_login}
