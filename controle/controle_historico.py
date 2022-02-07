@@ -253,35 +253,28 @@ class ControladorHistorico():
             else:
                 lista_opcoes[opcao_escolhida]()
 
+    
+    
     def instancia_historico(self):
-        #Intancia Usuário
-        usuario1 = Usuario('Giulia Angeli','09641787969','47997930839','João Pio Duarte Silva','giulia@gmail.com','1234')
-        usuario2 = Usuario('Guilherme Ferreira','99900011199','13996893954','Lauro Linhares','guilherme@gmail.com','1234')
-        #Instancia Produtos
-        cor1 = Cor('VERMELHO')
-        cor2 = Cor('VERDE')
-        cor3 = Cor('AMARELO')
-        tamanho1 = Tamanho('P')
-        tamanho2 = Tamanho('M')
-        tamanho3 = Tamanho('G')
-        categoria1 = Categoria('CAMISETA')
-        categoria2 = Categoria('MOLETON')
-        categoria3 = Categoria('SHORT')
-        produto1 = Produto(cor1, tamanho1, categoria1,1)
-        produto2 = Produto(cor2, tamanho3, categoria2,2)
-        produto3 = Produto(cor3, tamanho1, categoria2,3)
-        produto4 = Produto(cor1, tamanho2, categoria3,4)
-        produto5 = Produto(cor2, tamanho2, categoria1,5)
-        produto6 = Produto(cor3, tamanho3, categoria3,6)
-        #Instancia Histórico
+        usuario1 = self.__controlador_sistema.controlador_pessoas.confere_usuario_cpf('09641787969')
+        usuario2 = self.__controlador_sistema.controlador_pessoas.confere_usuario_cpf('99900011199')
+        produto1 = self.__controlador_sistema.controlador_produtos.pega_produto_por_codigo(1)
+        produto2 = self.__controlador_sistema.controlador_produtos.pega_produto_por_codigo(2)
+        produto3 = self.__controlador_sistema.controlador_produtos.pega_produto_por_codigo(3)
+        produto4 = self.__controlador_sistema.controlador_produtos.pega_produto_por_codigo(4)
+        produto5 = self.__controlador_sistema.controlador_produtos.pega_produto_por_codigo(5)
+        produto6 = self.__controlador_sistema.controlador_produtos.pega_produto_por_codigo(6)
+    
         venda1 = Historico(usuario1, produto6)
-        venda2 = Historico(usuario1, produto1)
+        venda2 = Historico(usuario1, produto6)
         venda3 = Historico(usuario2, produto2)
-        venda4 = Historico(usuario2, produto3)
-        venda5 = Historico(usuario1, produto4)
-        venda6 = Historico(usuario1, produto5)
-        venda7 = Historico(usuario2, produto5)
-        venda8 = Historico(usuario1, produto5)
+        venda4 = Historico(usuario2, produto2)
+        venda5 = Historico(usuario2, produto3)
+        venda6 = Historico(usuario1, produto4)
+        venda7 = Historico(usuario1, produto5)
+        venda8 = Historico(usuario2, produto5)
+        venda9 = Historico(usuario1, produto5)
+
         #Coloca venda na lista de Historicos
         self.__historico.append(venda1)
         self.__historico.append(venda2)
@@ -291,4 +284,7 @@ class ControladorHistorico():
         self.__historico.append(venda6)
         self.__historico.append(venda7)
         self.__historico.append(venda8)
+        self.__historico.append(venda8)
+        self.__historico.append(venda9)
+
 
