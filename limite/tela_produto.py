@@ -42,8 +42,11 @@ class TelaProduto():
   def pega_dados_produto(self):
     print("-------- DADOS PRODUTO ----------")
     nome = input("Nome Cor: ").upper()
+    nome = nome.strip()
     tamanho = input("Descricao Tamanho: ").upper()
+    tamanho = tamanho.strip()
     categoria = input("Tipo Categoria: ").upper()
+    categoria = categoria.strip()
 
     return {"nome": nome, "tamanho": tamanho, "categoria": categoria}
 
@@ -61,6 +64,7 @@ class TelaProduto():
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def seleciona_produto(self):
     codigo = int(float(input("Código do produto que deseja selecionar: ")))
+    codigo = codigo.strip()
     return codigo
 
   def mostra_mensagem(self, msg):
