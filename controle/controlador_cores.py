@@ -35,14 +35,14 @@ class ControladorCores():
       if cor.nome == corAntiga:
         verefica = True
       if cor.nome == corNova:
-        verefica1 = True
+        verefica1 = False
         print("A cor que você deseja alterar já se encontra na lista")
     if verefica == True and verefica1 != True:
       for cor in self.__cores:
-        if cor == corAntiga:
+        if cor.nome == corAntiga:
           cor.nome = corNova
           print("Cor alterada com sucesso")
-    if verefica == False:
+    elif verefica == False:
       print("A cor que deseja alterar não se encontra na lista de cores")   
 
   def lista_cor(self):
