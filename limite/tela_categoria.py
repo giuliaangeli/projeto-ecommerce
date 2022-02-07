@@ -24,8 +24,7 @@ class TelaCategoria():
 
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def mostra_categoria(self, dados_categoria):
-    print("TIPO DE CATEGORIA: ", dados_categoria["tipo"])
-    print("\n")
+    print(dados_categoria["tipo"])
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def seleciona_categoria(self):
