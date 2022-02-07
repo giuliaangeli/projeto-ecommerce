@@ -42,10 +42,10 @@ class TelaProduto():
   def pega_dados_produto(self):
     print("-------- DADOS PRODUTO ----------")
     nome = input("Nome Cor: ").upper()
-    descricao = input("Descricao Tamanho: ").upper()
-    tipo = input("Tipo categoria: ").upper()
+    tamanho = input("Descricao Tamanho: ").upper()
+    categoria = input("Tipo Categoria: ").upper()
 
-    return {"nome": nome, "descricao": descricao, "tipo": tipo}
+    return {"nome": nome, "tamanho": tamanho, "categoria": categoria}
 
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def mostra_produto(self, dados_prooduto):
