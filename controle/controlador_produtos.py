@@ -87,7 +87,7 @@ class ControladorProdutos():
     continua = True
     while continua:
       opcao_escolhida = self.__tela_produtos.tela_produtos_inicial_adm()
-      if opcao_escolhida == 5:
+      if opcao_escolhida == 5 or opcao_escolhida == 1:
         lista_opcoes[opcao_escolhida](adm)
       else:
         lista_opcoes[opcao_escolhida]()
@@ -132,3 +132,6 @@ class ControladorProdutos():
         lista_opcoes[opcao_escolhida]()
       else:
         lista_opcoes[opcao_escolhida](usuario)
+
+  #def instancia_produtos(self):
+    
