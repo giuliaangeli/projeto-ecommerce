@@ -49,4 +49,8 @@ class Produto:
   def codigo(self, codigo: int):
     self.__codigo = codigo
 
- 
+  def __eq__(self, other):
+    if self.__cor == other.cor and self.__tamanho == other.tamanho and self.__categoria == other.categoria:
+      return True
+    else:
+      return False
