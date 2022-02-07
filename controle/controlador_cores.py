@@ -8,9 +8,9 @@ class ControladorCores():
     self.__controlador_sistema = controlador_sistema
     self.__tela_cor = TelaCor()
 
-  def pega_cor_por_codigo(self, nome: str):
+  def confere_cor_nome(self, nome):
     for cor in self.__cores:
-      if(cor.nome == nome):
+      if (cor.nome == nome):
         return cor
     return None
 
@@ -61,12 +61,6 @@ class ControladorCores():
 
   def retornar(self):
     self.__controlador_sistema.abre_tela()
-
-  def confere_cor_nome(self, nome):
-    for cor in self.__cores:
-      if (cor.nome == nome):
-        return cor
-    return None
   
   def retornar_menu__produto(self, adm):
     self.__controlador_sistema.controlador_produtos.menu_incluir_produto(adm)
