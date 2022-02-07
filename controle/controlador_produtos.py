@@ -110,9 +110,9 @@ class ControladorProdutos():
     for produto in self.__produtos:
       if produto.codigo == codigo:
         return produto
-      else:
-        print('ATENÇÃO: O código digitado não corresponde a nenhum produto cadastrado, digite um código válido!')
-        self.confere_produto_codigo()
+      
+    print('ATENÇÃO: O código digitado não corresponde a nenhum produto cadastrado, digite um código válido!')
+    self.confere_produto_codigo()
   
   def alterar_produto(self):
     pass
@@ -183,12 +183,12 @@ class ControladorProdutos():
     categoria1 = Categoria('CAMISETA')
     categoria2 = Categoria('MOLETON')
     categoria3 = Categoria('SHORT')
-    produto1 = Produto(cor1, tamanho1, categoria1, 1)
-    produto2 = Produto(cor2, tamanho3, categoria2, 2)
-    produto3 = Produto(cor3, tamanho1, categoria2, 3)
-    produto4 = Produto(cor1, tamanho2, categoria3, 4)
-    produto5 = Produto(cor2, tamanho2, categoria1, 5)
-    produto6 = Produto(cor3, tamanho3, categoria3, 6)
+    produto1 = Produto(cor1, tamanho1, categoria1,1)
+    produto2 = Produto(cor2, tamanho3, categoria2,2)
+    produto3 = Produto(cor3, tamanho1, categoria2,3)
+    produto4 = Produto(cor1, tamanho2, categoria3,4)
+    produto5 = Produto(cor2, tamanho2, categoria1,5)
+    produto6 = Produto(cor3, tamanho3, categoria3,6)
     self.__produtos.append(produto1)
     self.__produtos.append(produto2)
     self.__produtos.append(produto3)
