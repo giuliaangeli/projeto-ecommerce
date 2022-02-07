@@ -27,6 +27,16 @@ class ControladorPessoa():
                     return usuario
             return None
 
+    def confere_usuario_cpf_historico(self):
+        print('Qual o CPF do usuário?')
+        cpf = self.__tela_pessoa.pega_cpf()
+        for usuario in self.__usuarios:
+            if (usuario.cpf == cpf):
+                return usuario
+            else:
+                print('ATENÇÃO: o CPF informado não corresponde a nenhum cadastrado, digite um CPF válido!')
+                self.confere_usuario_cpf_historico()
+                
     #confere pelo e-mail e senha informados se o usuario ou adm está nas listas
     def confere_login(self, tipo_pessoa: int):
         dados_login = self.__tela_pessoa.pega_dados_login()
