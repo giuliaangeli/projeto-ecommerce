@@ -36,11 +36,11 @@ class ControladorTamanhos():
       if tamanho.descricao == tamanhoAntigo:
         verefica = True
       if tamanho.descricao == tamanhoNovo:
-        verefica1 = True
+        verefica1 = False
         print("O tamanho que você deseja alterar já se encontra na lista")
     if verefica == True and verefica1 != True:
       for tamanho in self.__tamanhos:
-        if tamanho == tamanhoAntigo:
+        if tamanho.descricao == tamanhoAntigo:
           tamanho.descricao = tamanhoNovo
           print("Tamanho alterada com sucesso")
     if verefica == False:
