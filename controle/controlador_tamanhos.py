@@ -8,9 +8,9 @@ class ControladorTamanhos():
     self.__controlador_sistema = controlador_sistema
     self.__tela_tamanho = TelaTamanho()
 
-  def pega_tamanho_por_codigo(self, descricao: str):#comentei
+  def confere_tamanho_descricao(self, descricao):
     for tamanho in self.__tamanhos:
-      if(tamanho.descricao == descricao):#comentei
+      if (tamanho.descricao == descricao):
         return tamanho
     return None
 
@@ -73,12 +73,6 @@ class ControladorTamanhos():
         lista_opcoes[opcao_escolhida](adm)
       else:
         lista_opcoes[opcao_escolhida]()
-
-  def confere_tamanho_descricao(self, descricao):
-    for tamanho in self.__tamanhos:
-      if (tamanho.descricao == descricao):
-        return tamanho
-    return None
 
   def instancia_tamanho(self):
     tamanho1 = Tamanho('P')
