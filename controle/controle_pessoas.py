@@ -162,7 +162,7 @@ class ControladorPessoa():
 
     def abre_tela_adm(self, adm):
 
-        lista_opcoes = {1: self.incluir_adm, 2: self.excluir_pessoa, 3: self.listar_dados, 4: self.alterar_pessoa , 5: self.incluir_usuario, 6: self.excluir_pessoa, 7: self.listar_dados , 8: self.retornar_menu_adm, 9: self.__controlador_sistema.encerra_sistema}
+        lista_opcoes = {1: self.incluir_adm, 2: self.excluir_pessoa, 3: self.listar_dados, 4: self.alterar_pessoa , 5: self.incluir_usuario, 6: self.excluir_pessoa, 7: self.listar_dados , 8: self.retornar_menu_adm, 9: self.__controlador_sistema.abre_tela_inicial}
 
         continua = True
         while continua:
@@ -178,7 +178,7 @@ class ControladorPessoa():
     
     def abre_tela_usuario(self, usuario):
     
-        lista_opcoes = {1: self.listar_dados, 2: self.alterar_pessoa , 3: self.excluir_pessoa, 4: self.retornar_menu_usuario, 5: self.__controlador_sistema.encerra_sistema}
+        lista_opcoes = {1: self.listar_dados, 2: self.alterar_pessoa , 3: self.excluir_pessoa, 4: self.retornar_menu_usuario, 5: self.__controlador_sistema.abre_tela_inicial}
 
         continua = True
         while continua:

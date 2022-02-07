@@ -82,7 +82,7 @@ class ControladorProdutos():
     self.__controlador_sistema.controla_menu_principal_adm(adm)
 
   def abre_tela_produtos_adm(self, adm):
-    lista_opcoes = {1: self.menu_incluir_produto, 2: self.lista_produto, 3: self.alterar_produto, 4: self.excluir_produto, 5: self.retornar_tela_adm_principal, 6: self.__controlador_sistema.encerra_sistema}
+    lista_opcoes = {1: self.menu_incluir_produto, 2: self.lista_produto, 3: self.alterar_produto, 4: self.excluir_produto, 5: self.retornar_tela_adm_principal, 6: self.__controlador_sistema.abre_tela_inicial}
 
     continua = True
     while continua:
@@ -106,7 +106,7 @@ class ControladorProdutos():
 
   def menu_incluir_produto(self, adm):
 
-    lista_opcoes = {1: self.incluir_produto, 2: self.abre_menu_cor, 3: self.abre_menu_tamanho, 4: self.abre_menu_categoria, 5: self.retornar_tela_adm_produto, 6: self.__controlador_sistema.encerra_sistema}
+    lista_opcoes = {1: self.incluir_produto, 2: self.abre_menu_cor, 3: self.abre_menu_tamanho, 4: self.abre_menu_categoria, 5: self.retornar_tela_adm_produto, 6: self.__controlador_sistema.abre_tela_inicial}
 
     continua = True
     while continua:
@@ -123,7 +123,7 @@ class ControladorProdutos():
     self.__controlador_sistema.controla_menu_principal_usuario(usuario)
 
   def abri_menu_usuario(self, usuario):
-    lista_opcoes = {1: self.lista_produto, 2: self.usuario_compra_produto, 3: self.retorna_menu_principal_usuario, 4: self.__controlador_sistema.encerra_sistema}
+    lista_opcoes = {1: self.lista_produto, 2: self.usuario_compra_produto, 3: self.retorna_menu_principal_usuario, 4: self.__controlador_sistema.abre_tela_inicial}
     
     continua = True
     while continua:

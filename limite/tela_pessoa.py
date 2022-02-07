@@ -17,7 +17,7 @@ class TelaPessoa():
     def tela_pessoa_adm(self):
         
         cabecalho('ESCOLHA UMA OPÇÃO')
-        opcoes = ['[1] Incluir Administrador','[2] Excluir Administrador','[3] Listar Administradores', '[4] Alterar meus Dados', '[5] Incluir Usuário','[6] Excluir Usuário','[7] Listar Usuários', '[8] Voltar ao Menu Anterior']
+        opcoes = ['[1] Incluir Administrador','[2] Excluir Administrador','[3] Listar Administradores', '[4] Alterar meus Dados', '[5] Incluir Usuário','[6] Excluir Usuário','[7] Listar Usuários', '[8] Voltar ao Menu Anterior','[9] Encerrar Sessão']
         
         for item in opcoes:
             print(item)

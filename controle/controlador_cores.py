@@ -72,7 +72,7 @@ class ControladorCores():
     self.__controlador_sistema.controlador_produtos.menu_incluir_produto(adm)
 
   def abre_tela(self, adm):
-    lista_opcoes = {1: self.incluir_cor, 2: self.alterar_cor, 3: self.lista_cor, 4: self.excluir_cor, 5: self.retornar_menu__produto, 6: self.__controlador_sistema.encerra_sistema}
+    lista_opcoes = {1: self.incluir_cor, 2: self.alterar_cor, 3: self.lista_cor, 4: self.excluir_cor, 5: self.retornar_menu__produto, 6: self.__controlador_sistema.abre_tela_inicial}
 
     continua = True
     while continua:

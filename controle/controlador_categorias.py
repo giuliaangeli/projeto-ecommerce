@@ -65,7 +65,7 @@ class ControladorCategorias():
     self.__controlador_sistema.controlador_produtos.menu_incluir_produto(adm)
 
   def abre_tela(self, adm):
-    lista_opcoes = {1: self.incluir_categoria, 2: self.alterar_categoria, 3: self.lista_categoria, 4: self.excluir_categoria, 5: self.retornar_menu__produto, 6: self.__controlador_sistema.encerra_sistema}
+    lista_opcoes = {1: self.incluir_categoria, 2: self.alterar_categoria, 3: self.lista_categoria, 4: self.excluir_categoria, 5: self.retornar_menu__produto, 6: self.__controlador_sistema.abre_tela_inicial}
     
     continua = True
     while continua:

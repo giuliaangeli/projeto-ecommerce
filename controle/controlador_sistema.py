@@ -50,7 +50,7 @@ class ControladorSistema:
         exit(0)
 
     def controla_menu_principal_adm(self, adm):
-        lista_opcoes = {1: self.controla_pessoas_adm, 2: self.controla_produto_adm, 3: self.controla_historico_adm, 4: self.encerra_sistema}
+        lista_opcoes = {1: self.controla_pessoas_adm, 2: self.controla_produto_adm, 3: self.controla_historico_adm, 4: self.inicializa_sistema}
         opcao_escolhida = self.__tela_sistema.tela_opcoes_adm()
         if opcao_escolhida == 4:
             lista_opcoes[opcao_escolhida]()
@@ -67,7 +67,7 @@ class ControladorSistema:
         self.__controlador_historico.abrir_menu_historico_adm(adm)
 
     def controla_menu_principal_usuario(self, usuario):
-        lista_opcoes = {1: self.controla_produto_usuario, 2: self.controla_historico_usuario, 3: self.controla_pessoas_usuario, 4: self.encerra_sistema}
+        lista_opcoes = {1: self.controla_produto_usuario, 2: self.controla_historico_usuario, 3: self.controla_pessoas_usuario, 4: self.inicializa_sistema}
         opcao_escolhida = self.__tela_sistema.tela_opcoes_usuario()
         if opcao_escolhida == 4:
             lista_opcoes[opcao_escolhida]()
