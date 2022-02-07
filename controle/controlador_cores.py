@@ -16,14 +16,13 @@ class ControladorCores():
 
   def incluir_cor(self):
     dados_cor = self.__tela_cor.pega_dados_cor()
-    nova_cor = self.confere_cor_nome(dados_cor["nome"])
-
-    if nova_cor == None:
-      cor = Cor(dados_cor["nome"])
-      self.__cores.append(cor)
-      print('Cor foi selecionada com sucesso!')
+    dados_confere = self.confere_nome_cor(dados_cor)
+    if dados_confere == None:
+      dados_cor = Cor(dados_cor)
+      self.__cores.append(dados_cor)
+      print('COR foi adicionada com sucesso!')
     else:
-      print('Essa cor já está cadastrado')
+      print('Essa COR já está cadastrada')
 
   def alterar_cor(self):
     print("Digite o nome da cor que você deseja alterar")
@@ -61,6 +60,12 @@ class ControladorCores():
 
   def retornar(self):
     self.__controlador_sistema.abre_tela()
+
+  def confere_nome_cor(self,nome):
+      for cor in self.__cores:
+        if (cor.nome  == nome):
+          return cor
+      return None
   
   def retornar_menu__produto(self, adm):
     self.__controlador_sistema.controlador_produtos.menu_incluir_produto(adm)

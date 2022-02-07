@@ -19,7 +19,7 @@ class TelaCor():
     print("-------- DADOS COR ----------")
     nome = input("Nome: ").upper()
 
-    return {"nome": nome}
+    return nome
 
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def mostra_cor(self, dados_cor):
