@@ -19,6 +19,13 @@ class ControladorPessoa():
                 if (adm.cpf == cpf):
                     return adm
             return None
+
+    def confere_adm_email(self, email):
+
+        for adm in self.__adms:
+            if (adm.email == email):
+                return adm
+        return None
         
     def confere_usuario_cpf(self, cpf):
 
@@ -26,6 +33,13 @@ class ControladorPessoa():
                 if (usuario.cpf == cpf):
                     return usuario
             return None
+
+    def confere_usuario_email(self, email):
+
+        for usuario in self.__usuarios:
+            if (usuario.email == email):
+                return usuario
+        return None
 
     def confere_usuario_cpf_historico(self):
         print('Qual o CPF do usuário?')
@@ -36,6 +50,7 @@ class ControladorPessoa():
             else:
                 print('ATENÇÃO: o CPF informado não corresponde a nenhum cadastrado, digite um CPF válido!')
                 self.confere_usuario_cpf_historico()
+                
                 
     #confere pelo e-mail e senha informados se o usuario ou adm está nas listas
     def confere_login(self, tipo_pessoa: int):
@@ -57,28 +72,28 @@ class ControladorPessoa():
 
     def incluir_usuario(self):
         dados_novo_usuario = self.__tela_pessoa.pega_dados_usuario()
-        usuario = self.confere_usuario_cpf(dados_novo_usuario["cpf"])
-
-        if usuario == None:
+        usuario_cpf = self.confere_usuario_cpf(dados_novo_usuario["cpf"])
+        usuario_email = self.confere_usuario_email(dados_novo_usuario["email"])
+        if usuario_cpf == None and usuario_email == None:
             novo_usuario = Usuario(dados_novo_usuario["nome"], dados_novo_usuario["cpf"], dados_novo_usuario["telefone"], dados_novo_usuario["endereco"], dados_novo_usuario["email"], dados_novo_usuario["senha"])
             self.__usuarios.append(novo_usuario)
             print('Seu cadastro foi realizado com sucesso!')
             return novo_usuario
         else:
-            cabecalho('Esse CPF já está cadastrado')
+            print('ATENÇÃO: O CPF ou o e-mail digitado já estão cadastrados')
             return None
         
     def incluir_adm(self):
         dados_novo_adm = self.__tela_pessoa.pega_dado_adm()
-        adm = self.confere_adm_cpf(dados_novo_adm["cpf"])
-
-        if adm == None:
+        adm_cpf = self.confere_adm_cpf(dados_novo_adm["cpf"])
+        adm_email = self.confere_adm_email(dados_novo_adm["email"])
+        if adm_cpf == None and adm_email == None:
             novo_adm = Adm(dados_novo_adm["nome"], dados_novo_adm["cpf"], dados_novo_adm["telefone"], dados_novo_adm["endereco"], dados_novo_adm["email"], dados_novo_adm["senha"], dados_novo_adm["salario"])
             self.__adms.append(novo_adm)
             print('Administrador adicionado com sucesso!')
 
         else:
-            print('Esse CPF já está cadastrado')
+            print('ATENÇÃO: O CPF ou o e-mail digitado já estão cadastrados')
 
     def excluir_pessoa(self, pessoa, tipo_pessoa_excluir):
         
