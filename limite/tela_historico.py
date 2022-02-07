@@ -81,21 +81,25 @@ class TelaHistorico():
     def escolha_cor(self):
         cabecalho('DIGITE UMA COR')
         cor = input().upper()
+        cor = cor.strip()
         return cor
 
     def escolha_tamanho(self):
         cabecalho('DIGITE UM TAMANHO')
         tamanho = input().upper()
+        tamanho = tamanho.strip()
         return tamanho
 
     def escolha_categoria(self):
         cabecalho('DIGITE A CATEGORIA')
         categoria = input().upper
+        categoria = categoria.strip()
         return categoria
     
     def escolha_cliente(self):
         cabecalho('DIGITE O NOME DO CLIENTE')
         nome = input().upper()
+        nome = nome.strip()
         return nome
 
     def imprime_historico_generico(self, produto, quantidade):

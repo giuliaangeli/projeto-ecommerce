@@ -27,22 +27,24 @@ class ControladorCores():
   def alterar_cor(self):
     print("Digite o nome da cor que você deseja alterar")
     corAntiga = input().upper()
+    corAntiga = corAntiga.strip()
     print("Digite o nome da cor pelo qual você deseja substituir")
     corNova = input().upper()
+    corNova = corNova.strip()
     verefica1 = False
     verefica = False
     for cor in self.__cores:
       if cor.nome == corAntiga:
         verefica = True
       if cor.nome == corNova:
-        verefica1 = True
+        verefica1 = False
         print("A cor que você deseja alterar já se encontra na lista")
     if verefica == True and verefica1 != True:
       for cor in self.__cores:
-        if cor == corAntiga:
+        if cor.nome == corAntiga:
           cor.nome = corNova
           print("Cor alterada com sucesso")
-    if verefica == False:
+    elif verefica == False:
       print("A cor que deseja alterar não se encontra na lista de cores")   
 
   def lista_cor(self):
@@ -85,8 +87,8 @@ class ControladorCores():
     vermelho = Cor('VERMELHO')
     laranja = Cor('LARANJA')
     rosa = Cor('ROSA')
-    amarelo = Cor('AMARELO ')
-    verde = Cor('VERDE ')
+    amarelo = Cor('AMARELO')
+    verde = Cor('VERDE')
     
     self.__cores.append(vermelho)
     self.__cores.append(laranja)

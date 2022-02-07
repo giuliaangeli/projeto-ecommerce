@@ -18,6 +18,7 @@ class TelaCor():
   def pega_dados_cor(self):
     print("-------- DADOS COR ----------")
     nome = input("Nome: ").upper()
+    nome = nome.strip()
 
     return nome
 
@@ -28,6 +29,7 @@ class TelaCor():
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def seleciona_cor(self):
     nome = input("Nome da cor que deseja selecionar: ").upper()
+    nome = nome.strip()
     return nome
 
   def mostra_mensagem(self, msg):

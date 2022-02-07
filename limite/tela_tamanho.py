@@ -18,8 +18,8 @@ class TelaTamanho():
   def pega_dados_tamanho(self):
     print("-------- DADOS TAMANHO ----------")
     descricao = input("Descricao: ").upper()
-
-    return {"descricao": descricao}
+    descricao = descricao.strip()
+    return descricao
 
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def mostra_tamanho(self, dados_tamanho):
@@ -29,6 +29,7 @@ class TelaTamanho():
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def seleciona_tamanho(self):
     descricao = input("Descricao do tamanho que deseja selecionar: ").upper()
+    descricao = descricao.strip()
     return descricao
 
   def mostra_mensagem(self, msg):

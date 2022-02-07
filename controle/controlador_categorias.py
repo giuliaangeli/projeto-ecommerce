@@ -28,22 +28,24 @@ class ControladorCategorias():
   def alterar_categoria(self):
     print("Digite o nome da cor que você deseja alterar")
     corAntiga = input().upper()
+    corAntiga = corAntiga.strip()
     print("Digite o nome da cor pelo qual você deseja substituir")
     corNova = input().upper()
+    corNova = corNova.strip()
     verefica1 = False
     verefica = False
     for cor in self.__categorias:
       if cor.tipo == corAntiga:
         verefica = True
       if cor.tipo == corNova:
-        verefica1 = True
+        verefica1 = False
         print("A cor que você deseja alterar já se encontra na lista")
     if verefica == True and verefica1 != True:
       for cor in self.__categorias:
-        if cor == corAntiga:
+        if cor.tipo == corAntiga:
           cor.tipo = corNova
           print("Cor alterada com sucesso")
-    if verefica == False:
+    elif verefica == False:
       print("A cor que deseja alterar não se encontra na lista de cores")
         
 
