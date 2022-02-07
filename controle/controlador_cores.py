@@ -87,8 +87,8 @@ class ControladorCores():
     vermelho = Cor('VERMELHO')
     laranja = Cor('LARANJA')
     rosa = Cor('ROSA')
-    amarelo = Cor('AMARELO ')
-    verde = Cor('VERDE ')
+    amarelo = Cor('AMARELO')
+    verde = Cor('VERDE')
     
     self.__cores.append(vermelho)
     self.__cores.append(laranja)
