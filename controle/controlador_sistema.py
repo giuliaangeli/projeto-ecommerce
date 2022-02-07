@@ -47,7 +47,7 @@ class ControladorSistema:
         self.__controlador_cores.instancia_cor()
         self.__controlador_tamanhos.instancia_tamanho()
         self.__controlador_categorias.instancia_categorias()
-        #self.__controlador_produtos.instancia_produtos()
+        self.__controlador_produtos.instancia_produtos()
         self.abre_tela_inicial()
 
     def encerra_sistema(self):
