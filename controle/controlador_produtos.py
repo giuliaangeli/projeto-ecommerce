@@ -13,6 +13,9 @@ class ControladorProdutos():
     self.__produtos = []
     self.__tela_produtos = TelaProduto()
 
+  def retorna_lista_produtos(self):
+    return self.__produtos
+
   def pega_produto_por_codigo(self, codigo: int):
     for produto in self.__produtos:
       if(produto.codigo == codigo):
@@ -69,6 +72,9 @@ class ControladorProdutos():
   def lista_produto(self):
     for e in self.__produtos:
       self.__tela_produtos.mostra_produto({"codigo": e.codigo,"nome_cor": e.cor.nome,"descricao_tamanho": e.tamanho.descricao,"tipo_categoria": e.categoria.tipo})
+  
+  def lista_produto_historico(self, produto):
+      self.__tela_produtos.mostra_produto({"codigo": produto.codigo,"nome_cor": produto.cor.nome,"descricao_tamanho": produto.tamanho.descricao,"tipo_categoria": produto.categoria.tipo})
 
   def excluir_produto(self):
     self.lista_produto()
@@ -151,7 +157,7 @@ class ControladorProdutos():
         
   def usuario_compra_produto(self, usuario):
     produto = self.confere_produto_codigo()
-    self.__controlador_sistema.controle_historico.recebe_dados_venda(usuario, produto)
+    self.__controlador_sistema.controlador_historico.recebe_dados_venda(usuario, produto)
 
   def retorna_menu_principal_usuario(self, usuario):
     self.__controlador_sistema.controla_menu_principal_usuario(usuario)
