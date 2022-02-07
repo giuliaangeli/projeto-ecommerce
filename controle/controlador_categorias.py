@@ -36,7 +36,7 @@ class ControladorCategorias():
       if cor.tipo == corAntiga:
         verefica = True
       if cor.tipo == corNova:
-        verefica1 = True
+        verefica1 = False
         print("A cor que você deseja alterar já se encontra na lista")
     if verefica == True and verefica1 != True:
       for cor in self.__categorias:
