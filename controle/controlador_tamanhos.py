@@ -81,9 +81,9 @@ class ControladorTamanhos():
     return None
 
   def instancia_tamanho(self):
-    tamanho1 = Tamanho('P',1)
-    tamanho2 = Tamanho('M',2)
-    tamanho3 = Tamanho('G',3)
+    tamanho1 = Tamanho('P')
+    tamanho2 = Tamanho('M')
+    tamanho3 = Tamanho('G')
 
     self.__tamanhos.append(tamanho1)
     self.__tamanhos.append(tamanho2)
