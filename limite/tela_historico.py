@@ -99,10 +99,10 @@ class TelaHistorico():
         return nome
 
     def imprime_historico_generico(self, dados_compra):
-        print("PRODUTO: ", dados_compra["categoria"])
-        print("COR: ", dados_compra["cor"])
-        print("TAMANHO: ", dados_compra["tamanho"])
-        #print("QUANTIDADE VENDIDA: ", quantidade)
+        print("PRODUTO: ", dados_compra["produto"].categoria)
+        print("COR: ", dados_compra["produto"].cor)
+        print("TAMANHO: ", dados_compra["produto"].tamanho)
+        print("QUANTIDADE VENDIDA: ", dados_compra['quantidade'])
 
     def imprime_historico_filtrado(self, dados_compra, quantidade, nome):
         print("CLIENTE: ", nome)

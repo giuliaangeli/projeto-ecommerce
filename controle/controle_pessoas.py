@@ -205,7 +205,7 @@ class ControladorPessoa():
         #Instanciando 2 adms na lista
         adm1 = Adm('Giulia Angeli','09641787969','47997930839','João Pio Duarte Silva','giulia@gmail.com','1234','5000')
         adm2 = Adm('Guilherme Ferreira','99900011199','13996893954','Lauro Linhares','guilherme@gmail.com','1234','5000')
-        adm3 = Adm('Guilherme Ferreira','111','111','111','1','1','5000')
+        adm3 = Adm('Guilherme Ferreira','1','111','111','1','1','5000')
         self.__adms.append(adm1)
         self.__adms.append(adm2)
         self.__adms.append(adm3)
