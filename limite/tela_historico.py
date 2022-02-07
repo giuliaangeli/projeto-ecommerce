@@ -97,10 +97,10 @@ class TelaHistorico():
         return categoria
     
     def escolha_cliente(self):
-        cabecalho('DIGITE O NOME DO CLIENTE')
-        nome = input().upper()
-        nome = nome.strip()
-        return nome
+        cabecalho('DIGITE O CPF DO CLIENTE')
+        cpf = input().upper()
+        cpf = cpf.strip()
+        return cpf
 
     def imprime_historico_generico(self, produto, quantidade):
         print("PRODUTO: ", produto.categoria.tipo)
