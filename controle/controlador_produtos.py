@@ -1,3 +1,6 @@
+from entidade.categoria import Categoria
+from entidade.tamanho import Tamanho
+from limite.tela_abstrata import cabecalho
 from limite.tela_produto import TelaProduto
 from entidade.cor import Cor
 from controle.controlador_cores import ControladorCores
@@ -20,24 +23,55 @@ class ControladorProdutos():
     return None
 
   #Sugestao: listar apenas os livros que não estão emprestados
-  def incluir_produto(self):
+  def incluir_produto(self, adm):
 
+    cabecalho('CORES CADASTRADAS')
     self.__controlador_sistema.controlador_cores.lista_cor()
+    cabecalho('TAMANHOS CADASTRADOS')
     self.__controlador_sistema.controlador_tamanhos.lista_tamanho()
+    cabecalho('CATEGORIAS CADASTRADAS')
     self.__controlador_sistema.controlador_categorias.lista_categoria()
     dados_produto = self.__tela_produtos.pega_dados_produto()
 
-    cor = self.__controlador_sistema.controlador_cores.pega_cor_por_codigo(dados_produto["nome"])
-    tamanho = self.__controlador_sistema.controlador_tamanhos.pega_tamanho_por_codigo(dados_produto["descricao"])
-    categoria = self.__controlador_sistema.controlador_categorias.pega_categoria_por_codigo(dados_produto["tipo"])
-    produto = Produto(cor, tamanho, categoria,randint(0,100))
-    if produto in self.__produtos:
-      print('Esse produto já está cadastrado')
-    elif produto not in self.__produtos:
-      self.__produtos.append(produto)
-      print('Produto foi selecionada com sucesso!')
+    cor = self.valida_cor(dados_produto)
+    tamanho = self.valida_tamanho(dados_produto)
+    categoria = self.valida_categoria(dados_produto)
+    codigo = len(self.__produtos) + 1
+    novo_produto = Produto(cor, tamanho, categoria, codigo)
+
+    for produto in self.__produtos:
+      if produto == novo_produto:
+        print('ATENÇÃO: o produto que você está tentando incluir já está na lista de produtos!')
+      else:
+        print('O produto foi adicionado a lista de produtos!')
+        self.__produtos.append(novo_produto)
+
+  def valida_cor(self, dados_produto):
+    cor = self.__controlador_sistema.controlador_cores.confere_cor_nome(dados_produto["nome"])
+    if isinstance(cor, Cor):
+      return cor
+    else:
+      print('A cor digitada não está cadastrada na lista de cores, digite um cor válida!')
+      self.valida_cor(dados_produto)
 
 
+  def valida_tamanho(self, dados_produto):
+    tamanho = self.__controlador_sistema.controlador_tamanhos.confere_tamanho_descricao(dados_produto["tamanho"])
+    if isinstance(tamanho, Tamanho):
+      return tamanho
+    else:
+      print('A cor digitada não está cadastrada na lista de tamanhos, digite um cor válida!')
+      self.valida_tamanho(dados_produto)
+  
+
+  def valida_categoria(self, dados_produto):
+    categoria = self.__controlador_sistema.controlador_categorias.confere_categoria_tipo(dados_produto["categoria"])
+    if isinstance(categoria, Categoria):
+      return categoria
+    else:
+      print('A cor digitada não está cadastrada na lista de categorias, digite um cor válida!')
+      self.valida_categoria(dados_produto)
+      
   #Sugestão: se a lista estiver vazia, mostrar a mensagem de lista vazia
   def lista_produto(self):
     for e in self.__produtos:
@@ -111,7 +145,7 @@ class ControladorProdutos():
     continua = True
     while continua:
       opcao_escolhida = self.__tela_produtos.tela_produtos__adm()
-      if opcao_escolhida == 1 or opcao_escolhida == 6:
+      if opcao_escolhida == 6:
         lista_opcoes[opcao_escolhida]()
       else:
         lista_opcoes[opcao_escolhida](adm)
