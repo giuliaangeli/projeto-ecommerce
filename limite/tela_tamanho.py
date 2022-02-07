@@ -18,7 +18,7 @@ class TelaTamanho():
   def pega_dados_tamanho(self):
     print("-------- DADOS TAMANHO ----------")
     descricao = input("Descricao: ").upper()
-    descricao = descricao.strip(
+    descricao = descricao.strip()
     return descricao
 
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
