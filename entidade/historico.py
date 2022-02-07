@@ -1,21 +1,35 @@
 
+from entidade.produto import Produto
+from entidade.usuario import Usuario
+
+
 class Historico:
     def __init__(self, usuario, produto):
-        self.__usuario =  usuario
-        self.__compra = produto
+        if isinstance(usuario, Usuario):
+            self.__usuario =  usuario
+        if isinstance(produto, Produto):
+            self.__produto = produto
 
     @property
     def usuario(self):
         return self.__usuario
 
     @property
-    def compra(self):
-        return self.__compra
+    def produto(self):
+        return self.__produto
 
     @usuario.setter
     def usuario(self, usuario):
-        self.__usuario =  usuario
+        if isinstance(usuario, Usuario):
+            self.__usuario =  usuario
 
-    @compra.setter
-    def compra(self, compra):
-        self.__compra = compra
+    @produto.setter
+    def produto(self, produto):
+        if isinstance(produto, Produto):
+            self.__produto = produto
+
+    def __eq__(self, other):
+        if self.__produto == other.produto:
+            return True
+        else:
+            return
