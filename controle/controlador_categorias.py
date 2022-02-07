@@ -8,12 +8,12 @@ class ControladorCategorias():
     self.__controlador_sistema = controlador_sistema
     self.__tela_categoria = TelaCategoria()
 
-  def pega_categoria_por_codigo(self, tipo: str):#comentei
+  def confere_categoria_tipo(self, tipo):
     for categoria in self.__categorias:
-      if(categoria.tipo == tipo):#comentei
+      if (categoria.tipo == tipo):
         return categoria
     return None
-
+    
   def incluir_categoria(self):
     dados_categoria = self.__tela_categoria.pega_dados_categoria()
     nova_categoria = self.confere_categoria_tipo(dados_categoria["tipo"])
@@ -74,12 +74,6 @@ class ControladorCategorias():
         lista_opcoes[opcao_escolhida](adm)
       else:
         lista_opcoes[opcao_escolhida]()
-
-  def confere_categoria_tipo(self, tipo):
-    for categoria in self.__categorias:
-      if (categoria.tipo == tipo):
-        return categoria
-    return None
 
   def instancia_categorias(self):
     categoria1 = Categoria('CALÇA')
