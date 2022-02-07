@@ -28,8 +28,10 @@ class ControladorTamanhos():
   def alterar_tamanho(self):
     print("Digite a descricao do tamanho que você deseja alterar")
     tamanhoAntigo = input().upper()
+    tamanhoAntigo = tamanhoAntigo.strip()
     print("Digite a descricao do tamanho pelo qual você deseja substituir")
     tamanhoNovo = input().upper()
+    tamanhoNovo = tamanhoNovo.strip()
     verefica1 = False
     verefica = False
     for tamanho in self.__tamanhos:
