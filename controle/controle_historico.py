@@ -10,12 +10,14 @@ class ControladorHistorico():
         self.__tela_historico = TelaHistorico()
     
     def incluir_historico(self):
-        #produto = self.__controlador_sistema.controlador_produtos.selecionar_produto(codigo)
-        # codigo_produto = pass
-        # usuario = pass
-        # self.__historico["Cliente"] = usuario
-        # self.__historico["Produto"] = produto
-        pass
+        usuario = self.__controlador_sistema.controle_pessoas.confere_usuario_cpf_historico()
+        produto = self.__controlador_sistema.controlador_produtos.confere_produto_codigo()
+        self.recebe_dados_venda(usuario, produto)
+
+    def recebe_dados_venda(self, usuario, produto):
+        venda = Historico(usuario, produto)
+        self.__historico.append(venda)
+        print('A venda foi adicionada ao histórico!')
 
     def excluir_historico(self):
         # usuario = pass
