@@ -106,7 +106,7 @@ class TelaHistorico():
         print("PRODUTO: ", produto.categoria.tipo)
         print("COR: ", produto.cor.nome)
         print("TAMANHO: ", produto.tamanho.descricao)
-        print("QUANTIDADE VENDIDA: ", quantidade)
+        print("QUANTIDADE ", quantidade)
         print('\n')
 
     def imprime_historico_filtrado(self, dados_compra, quantidade, nome):
