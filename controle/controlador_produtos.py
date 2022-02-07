@@ -1,12 +1,9 @@
-from entidade.categoria import Categoria
-from entidade.tamanho import Tamanho
-from limite.tela_abstrata import cabecalho
-from limite.tela_produto import TelaProduto
-from entidade.cor import Cor
-from controle.controlador_cores import ControladorCores
 from entidade.produto import Produto
-from random import randint
-
+from entidade.tamanho import Tamanho
+from entidade.cor import Cor
+from entidade.categoria import Categoria
+from limite.tela_produto import TelaProduto
+from limite.tela_abstrata import cabecalho
 
 # Fazer lançamento e tratamento de exceções, ao invés de apenas mostrar mensagem na tela.
 class ControladorProdutos():
@@ -22,7 +19,6 @@ class ControladorProdutos():
         return produto
     return None
 
-  #Sugestao: listar apenas os livros que não estão emprestados
   def incluir_produto(self, adm):
 
     cabecalho('CORES CADASTRADAS')
@@ -54,7 +50,6 @@ class ControladorProdutos():
       print('A cor digitada não está cadastrada na lista de cores, digite um cor válida!')
       self.valida_cor(dados_produto)
 
-
   def valida_tamanho(self, dados_produto):
     tamanho = self.__controlador_sistema.controlador_tamanhos.confere_tamanho_descricao(dados_produto["tamanho"])
     if isinstance(tamanho, Tamanho):
@@ -63,7 +58,6 @@ class ControladorProdutos():
       print('A cor digitada não está cadastrada na lista de tamanhos, digite um cor válida!')
       self.valida_tamanho(dados_produto)
   
-
   def valida_categoria(self, dados_produto):
     categoria = self.__controlador_sistema.controlador_categorias.confere_categoria_tipo(dados_produto["categoria"])
     if isinstance(categoria, Categoria):
@@ -72,7 +66,6 @@ class ControladorProdutos():
       print('A cor digitada não está cadastrada na lista de categorias, digite um cor válida!')
       self.valida_categoria(dados_produto)
       
-  #Sugestão: se a lista estiver vazia, mostrar a mensagem de lista vazia
   def lista_produto(self):
     for e in self.__produtos:
       self.__tela_produtos.mostra_produto({"codigo": e.codigo,"nome_cor": e.cor.nome,"descricao_tamanho": e.tamanho.descricao,"tipo_categoria": e.categoria.tipo})
@@ -87,9 +80,6 @@ class ControladorProdutos():
       self.lista_produto()
     else:
       self.__tela_produtos.mostra_mensagem("ATENCAO: Produto não existente")
-
-  def retornar(self):
-    self.__controlador_sistema.abre_tela()
 
   def confere_produto_cor(self, cor):
     for produto in self.__produtos:
@@ -108,6 +98,15 @@ class ControladorProdutos():
       if (produto.categoria == categoria):
         return produto
     return None
+
+  def confere_produto_codigo(self):
+    codigo = self.__tela_produtos.seleciona_produto()
+    for produto in self.__produtos:
+      if produto.codigo == codigo:
+        return produto
+      else:
+        print('ATENÇÃO: O código digitado não corresponde a nenhum produto cadastrado, digite um código válido!')
+        self.confere_produto_codigo()
   
   def alterar_produto(self):
     pass
@@ -151,7 +150,8 @@ class ControladorProdutos():
         lista_opcoes[opcao_escolhida](adm)
         
   def usuario_compra_produto(self, usuario):
-    pass
+    produto = self.confere_produto_codigo()
+    self.__controlador_sistema.controle_historico.recebe_dados_venda(usuario, produto)
 
   def retorna_menu_principal_usuario(self, usuario):
     self.__controlador_sistema.controla_menu_principal_usuario(usuario)
