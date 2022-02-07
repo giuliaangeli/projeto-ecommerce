@@ -82,10 +82,10 @@ class ControladorCategorias():
     return None
 
   def instancia_categorias(self):
-    categoria1 = Categoria('calça',1)
-    categoria2 = Categoria('blusa manga curta',2)
-    categoria3 = Categoria('blusa manga longa',3)
-    categoria4 = Categoria('short',4)
+    categoria1 = Categoria('CALÇA')
+    categoria2 = Categoria('CAMISETA')
+    categoria3 = Categoria('MOLETON')
+    categoria4 = Categoria('SHORT')
 
     self.__categorias.append(categoria1)
     self.__categorias.append(categoria2)
