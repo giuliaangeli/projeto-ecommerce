@@ -16,8 +16,11 @@ class ControladorHistorico():
         self.recebe_dados_venda(usuario, produto)
 
     def listar_quantidade_produtos_historico(self, relatorio):
-        for venda in relatorio:
-            self.__tela_historico.imprime_historico_generico({"codigo": venda.produto.codigo,"nome_cor": venda.produto.cor.nome,"descricao_tamanho": venda.produto.tamanho.descricao,"tipo_categoria": venda.produto.categoria.tipo, "quantidade": venda.vezes})
+
+        for codigo in relatorio:
+            produto = relatorio[codigo][0]
+            quantidade = relatorio[codigo][1]
+            self.__tela_historico.imprime_historico_generico(produto, quantidade)
 
     def recebe_dados_venda(self, usuario, produto):
         venda = Historico(usuario, produto)
@@ -55,12 +58,12 @@ class ControladorHistorico():
         self.listar_quantidade_produtos_historico(relatorio)
 
     def relatorio_produtos_iguais(self, lista_historico):
-        relatorio = list
+        relatorio = {}
         lista_produtos = self.__controlador_sistema.controlador_produtos.retorna_lista_produtos()
 
         for produto in lista_produtos:
             vezes = self.conta_objetos(produto, lista_historico)
-            relatorio.append(produto, vezes)
+            relatorio[produto.codigo] = (produto, vezes)
         return relatorio
 
     def conta_objetos(self, produto, lista_produtos_comprados):
