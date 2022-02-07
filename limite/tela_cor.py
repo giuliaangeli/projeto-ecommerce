@@ -23,8 +23,7 @@ class TelaCor():
 
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def mostra_cor(self, dados_cor):
-    print("NOME DO COR: ", dados_cor["nome"])
-    print("\n")
+    print(dados_cor["nome"])
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def seleciona_cor(self):
