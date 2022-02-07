@@ -23,8 +23,8 @@ class TelaTamanho():
 
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def mostra_tamanho(self, dados_tamanho):
-    print("DESCRICAO DO TAMANHO: ", dados_tamanho["descricao"])
-    print("\n")
+    print( dados_tamanho["descricao"])
+    
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def seleciona_tamanho(self):
