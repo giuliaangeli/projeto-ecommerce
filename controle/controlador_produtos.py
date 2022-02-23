@@ -24,11 +24,14 @@ class ControladorProdutos():
 
   def incluir_produto(self, adm):
 
-    cabecalho('CORES CADASTRADAS')
+    #Imprime Cores Cadastradas
+    self.__controlador_sistema.controlador_cores.cabecalho_cores_cadastradas()
     self.__controlador_sistema.controlador_cores.lista_cor()
-    cabecalho('TAMANHOS CADASTRADOS')
+    #Imprime Tamanhos Cadastrados
+    self.__controlador_sistema.controlador_tamanhos.cabecalho_tamanhos_cadastrados()
     self.__controlador_sistema.controlador_tamanhos.lista_tamanho()
-    cabecalho('CATEGORIAS CADASTRADAS')
+    #Imprime Categorias Cadastradas
+    self.__controlador_sistema.controlador_categorias.cabecalho_categorias_cadastradas()
     self.__controlador_sistema.controlador_categorias.lista_categoria()
     dados_produto = self.__tela_produtos.pega_dados_produto()
 

@@ -34,3 +34,6 @@ class TelaTamanho():
 
   def mostra_mensagem(self, msg):
     print(msg)
+
+  def cabecalho_tamanhos_cadastrados(self):
+    cabecalho('TAMANHOS CADASTRADOS')

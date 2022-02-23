@@ -34,3 +34,6 @@ class TelaCor():
 
   def mostra_mensagem(self, msg):
     print(msg)
+
+  def cabecalho_cores_cadastradas(self):
+    cabecalho('CORES CADASTRADAS')

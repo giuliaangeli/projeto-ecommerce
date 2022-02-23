@@ -252,8 +252,6 @@ class ControladorHistorico():
                 lista_opcoes[opcao_escolhida](adm)
             else:
                 lista_opcoes[opcao_escolhida]()
-
-    
     
     def instancia_historico(self):
         usuario1 = self.__controlador_sistema.controlador_pessoas.confere_usuario_cpf('09641787969')

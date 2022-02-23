@@ -35,3 +35,6 @@ class TelaCategoria():
 
   def mostra_mensagem(self, msg):
     print(msg)
+
+  def cabecalho_categorias_cadastradas(self):
+    cabecalho('TAMANHOS CADASTRADOS')
