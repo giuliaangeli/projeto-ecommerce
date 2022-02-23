@@ -25,13 +25,13 @@ class ControladorProdutos():
   def incluir_produto(self, adm):
 
     #Imprime Cores Cadastradas
-    self.__controlador_sistema.controlador_cores.cabecalho_cores_cadastradas()
+    self.__controlador_sistema.controlador_cores.imprime_cabecalho_cores_cadastradas()
     self.__controlador_sistema.controlador_cores.lista_cor()
     #Imprime Tamanhos Cadastrados
-    self.__controlador_sistema.controlador_tamanhos.cabecalho_tamanhos_cadastrados()
+    self.__controlador_sistema.controlador_tamanhos.imprime_cabecalho_tamanhos_cadastrados()
     self.__controlador_sistema.controlador_tamanhos.lista_tamanho()
     #Imprime Categorias Cadastradas
-    self.__controlador_sistema.controlador_categorias.cabecalho_categorias_cadastradas()
+    self.__controlador_sistema.controlador_categorias.imprime_cabecalho_categorias_cadastradas()
     self.__controlador_sistema.controlador_categorias.lista_categoria()
     dados_produto = self.__tela_produtos.pega_dados_produto()
 

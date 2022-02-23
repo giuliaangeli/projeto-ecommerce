@@ -95,5 +95,8 @@ class ControladorCores():
     self.__cores.append(rosa)
     self.__cores.append(amarelo)
     self.__cores.append(verde)
+  
+  def imprime_cabecalho_cores_cadastradas(self):
+    self.__tela_cor.cabecalho_cores_cadastradas()
 
       

@@ -91,3 +91,6 @@ class ControladorCategorias():
   @property
   def categorias(self):
     return self.__categorias
+
+  def imprime_cabecalho_categorias_cadastradas(self):
+    self.__tela_categoria.cabecalho_categorias_cadastradas()

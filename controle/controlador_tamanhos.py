@@ -84,3 +84,6 @@ class ControladorTamanhos():
     self.__tamanhos.append(tamanho1)
     self.__tamanhos.append(tamanho2)
     self.__tamanhos.append(tamanho3)
+  
+  def imprime_cabecalho_tamanhos_cadastrados(self):
+    self.__tela_tamanho.cabecalho_tamanhos_cadastrados()
