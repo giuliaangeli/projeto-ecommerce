@@ -122,7 +122,7 @@ class ControladorSistema:
         opcao_escolhida = self.__tela_sistema.tela_login()
 
         if opcao_escolhida != 1 and opcao_escolhida != 2:
-            print('A opção digitada é inválida, digite uma das opções dada!')
+            self.__tela_sistema.mostra_mensagem("ATENÇÃO: A opção digitada é inválida, digite uma das opções dada!")
             self.controla_tela_login()
         
         else:
