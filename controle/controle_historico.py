@@ -30,7 +30,7 @@ class ControladorHistorico():
     def recebe_dados_venda(self, usuario, produto):
         venda = Historico(usuario, produto)
         self.__historico.append(venda)
-        print('A venda foi adicionada ao histórico!')
+        self.__tela_historico.mostra_mensagem("ATENÇÃO: A venda foi adicionada ao histórico!")
 
     def confere_venda_historico(self):
         usuario = self.__controlador_sistema.controle_pessoas.confere_usuario_cpf_historico()
@@ -41,7 +41,7 @@ class ControladorHistorico():
             if venda == venda_para_validar:
                 return venda
             else:
-                print('ATENÇÃO: A venda informada não consta no histórico, tente novamente!')
+                self.__tela_historico.mostra_mensagem("ATENÇÃO: A venda informada não consta no histórico, tente novamente!")
                 self.confere_venda_historico()
 
     def excluir_historico(self):
@@ -104,7 +104,7 @@ class ControladorHistorico():
             return historico_pessoa
 
         else:
-            print('ATENÇÃO: Digite uma opção válida!')
+            self.__tela_historico.mostra_mensagem("ATENÇÃO: A digite uma opção válida!")
             self.listar_historico_por_pessoa()
 
     def lista_somente_produtos(self, lista):
@@ -130,7 +130,7 @@ class ControladorHistorico():
                     lista_filtrada_cor.append(venda)
             return lista_filtrada_cor
         else:
-            print('ATENÇÃO: Digite uma opção válida!')
+            self.__tela_historico.mostra_mensagem("ATENÇÃO: Digite uma opção valida!")
             self.filtra_lista_por_cor(lista)
 
     def filtrar_lista_por_tamanho(self, lista):
@@ -148,7 +148,7 @@ class ControladorHistorico():
             return lista_filtrada_tamanho
 
         else:
-            print('ATENÇÃO: Digite uma opção válida!')
+            self.__tela_historico.mostra_mensagem("ATENÇÃO: Digite uma opção valida!")
             self.filtrar_lista_por_tamanho()
 
     def filtrar_lista_por_categoria(self, lista):
@@ -166,7 +166,7 @@ class ControladorHistorico():
             return lista_filtrada_categoria
 
         else:
-            print('ATENÇÃO: Digite uma opção válida!')
+            self.__tela_historico.mostra_mensagem("ATENÇÃO: Digite uma opção valida!")
             self.filtrar_lista_por_categoria()
 
     def valida_usuario(self):
@@ -177,7 +177,7 @@ class ControladorHistorico():
             return usuario
 
         else:
-            print('ATENÇÃO: o CPF digitado não está cadastrado em nosso sistema! Digite um CPF válido')
+            self.__tela_historico.mostra_mensagem("ATENÇÃO: O CPF digitado não está cadastrado em nosso sistema! Digite um CPF válido!")
             self.valida_usuario()
 
     def valida_cor(self):
@@ -188,7 +188,7 @@ class ControladorHistorico():
             return cor
 
         else:
-            print('ATENÇÃO: a cor digitada não está cadastrada em nosso sistema! Digite uma cor válida')
+            self.__tela_historico.mostra_mensagem("ATENÇÃO: O CPF digitado não está cadastrado em nosso sistema! Digite um CPF válido!")
             self.valida_cor()
 
     def valida_tamanho(self):
@@ -198,7 +198,7 @@ class ControladorHistorico():
         if isinstance(tamanho, Tamanho):
             return tamanho
         else:
-            print('ATENÇÃO: o tamanho digitado não está cadastrado em nosso sistema! Digite um tamanho válido')
+            self.__tela_historico.mostra_mensagem("ATENÇÃO: O tamanho digitado não está cadastrado em nosso sistema! Digite um tamanho válido!")
             self.valida_tamanho()
     
     def valida_categoria(self):
@@ -209,7 +209,7 @@ class ControladorHistorico():
             return categoria
 
         else:
-            print('ATENÇÃO: a categoria digitada não está cadastrada em nosso sistema! Digite uma categoria válida')
+            self.__tela_historico.mostra_mensagem("ATENÇÃO: O cor digitado não está cadastrado em nosso sistema! Digite uma cor válido!")
             self.valida_categoria()
 
     def listar_historico_personalizado(self):
