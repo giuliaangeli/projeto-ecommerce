@@ -75,7 +75,8 @@ class ControladorHistorico():
         vezes = 0
         for compra in lista_produtos_comprados:
             if compra.cor.nome == produto.cor.nome and compra.tamanho.descricao == produto.tamanho.descricao and compra.categoria.tipo == produto.categoria.tipo:
-                vezes =+ 1
+                vezes = vezes + 1
+                print(vezes)
 
         return vezes
         
@@ -259,19 +260,13 @@ class ControladorHistorico():
         produto1 = self.__controlador_sistema.controlador_produtos.pega_produto_por_codigo(1)
         produto2 = self.__controlador_sistema.controlador_produtos.pega_produto_por_codigo(2)
         produto3 = self.__controlador_sistema.controlador_produtos.pega_produto_por_codigo(3)
-        produto4 = self.__controlador_sistema.controlador_produtos.pega_produto_por_codigo(4)
-        produto5 = self.__controlador_sistema.controlador_produtos.pega_produto_por_codigo(5)
-        produto6 = self.__controlador_sistema.controlador_produtos.pega_produto_por_codigo(6)
-    
-        venda1 = Historico(usuario1, produto6)
-        venda2 = Historico(usuario1, produto6)
-        venda3 = Historico(usuario2, produto2)
-        venda4 = Historico(usuario2, produto2)
-        venda5 = Historico(usuario2, produto3)
-        venda6 = Historico(usuario1, produto4)
-        venda7 = Historico(usuario1, produto5)
-        venda8 = Historico(usuario2, produto5)
-        venda9 = Historico(usuario1, produto5)
+
+        venda1 = Historico(usuario1, produto1)
+        venda2 = Historico(usuario1, produto2)
+        venda3 = Historico(usuario1, produto2)
+        venda4 = Historico(usuario1, produto3)
+        venda5 = Historico(usuario1, produto3)
+        venda6 = Historico(usuario1, produto3)
 
         #Coloca venda na lista de Historicos
         self.__historico.append(venda1)
@@ -280,9 +275,11 @@ class ControladorHistorico():
         self.__historico.append(venda4)
         self.__historico.append(venda5)
         self.__historico.append(venda6)
-        self.__historico.append(venda7)
-        self.__historico.append(venda8)
-        self.__historico.append(venda8)
-        self.__historico.append(venda9)
+
+        for venda in self.__historico:
+            produto = venda.produto
+            self.__tela_historico.imprime_historico(produto)
+            
+
 
 

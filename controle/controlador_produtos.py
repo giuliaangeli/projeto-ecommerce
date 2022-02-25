@@ -1,3 +1,6 @@
+from controle.controlador_categorias import ControladorCategorias
+from controle.controlador_cores import ControladorCores
+from controle.controlador_tamanhos import ControladorTamanhos
 from entidade.produto import Produto
 from entidade.tamanho import Tamanho
 from entidade.cor import Cor
@@ -177,26 +180,21 @@ class ControladorProdutos():
         lista_opcoes[opcao_escolhida](usuario)
 
   def instancia_produtos(self):
-    cor1 = Cor('VERMELHO')
-    cor2 = Cor('VERDE')
-    cor3 = Cor('AMARELO')
-    tamanho1 = Tamanho('P')
-    tamanho2 = Tamanho('M')
-    tamanho3 = Tamanho('G')
-    categoria1 = Categoria('CAMISETA')
-    categoria2 = Categoria('MOLETON')
-    categoria3 = Categoria('SHORT')
-    produto1 = Produto(cor1, tamanho1, categoria1,1)
+    cor1 = self.__controlador_sistema.controlador_cores.confere_cor_nome('VERMELHO')
+    cor2 = self.__controlador_sistema.controlador_cores.confere_cor_nome('VERDE')
+    cor3 = self.__controlador_sistema.controlador_cores.confere_cor_nome('AMARELO')
+    tamanho1 = self.__controlador_sistema.controlador_tamanhos.confere_tamanho_descricao('P')
+    tamanho2 = self.__controlador_sistema.controlador_tamanhos.confere_tamanho_descricao('M')
+    tamanho3 = self.__controlador_sistema.controlador_tamanhos.confere_tamanho_descricao('G')
+    categoria1 = self.__controlador_sistema.controlador_categorias.confere_categoria_tipo('CAMISETA')
+    categoria2 = self.__controlador_sistema.controlador_categorias.confere_categoria_tipo('MOLETON')
+    categoria3 = self.__controlador_sistema.controlador_categorias.confere_categoria_tipo('SHORT')
+    produto1 = Produto(cor1, tamanho2, categoria3,1)
     produto2 = Produto(cor2, tamanho3, categoria2,2)
-    produto3 = Produto(cor3, tamanho1, categoria2,3)
-    produto4 = Produto(cor1, tamanho2, categoria3,4)
-    produto5 = Produto(cor2, tamanho2, categoria1,5)
-    produto6 = Produto(cor3, tamanho3, categoria3,6)
+    produto3 = Produto(cor3, tamanho1, categoria1,3)
     self.__produtos.append(produto1)
     self.__produtos.append(produto2)
     self.__produtos.append(produto3)
-    self.__produtos.append(produto4)
-    self.__produtos.append(produto5)
-    self.__produtos.append(produto6)
+
 
 
