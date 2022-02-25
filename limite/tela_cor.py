@@ -11,8 +11,16 @@ class TelaCor():
 
     print(linha())
 
-    opcao = leiaInt('Digite sua opção: ')
-    return opcao
+    while True:
+      try:
+        opcao = leiaInt('Digite sua opção: ')
+        if ( opcao != 1 and opcao != 2 and opcao != 3 and opcao != 4 and opcao != 5 and opcao != 6):
+          raise ValueError
+        return opcao        
+      except ValueError:
+        print("O valor digitado deve ser um inteiro de 1 a 6")
+
+
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def pega_dados_cor(self):
