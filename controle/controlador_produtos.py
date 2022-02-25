@@ -24,36 +24,34 @@ class ControladorProdutos():
 
   def incluir_produto(self, adm):
 
-    #Imprime Cores Cadastradas
-    self.__controlador_sistema.controlador_cores.imprime_cabecalho_cores_cadastradas()
+    cabecalho('CORES CADASTRADAS')
     self.__controlador_sistema.controlador_cores.lista_cor()
-    #Imprime Tamanhos Cadastrados
-    self.__controlador_sistema.controlador_tamanhos.imprime_cabecalho_tamanhos_cadastrados()
+    cabecalho('TAMANHOS CADASTRADOS')
     self.__controlador_sistema.controlador_tamanhos.lista_tamanho()
-    #Imprime Categorias Cadastradas
-    self.__controlador_sistema.controlador_categorias.imprime_cabecalho_categorias_cadastradas()
+    cabecalho('CATEGORIAS CADASTRADAS')
     self.__controlador_sistema.controlador_categorias.lista_categoria()
     dados_produto = self.__tela_produtos.pega_dados_produto()
 
-    cor = self.valida_cor(dados_produto)
-    tamanho = self.valida_tamanho(dados_produto)
-    categoria = self.valida_categoria(dados_produto)
-    codigo = len(self.__produtos) + 1
-    novo_produto = Produto(cor, tamanho, categoria, codigo)
+    cor1 = self.valida_cor(dados_produto)
+    tamanho1= self.valida_tamanho(dados_produto)
+    categoria1 = self.valida_categoria(dados_produto)
 
     for produto in self.__produtos:
-      if produto == novo_produto:
-        print('ATENÇÃO: o produto que você está tentando incluir já está na lista de produtos!')
-      else:
-        print('O produto foi adicionado a lista de produtos!')
-        self.__produtos.append(novo_produto)
+      if produto.cor == cor1 and produto.tamanho == tamanho1 and produto.categoria == categoria1:
+        self.__tela_produtos.mostra_mensagem("ATENCAO:O produto que você está tentando incluir já está na lista de produtos!")
+        return None
+    self.__tela_produtos.mostra_mensagem("ATENCAO:O produto foi adicionado a lista de produtos!")
+    codigo = len(self.__produtos) + 1
+    novo_produto = Produto(cor1, tamanho1, categoria1, codigo)
+    self.__produtos.append(novo_produto)
+    return None
 
   def valida_cor(self, dados_produto):
     cor = self.__controlador_sistema.controlador_cores.confere_cor_nome(dados_produto["nome"])
     if isinstance(cor, Cor):
       return cor
     else:
-      print('A cor digitada não está cadastrada na lista de cores, digite um cor válida!')
+      self.__tela_produtos.mostra_mensagem("ATENCAO:A cor digitada não está cadastrada na lista de cores, digite um cor válida!")
       self.valida_cor(dados_produto)
 
   def valida_tamanho(self, dados_produto):
@@ -61,7 +59,7 @@ class ControladorProdutos():
     if isinstance(tamanho, Tamanho):
       return tamanho
     else:
-      print('A cor digitada não está cadastrada na lista de tamanhos, digite um cor válida!')
+      self.__tela_produtos.mostra_mensagem("ATENCAO: A cor digitada não está cadastrada na lista de tamanhos, digite um cor válida!")
       self.valida_tamanho(dados_produto)
   
   def valida_categoria(self, dados_produto):
@@ -69,7 +67,7 @@ class ControladorProdutos():
     if isinstance(categoria, Categoria):
       return categoria
     else:
-      print('A cor digitada não está cadastrada na lista de categorias, digite um cor válida!')
+      self.__tela_produtos.mostra_mensagem("ATENCAO:A cor digitada não está cadastrada na lista de categorias, digite um cor válida!")
       self.valida_categoria(dados_produto)
       
   def lista_produto(self):
@@ -80,15 +78,21 @@ class ControladorProdutos():
       self.__tela_produtos.mostra_produto({"codigo": produto.codigo,"nome_cor": produto.cor.nome,"descricao_tamanho": produto.tamanho.descricao,"tipo_categoria": produto.categoria.tipo})
 
   def excluir_produto(self):
-    self.lista_produto()
-    codigo_produto = self.__tela_produtos.seleciona_produto()
-    produto = self.pega_produto_por_codigo(int(codigo_produto))
+    cabecalho('CORES CADASTRADAS')
+    self.__controlador_sistema.controlador_cores.lista_cor()
+    cabecalho('TAMANHOS CADASTRADOS')
+    self.__controlador_sistema.controlador_tamanhos.lista_tamanho()
+    cabecalho('CATEGORIAS CADASTRADAS')
+    self.__controlador_sistema.controlador_categorias.lista_categoria()
 
-    if (produto is not None) and (produto in self.__produtos):
-      self.__produtos.remove(produto)
-      self.lista_produto()
-    else:
-      self.__tela_produtos.mostra_mensagem("ATENCAO: Produto não existente")
+    codigo = self.__tela_produtos.seleciona_produto()
+    for produto in self.__produtos:
+      if produto.codigo == codigo:
+        self.__produtos.remove(produto)
+        self.__tela_produtos.mostra_mensagem("ATENÇÃO: Produto removido com sucesso")
+        return None 
+      else:
+        self.__tela_produtos.mostra_mensagem("ATENCAO: Produto não existente")
 
   def confere_produto_cor(self, cor):
     for produto in self.__produtos:
@@ -114,11 +118,37 @@ class ControladorProdutos():
       if produto.codigo == codigo:
         return produto
       
-    print('ATENÇÃO: O código digitado não corresponde a nenhum produto cadastrado, digite um código válido!')
+    self.__tela_produtos.mostra_mensagem("ATENÇÃO: O código digitado não corresponde a nenhum produto cadastrado, digite um código válido!")
     self.confere_produto_codigo()
   
   def alterar_produto(self):
-    pass
+    codigo1 = input('Digite o codigo do produto')
+    dados_produto = self.__tela_produtos.pega_dados_produto()
+    self.__tela_produtos.mostra_mensagem("ATENCAO: Digite a descricao do produto pelo qual você deseja substituir!")
+    cor2 = self.valida_cor(dados_produto)
+    tamanho2= self.valida_tamanho(dados_produto)
+    categoria2 = self.valida_categoria(dados_produto)
+    verefica = False
+    verefica1 = False
+    for produto in self.__produtos:
+      if produto.cor == cor2:
+        verefica1 = True 
+        self.__tela_produtos.mostra_mensagem("ATENCAO: O produto que você deseja alterar já se encontra na lista!")
+    for produto in self.__produtos:
+      if produto.codigo == codigo1:
+        if produto.cor != cor2 or produto.tamanho != tamanho2 or produto.categoria != categoria2:
+          verefica = True 
+          self.__tela_produtos.mostra_mensagem("ATENCAO: O produto que você deseja alterar já se encontra na lista!")
+    if verefica1 == True and verefica != True:
+      for produto in self.__produtos:
+        if produto.codigo == codigo1:
+          produto.cor = cor2
+          produto.tamanho = tamanho2
+          produto.categoria = categoria2
+          produto.codigo = codigo1
+          self.__tela_produtos.mostra_mensagem("ATENCAO: Produto alterada com sucesso")
+    else:
+      self.__tela_produtos.mostra_mensagem("ATENCAO: O produto que deseja alterar não se encontra na lista de cores")
 
   def retornar_tela_adm_principal(self, adm):
     self.__controlador_sistema.controla_menu_principal_adm(adm)
