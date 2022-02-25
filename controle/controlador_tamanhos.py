@@ -21,15 +21,15 @@ class ControladorTamanhos():
     if nova_tamanho == None:
       tamanho = Tamanho(dados_tamanho["descricao"])
       self.__tamanhos.append(tamanho)
-      print('Tamanho foi selecionada com sucesso!')
-    else:
-      print('Esse tamanho já está cadastrado')
+      self.__tela_tamanho.mostra_mensagem("ATENÇÃO: Tamanho foi selecionado com sucesso")
+      return None
+    self.__tela_tamanho.mostra_mensagem("ATENÇÃO: Esse tamanho já está cadastrado")
 
   def alterar_tamanho(self):
-    print("Digite a descricao do tamanho que você deseja alterar")
+    self.__tela_tamanho.mostra_mensagem("ATENÇÃO: Digite a descrição do tamanho que você deseja alterar")
     tamanhoAntigo = input().upper()
     tamanhoAntigo = tamanhoAntigo.strip()
-    print("Digite a descricao do tamanho pelo qual você deseja substituir")
+    self.__tela_tamanho.mostra_mensagem("ATENÇÃO: Digite a descrição do tamanho pelo qual você deseja substituir")
     tamanhoNovo = input().upper()
     tamanhoNovo = tamanhoNovo.strip()
     verefica1 = False
@@ -38,15 +38,15 @@ class ControladorTamanhos():
       if tamanho.descricao == tamanhoAntigo:
         verefica = True
       if tamanho.descricao == tamanhoNovo:
-        verefica1 = False
-        print("O tamanho que você deseja alterar já se encontra na lista")
+        verefica1 = True
+        self.__tela_tamanho.mostra_mensagem("ATENÇÃO: O tamanho que você deseja alterar já se encontra na lista")
     if verefica == True and verefica1 != True:
       for tamanho in self.__tamanhos:
         if tamanho.descricao == tamanhoAntigo:
+          self.__tela_tamanho.mostra_mensagem("ATENÇÃO: Tamanho alterado com suesso")
           tamanho.descricao = tamanhoNovo
-          print("Tamanho alterada com sucesso")
     if verefica == False:
-      print("O trabalho que deseja alterar não se encontra na lista de cores")
+      self.__tela_tamanho.mostra_mensagem("ATENÇÃO: O trabalho que deseja alterar não se encontra na lista de cores")
 
   # Sugestão: se a lista estiver vazia, mostrar a mensagem de lista vazia
   def lista_tamanho(self):
@@ -54,14 +54,14 @@ class ControladorTamanhos():
       self.__tela_tamanho.mostra_tamanho({"descricao": tamanho.descricao})
 
   def excluir_tamanho(self):
-    descricao = self.__tela_tamanho.seleciona_tamanho()
+   descricao = self.__tela_tamanho.seleciona_tamanho()
     for tamanho in self.__tamanhos:
       if tamanho.descricao == descricao:
         self.__tamanhos.remove(tamanho)
-        print('Tamanho removido!')
+        self.__tela_tamanho.mostra_mensagem("ATENÇÃO: Tamanho removido")
       else:
-        print("ATENÇÃO: esse tamanho não está cadastrado")
- 
+        self.__tela_tamanho.mostra_mensagem("ATENÇÃO: Esee tamanho não está cadastrado")
+        
   def retornar_menu__produto(self, adm):
     self.__controlador_sistema.controlador_produtos.menu_incluir_produto(adm)
 
