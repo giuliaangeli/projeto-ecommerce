@@ -4,14 +4,21 @@ class TelaSistema:
     def tela_inicial(self):
         cabecalho('BEM-VINDO(A)')
         opcoes = ['[1] Fazer Login','[2] Criar uma conta']
-        
+     
         for item in opcoes:
             print(item)
 
         print(linha())
 
-        opcao = leiaInt('Digite sua opção: ')
-        return opcao
+        while True:
+            try:
+                opcao = leiaInt('Digite sua opção: ')
+                if ( opcao != 1 and opcao != 2):
+                    raise ValueError
+                return opcao        
+            except ValueError:
+                print("O valor digitado deve ser um inteiro de 1 a 2")
+
 
     def tela_login(self):
         cabecalho('ESCOLHA UMA OPÇÃO')
@@ -22,8 +29,14 @@ class TelaSistema:
 
         print(linha())
 
-        opcao = leiaInt('Digite sua opção: ')
-        return opcao
+        while True:
+            try:
+                opcao = leiaInt('Digite sua opção: ')
+                if ( opcao != 1 and opcao != 2):
+                    raise ValueError
+                return opcao        
+            except ValueError:
+                print("O valor digitado deve ser um inteiro de 1 a 2")
 
     def falha(self):
 
@@ -35,8 +48,14 @@ class TelaSistema:
 
         print(linha())
 
-        opcao = leiaInt('Digite sua opção: ')
-        return opcao
+        while True:
+            try:
+                opcao = leiaInt('Digite sua opção: ')
+                if ( opcao != 1 and opcao != 2):
+                    raise ValueError
+                return opcao        
+            except ValueError:
+                print("O valor digitado deve ser um inteiro de 1 a 2")
         
     def tela_opcoes_adm(self):
         
@@ -48,8 +67,14 @@ class TelaSistema:
 
         print(linha())
 
-        opcao = leiaInt('Digite sua opção: ')
-        return opcao
+         while True:
+            try:
+                opcao = leiaInt('Digite sua opção: ')
+                if ( opcao != 1 and opcao != 2 and opcao != 3 and opcao != 4):
+                    raise ValueError
+                return opcao        
+            except ValueError:
+                print("O valor digitado deve ser um inteiro de 1 a 4")
 
 
     def tela_opcoes_usuario(self):
@@ -62,5 +87,11 @@ class TelaSistema:
 
         print(linha())
 
-        opcao = leiaInt('Digite sua opção: ')
-        return opcao
+        while True:
+            try:
+                opcao = leiaInt('Digite sua opção: ')
+                if ( opcao != 1 and opcao != 2 and opcao != 3 and opcao != 4):
+                    raise ValueError
+                return opcao        
+            except ValueError:
+                print("O valor digitado deve ser um inteiro de 1 a 4")

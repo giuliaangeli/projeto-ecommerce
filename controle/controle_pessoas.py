@@ -42,13 +42,13 @@ class ControladorPessoa():
         return None
 
     def confere_usuario_cpf_historico(self):
-        print('Qual o CPF do usuário?')
+        self.__tela_pessoa.mostra_mensagem("ATENÇÃO: Qual o CPF do usuário?")
         cpf = self.__tela_pessoa.pega_cpf()
         for usuario in self.__usuarios:
             if (usuario.cpf == cpf):
                 return usuario
             else:
-                print('ATENÇÃO: o CPF informado não corresponde a nenhum cadastrado, digite um CPF válido!')
+                self.__tela_pessoa.mostra_mensagem("ATENÇÃO: O CPF informado não corresponde a nenhum cadastrado, digite um CPF válido!")
                 self.confere_usuario_cpf_historico()
                 
                 
@@ -77,10 +77,10 @@ class ControladorPessoa():
         if usuario_cpf == None and usuario_email == None:
             novo_usuario = Usuario(dados_novo_usuario["nome"], dados_novo_usuario["cpf"], dados_novo_usuario["telefone"], dados_novo_usuario["endereco"], dados_novo_usuario["email"], dados_novo_usuario["senha"])
             self.__usuarios.append(novo_usuario)
-            print('Seu cadastro foi realizado com sucesso!')
+            self.__tela_pessoa.mostra_mensagem("ATENÇÃO: Seu cadastro foi realizado com sucesso!")
             return novo_usuario
         else:
-            print('ATENÇÃO: O CPF ou o e-mail digitado já estão cadastrados')
+            self.__tela_pessoa.mostra_mensagem("ATENÇÃO: O CPF ou o e-mail digitado já estão cadastrados")
             return None
         
     def incluir_adm(self):
@@ -90,10 +90,10 @@ class ControladorPessoa():
         if adm_cpf == None and adm_email == None:
             novo_adm = Adm(dados_novo_adm["nome"], dados_novo_adm["cpf"], dados_novo_adm["telefone"], dados_novo_adm["endereco"], dados_novo_adm["email"], dados_novo_adm["senha"], dados_novo_adm["salario"])
             self.__adms.append(novo_adm)
-            print('Administrador adicionado com sucesso!')
+            self.__tela_pessoa.mostra_mensagem("Administrador adicionado com sucesso!")
 
         else:
-            print('ATENÇÃO: O CPF ou o e-mail digitado já estão cadastrados')
+            self.__tela_pessoa.mostra_mensagem("ATENÇÃO: O CPF ou o e-mail digitado já estão cadastrados")
 
     def excluir_pessoa(self, pessoa, tipo_pessoa_excluir):
         
@@ -109,10 +109,10 @@ class ControladorPessoa():
                 for adm in self.__adms:
                     if adm.cpf == cpf:
                         self.__adms.remove(adm)
-                        print('Administrador removido!')
+                        self.__tela_pessoa.mostra_mensagem("Administrador removido!")
                         adm = True
                 if adm == False:
-                    print("ATENÇÃO: esse administrador não está cadastrado")
+                    self.__tela_pessoa.mostra_mensagem("ATENÇÃO: Esse administrador não está cadastrado")
 
             else:
                 cabecalho('DIGITE O CPF DO USUÁRIO QUE DESEJA EXCLUIR')
@@ -120,15 +120,15 @@ class ControladorPessoa():
                 for usuario in self.__usuarios:
                     if usuario.cpf == cpf:
                         self.__usuarios.remove(usuario)
-                        print('Usuário removido!')
+                        self.__tela_pessoa.mostra_mensagem("Usuário removido!")
                         usuario = True
             
                 if usuario == False:
-                    print("ATENÇÃO: esse usuário não está cadastrado")
+                    self.__tela_pessoa.mostra_mensagem("ATENÇÃO: Esse usuário não está cadastrado")
 
         elif isinstance(pessoa, Usuario):
             self.__usuarios.remove(pessoa)
-            print("ATENÇÃO: sua conta foi excluida!")
+            self.__tela_pessoa.mostra_mensagem("ATENÇÃO: Sua conta foi excluida")
             exit(0)
 
     def alterar_pessoa(self, pessoa):
@@ -143,7 +143,7 @@ class ControladorPessoa():
             pessoa.email = novos_dados_adm["email"]
             pessoa.senha = novos_dados_adm["senha"]
             pessoa.salario = novos_dados_adm["salario"]
-            print('\n Dados alterados com sucesso!\n')
+            self.__tela_pessoa.mostra_mensagem("\n Dados alterados com sucesso!\n")
 
         elif isinstance(pessoa, Usuario):
             
@@ -154,7 +154,7 @@ class ControladorPessoa():
             pessoa.endereco = novos_dados_usuario["endereco"]
             pessoa.email = novos_dados_usuario["email"]
             pessoa.senha = novos_dados_usuario["senha"]
-            print('\nDados alterados com sucesso!')
+            self.__tela_pessoa.mostra_mensagem("\n Dados alterados com sucesso!\n")
 
     def listar_dados(self, pessoa, funcao = 0):
 

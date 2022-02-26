@@ -20,32 +20,32 @@ class ControladorCores():
     if dados_confere == None:
       dados_cor = Cor(dados_cor)
       self.__cores.append(dados_cor)
-      print('COR foi adicionada com sucesso!')
+      self.__tela_cor.mostra_mensagem("ATENÇÃO: COR foi adicionada com sucesso!")
     else:
-      print('Essa COR já está cadastrada')
+      self.__tela_cor.mostra_mensagem("ATENÇÃO: Essa COR já cadastrada!")
 
   def alterar_cor(self):
-    print("Digite o nome da cor que você deseja alterar")
+    self.__tela_cor.mostra_mensagem("ATENÇÃO: Digite o nome da cor que você deseja alterar")
     corAntiga = input().upper()
     corAntiga = corAntiga.strip()
-    print("Digite o nome da cor pelo qual você deseja substituir")
+    self.__tela_cor.mostra_mensagem("ATENÇÃO: Digite o nome da cor pelo qual você deseja substituir")
     corNova = input().upper()
     corNova = corNova.strip()
-    verefica1 = False
     verefica = False
+    verefica1 = False
     for cor in self.__cores:
       if cor.nome == corAntiga:
         verefica = True
+    for cor in self.__cores:
       if cor.nome == corNova:
-        verefica1 = False
-        print("A cor que você deseja alterar já se encontra na lista")
+        verefica1 = True
     if verefica == True and verefica1 != True:
       for cor in self.__cores:
         if cor.nome == corAntiga:
           cor.nome = corNova
-          print("Cor alterada com sucesso")
-    elif verefica == False:
-      print("A cor que deseja alterar não se encontra na lista de cores")   
+          self.__tela_cor.mostra_mensagem("ATENÇÃO: Cor alterada com sucesso")
+    else:
+      self.__tela_cor.mostra_mensagem("ATENÇÃO: A cor que deseja alterar não se encontra na lista de cores")
 
   def lista_cor(self):
     for cor in self.__cores:
@@ -56,9 +56,9 @@ class ControladorCores():
     for cor in self.__cores:
       if cor.nome == nome:
         self.__cores.remove(cor)
-        print('COR removido!')
+        self.__tela_cor.mostra_mensagem("ATENÇÃO: Cor removida com sucesso")
       else:
-        print("ATENÇÃO: essa cor não está cadastrado")
+        self.__tela_cor.mostra_mensagem("ATENÇÃO: Cor não cadastrada")
 
   def retornar(self):
     self.__controlador_sistema.abre_tela()

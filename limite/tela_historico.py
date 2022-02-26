@@ -13,8 +13,14 @@ class TelaHistorico():
 
         print(linha())
 
-        opcao = leiaInt('Digite sua opção: ')
-        return opcao
+        while True:
+            try:
+                opcao = leiaInt('Digite sua opção: ')
+                if (opcao != 1 and opcao != 2 and opcao != 3 and opcao != 4 and opcao != 5 and opcao != 6):
+                    raise ValueError
+                return opcao        
+            except ValueError:
+                print("O valor digitado deve ser um inteiro de 1 a 6")
 
     def menu_opcao_filtro(self):
 
@@ -26,8 +32,14 @@ class TelaHistorico():
 
         print(linha())
 
-        opcao = leiaInt('Digite sua opção: ')
-        return opcao
+        while True:
+            try:
+                opcao = leiaInt('Digite sua opção: ')
+                if (opcao != 1 and opcao != 2 and opcao != 3 and opcao != 4):
+                    raise ValueError
+                return opcao        
+            except ValueError:
+                print("O valor digitado deve ser um inteiro de 1 a 4")
 
     def filtro_cor(self):
         cabecalho('SELECIONE UMA DAS OPÇÕES')
@@ -38,8 +50,15 @@ class TelaHistorico():
 
         print(linha())
 
-        opcao = leiaInt('Digite sua opção: ')
-        return opcao
+        while True:
+            try:
+                opcao = leiaInt('Digite sua opção: ')
+                if (opcao != 1 and opcao != 2):
+                    raise ValueError
+                return opcao        
+            except ValueError:
+                print("O valor digitado deve ser um inteiro de 1 a 2")       
+           
 
     def filtro_tamanho(self):
         cabecalho('SELECIONE UMA DAS OPÇÕES')
@@ -50,8 +69,14 @@ class TelaHistorico():
 
         print(linha())
 
-        opcao = leiaInt('Digite sua opção: ')
-        return opcao
+        while True:
+            try:
+                opcao = leiaInt('Digite sua opção: ')
+                if (opcao != 1 and opcao != 2):
+                    raise ValueError
+                return opcao        
+            except ValueError:
+                print("O valor digitado deve ser um inteiro de 1 a 2")
 
     def filtro_categoria(self):
         cabecalho('SELECIONE UMA DAS OPÇÕES')
@@ -62,8 +87,14 @@ class TelaHistorico():
 
         print(linha())
 
-        opcao = leiaInt('Digite sua opção: ')
-        return opcao
+        while True:
+            try:
+                opcao = leiaInt('Digite sua opção: ')
+                if (opcao != 1 and opcao != 2):
+                    raise ValueError
+                return opcao        
+            except ValueError:
+                print("O valor digitado deve ser um inteiro de 1 a 2")
 
     def filtro_cliente(self):
 
@@ -75,8 +106,14 @@ class TelaHistorico():
 
         print(linha())
 
-        opcao = leiaInt('Digite sua opção: ')
-        return opcao
+        while True:
+            try:
+                opcao = leiaInt('Digite sua opção: ')
+                if (opcao != 1 and opcao != 2):
+                    raise ValueError
+                return opcao        
+            except ValueError:
+                print("O valor digitado deve ser um inteiro de 1 a 2")
 
     def escolha_cor(self):
         cabecalho('DIGITE UMA COR')
