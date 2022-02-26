@@ -92,7 +92,7 @@ class TelaHistorico():
 
     def escolha_categoria(self):
         cabecalho('DIGITE A CATEGORIA')
-        categoria = input().upper
+        categoria = input().upper()
         categoria = categoria.strip()
         return categoria
     

@@ -66,9 +66,11 @@ class ControladorHistorico():
         relatorio = {}
         lista_produtos = self.__controlador_sistema.controlador_produtos.retorna_lista_produtos()
 
+        i = 0
         for produto in lista_produtos:
             vezes = self.conta_objetos(produto, lista_historico)
-            relatorio[produto.codigo] = (produto, vezes)
+            relatorio[i] = (produto, vezes)
+            i = i + 1
         return relatorio
 
     def conta_objetos(self, produto, lista_produtos_comprados):
@@ -76,7 +78,6 @@ class ControladorHistorico():
         for compra in lista_produtos_comprados:
             if compra.cor.nome == produto.cor.nome and compra.tamanho.descricao == produto.tamanho.descricao and compra.categoria.tipo == produto.categoria.tipo:
                 vezes = vezes + 1
-                print(vezes)
 
         return vezes
         
@@ -127,7 +128,7 @@ class ControladorHistorico():
         elif opcao_cor == 2:
             cor = self.valida_cor()
             for venda in lista:
-                if venda.cor.nome == cor:
+                if venda.cor.nome == cor.nome:
                     lista_filtrada_cor.append(venda)
             return lista_filtrada_cor
         else:
@@ -144,7 +145,7 @@ class ControladorHistorico():
         elif opcao_tamanho == 2:
             tamanho = self.valida_tamanho()
             for venda in lista:
-                if venda.tamanho.descricao == tamanho:
+                if venda.tamanho.descricao == tamanho.descricao:
                     lista_filtrada_tamanho.append(venda)
             return lista_filtrada_tamanho
 
@@ -162,7 +163,7 @@ class ControladorHistorico():
         elif opcao_categoria == 2:
             categoria = self.valida_categoria()
             for venda in lista:
-                if venda.categoria.tipo == categoria:
+                if venda.categoria.tipo == categoria.tipo:
                     lista_filtrada_categoria.append(venda)
             return lista_filtrada_categoria
 
@@ -219,11 +220,14 @@ class ControladorHistorico():
         lista_cor = self.filtra_lista_por_cor(lista_produtos)
         lista_tamanho = self.filtrar_lista_por_tamanho(lista_cor)
         lista_categoria = self.filtrar_lista_por_categoria(lista_tamanho)
-        relatorio_sem_nulos = []
+        relatorio_sem_nulos = {}
         relatorio = self.relatorio_produtos_iguais(lista_categoria)
+        i = 0
         for codigo in relatorio:
             if relatorio[codigo][1] != 0:
-                relatorio_sem_nulos[codigo] = relatorio[codigo]
+
+                relatorio_sem_nulos[i] = relatorio[codigo]
+                i = i + 1
 
         self.listar_quantidade_produtos_historico(relatorio_sem_nulos)
 
