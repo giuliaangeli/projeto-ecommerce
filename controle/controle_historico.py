@@ -15,6 +15,10 @@ class ControladorHistorico():
         self.__controlador_sistema = controlador_sistema
         self.__tela_historico = TelaHistorico()
     
+    @property
+    def historico(self):
+        return self.__historico
+
     def incluir_historico(self):
         usuario = self.__controlador_sistema.controlador_pessoas.confere_usuario_cpf_historico()
         produto = self.__controlador_sistema.controlador_produtos.confere_produto_codigo()
@@ -96,12 +100,15 @@ class ControladorHistorico():
         opcao_pessoa = self.__tela_historico.filtro_cliente()
 
         if opcao_pessoa == 1:
-            return self.__tela_historico
+            return self.__historico
 
         elif opcao_pessoa == 2:
-            usuario = self.valida_usuario()
+            objeto_usuario = self.valida_usuario()
+            
             for venda in self.__historico:
-                if venda.usuario == usuario:
+                print(venda.usuario)
+                print(objeto_usuario)
+                if venda.usuario == objeto_usuario:
                     historico_pessoa.append(venda)
             return historico_pessoa
 
@@ -173,14 +180,15 @@ class ControladorHistorico():
 
     def valida_usuario(self):
         usuario = self.__tela_historico.escolha_cliente()
-        usuario = self.__controlador_sistema.controlador_pessoas.confere_usuario_cpf(usuario)
+        objeto_usuario = self.__controlador_sistema.controlador_pessoas.confere_usuario_cpf(usuario)
 
-        if isinstance(usuario, Usuario):
-            return usuario
+        if isinstance(objeto_usuario, Usuario):
+            return objeto_usuario
 
-        else:
-            print('ATENÇÃO: o CPF digitado não está cadastrado em nosso sistema! Digite um CPF válido')
-            self.valida_usuario()
+        else: 
+            lista_opcoes = {1: self.valida_usuario, 2: self.abrir_menu_filtro_adm}
+            opcao_escolhida = self.__tela_historico.entrada_incorreta()
+            return lista_opcoes[opcao_escolhida]()
 
     def valida_cor(self):
         cor = self.__tela_historico.escolha_cor()

@@ -121,3 +121,15 @@ class TelaHistorico():
         print("COR: ", produto.cor.nome)
         print("TAMANHO: ", produto.tamanho.descricao)
         print('\n')
+
+    def entrada_incorreta(self):
+        cabecalho('SELECIONE UMA DAS OPÇÕES')
+        opcoes = ['[1] Tentar Novamente','[2] Voltar para o menu anterior']
+        
+        for item in opcoes:
+            print(item)
+
+        print(linha())
+
+        opcao = leiaInt('Digite sua opção: ')
+        return opcao
