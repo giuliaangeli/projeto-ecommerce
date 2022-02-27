@@ -67,7 +67,7 @@ class TelaSistema:
 
         print(linha())
 
-         while True:
+        while True:
             try:
                 opcao = leiaInt('Digite sua opção: ')
                 if ( opcao != 1 and opcao != 2 and opcao != 3 and opcao != 4):
