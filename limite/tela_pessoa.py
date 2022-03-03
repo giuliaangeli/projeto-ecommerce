@@ -1,103 +1,224 @@
 from limite.tela_abstrata import *
-
+from pyparsing import sgl_quoted_string
+import PySimpleGUI as sg
 class TelaPessoa():
+  def __init__(self):
+    self.__window = None
+    self.init_opcoes()
+    self.init_opcoes1()
+    self.init_opcoes2()
+  # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
+  def adm_ou_usuario(self):
+    cabecalho('Opções Login')
+    self.init_opcoes()
+    button, values = self.open()
+    if values['1']:
+      opcao = 1
+    if values['2']:
+      opcao = 2
+    # cobre os casos de Retornar, fechar janela, ou clicar cancelar
+    #Isso faz com que retornemos a tela do sistema caso qualquer uma dessas coisas aconteca
+    if values['0'] or button in (None, 'Cancelar'):
+      opcao = 0
+    self.close()
+    return opcao
+  def tela_pessoa_adm(self):
+    cabecalho('Opções Administrador')
+    self.init_opcoes1()
+    button, values = self.open()
+    if values['1']:
+      opcao = 1
+    if values['2']:
+      opcao = 2
+    if values['3']:
+      opcao = 3
+    if values['4']:
+      opcao = 4
+    if values['5']:
+      opcao = 5
+    if values['6']:
+      opcao = 6
+    if values['7']:
+      opcao = 7
+    if values['8']:
+      opcao = 8
+    # cobre os casos de Retornar, fechar janela, ou clicar cancelar
+    #Isso faz com que retornemos a tela do sistema caso qualquer uma dessas coisas aconteca
+    if values['9'] or button in (None, 'Cancelar'):
+      opcao = 9
+    self.close()
+    return opcao
+  def tela_pessoa_usuario(self):
+    cabecalho('Opções Usuario')
+    self.init_opcoes2()
+    button, values = self.open()
+    if values['1']:
+      opcao = 1
+    if values['2']:
+      opcao = 2
+    if values['3']:
+      opcao = 3
+    if values['4']:
+      opcao = 4
+    # cobre os casos de Retornar, fechar janela, ou clicar cancelar
+    #Isso faz com que retornemos a tela do sistema caso qualquer uma dessas coisas aconteca
+    if values['5'] or button in (None, 'Cancelar'):
+      opcao = 5
+    self.close()
+    return opcao
 
-    def adm_ou_usuario(self):
-        
-        opcoes = ['[1] Administrador','[2] Usuário']
-        
-        for item in opcoes:
-            print(item)
 
-        print(linha())
+  def init_opcoes(self):
+    # sg.theme_previewer()
+    sg.ChangeLookAndFeel('DarkTeal4')
+    layout = [
+      [sg.Text('-------- Menu Inicial ----------', font=("Helvica", 25))],
+      [sg.Text('Escolha sua opção', font=("Helvica", 15))],
+      [sg.Radio('Administrador', "RD1", key='1')],
+      [sg.Radio('Usuário', "RD1", key='2')],
+      [sg.Radio('Encerrar Sessão', "RD1", key='6')],
+      [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+    ]
+    self.__window = sg.Window('Sistema E-commerce').Layout(layout)
 
-        opcao = leiaInt('Digite sua opção: ')
-        return opcao
+  def init_opcoes1(self):
+    # sg.theme_previewer()
+    sg.ChangeLookAndFeel('DarkTeal4')
+    layout = [
+      [sg.Text('-------- Opções Administrador ----------', font=("Helvica", 25))],
+      [sg.Text('Escolha sua opção', font=("Helvica", 15))],
+      [sg.Radio('Incluir Administrador', "RD1", key='1')],
+      [sg.Radio('Excluir Administrador', "RD1", key='2')],
+      [sg.Radio('Listar Administradores', "RD1", key='3')],
+      [sg.Radio('Alterar meus Dados', "RD1", key='4')],
+      [sg.Radio('Incluir Usuário', "RD1", key='5')],
+      [sg.Radio('Excluir Usuário', "RD1", key='6')],
+      [sg.Radio('Listar Usuário', "RD1", key='7')],
+      [sg.Radio('Voltar ao Menu Anterior', "RD1", key='8')],
+      [sg.Radio('Encerrar Sessão', "RD1", key='9')],
+      [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+    ]
+    self.__window = sg.Window('Sistema E-commerce').Layout(layout)
 
-    def tela_pessoa_adm(self):
-        
-        cabecalho('ESCOLHA UMA OPÇÃO')
-        opcoes = ['[1] Incluir Administrador','[2] Excluir Administrador','[3] Listar Administradores', '[4] Alterar meus Dados', '[5] Incluir Usuário','[6] Excluir Usuário','[7] Listar Usuários', '[8] Voltar ao Menu Anterior','[9] Encerrar Sessão']
-        
-        for item in opcoes:
-            print(item)
+  def init_opcoes2(self):
+    # sg.theme_previewer()
+    sg.ChangeLookAndFeel('DarkTeal4')
+    layout = [
+      [sg.Text('-------- Dados ----------', font=("Helvica", 25))],
+      [sg.Text('Escolha sua opção', font=("Helvica", 15))],
+      [sg.Radio('Consultar Dados', "RD1", key='1')],
+      [sg.Radio('Alterar Dados', "RD1", key='2')],
+      [sg.Radio('Excluir Conta', "RD1", key='3')],
+      [sg.Radio('Voltar ao Menu Anterior', "RD1", key='4')],
+      [sg.Radio('Encerrar Sessão', "RD1", key='5')],
+      [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+    ]
+    self.__window = sg.Window('Sistema E-commerce').Layout(layout)
+  #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
+  def pega_dados_usuario(self):
+    print("-------- DADOS ----------")
+    sg.ChangeLookAndFeel('DarkTeal4')
+    layout = [
+      [sg.Text('-------- DADOS  ----------', font=("Helvica", 25))],
+      [sg.Text('Nome:', size=(15, 1)), sg.InputText('', key='nome')],
+      [sg.Text('CPF:', size=(15, 1)), sg.InputText('', key='cpf')],
+      [sg.Text('Telefone:', size=(15, 1)), sg.InputText('', key='telefone')],
+      [sg.Text('Endereço:', size=(15, 1)), sg.InputText('', key='endereco')],
+      [sg.Text('E-mail:', size=(15, 1)), sg.InputText('', key='email')],
+      [sg.Text('Senha:', size=(15, 1)), sg.InputText('', key='senha')],
+      [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+    ]
+    self.__window = sg.Window('Sistema E-commerce').Layout(layout)
+    button, values = self.open()
+    nome = values['nome']
+    cpf = values['cpf']
+    telefone = values['telefone']
+    endereco = values['endereco']
+    email = values['email']
+    senha = values['senha']
 
-        print(linha())
+    self.close()
+    return {"nome": nome, 'cpf': cpf, 'telefone': telefone, 'endereco': endereco, 'email': email, 'senha': senha}
 
-        opcao = leiaInt('Digite sua opção: ')
+  def pega_dado_adm(self):
+    print("-------- DADOS ----------")
+    sg.ChangeLookAndFeel('DarkTeal4')
+    layout = [
+      [sg.Text('-------- DADOS ----------', font=("Helvica", 25))],
+      [sg.Text('Nome:', size=(15, 1)), sg.InputText('', key='nome')],
+      [sg.Text('CPF:', size=(15, 1)), sg.InputText('', key='cpf')],
+      [sg.Text('Telefone:', size=(15, 1)), sg.InputText('', key='telefone')],
+      [sg.Text('Endereço:', size=(15, 1)), sg.InputText('', key='endereco')],
+      [sg.Text('E-mail:', size=(15, 1)), sg.InputText('', key='email')],
+      [sg.Text('Senha:', size=(15, 1)), sg.InputText('', key='senha')],
+      [sg.Text('Salario:', size=(15, 1)), sg.InputText('', key='salario')],
+      [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+    ]
+    self.__window = sg.Window('Sistema E-commerce').Layout(layout)
 
-        return opcao
+    button, values = self.open()
+    nome = values['nome']
+    cpf = values['cpf']
+    telefone = values['telefone']
+    endereco = values['endereco']
+    email = values['email']
+    senha = values['senha']
+    salario = values['salario']
 
-    def tela_pessoa_usuario(self):
+    self.close()
+    return {"nome": nome, 'cpf': cpf, 'telefone': telefone, 'endereco': endereco, 'email': email, 'senha': senha, 'salario': salario}
 
-        cabecalho('ESCOLHA UMA OPÇÃO')
-        opcoes = ['[1] Consultar Dados','[2] Alterar Dados', '[3] Excluir Conta', '[4] Voltar ao Menu Anterior','[5] Encerrar Sessão']
-        
-        for item in opcoes:
-            print(item)
+  def pega_dados_login(self):
+    print("-------- DADOS  ----------")
+    sg.ChangeLookAndFeel('DarkTeal4')
+    layout = [
+      [sg.Text('-------- DADOS  ----------', font=("Helvica", 25))],
+      [sg.Text('E-mail:', size=(15, 1)), sg.InputText('', key='email')],
+      [sg.Text('Senha:', size=(15, 1)), sg.InputText('', key='senha')],
+      [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+    ]
+    self.__window = sg.Window('Sistema E-commerce').Layout(layout)
 
-        print(linha())
+    button, values = self.open()
+    email = values['email']
+    senha = values['senha']
 
-        opcao = leiaInt('Digite sua opção: ')
+    self.close()
+    return {'email': email, 'senha': senha}
 
-        return opcao
+  def pega_cpf(self):
+    print("-------- DADOS ----------")
+    sg.ChangeLookAndFeel('DarkTeal4')
+    layout = [
+      [sg.Text('-------- DADOS  ----------', font=("Helvica", 25))],
+      [sg.Text('CPF:', size=(15, 1)), sg.InputText('', key='cpf')],
+      [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+    ]
+    self.__window = sg.Window('Sistema E-commerce').Layout(layout)
 
-    def pega_dados_usuario(self):
+    button, values = self.open()
+    cpf = values['cpf']
 
-        cabecalho('Insira os dados abaixo')
+    self.close()
+    return {'cpf': cpf}
 
-        nome = input("Nome: ")
-        cpf = input("CPF: ")
-        telefone = input("Telefone: ")
-        endereco = input("Endereço: ")
-        email = input("E-mail: ")
-        senha = input("Senha: ")
+  # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
+  def mostra_adm(self, mostra_adm):
+    string_todos_adm = mostra_adm
+    sg.Popup('-------- LISTA DE ADM ----------', string_todos_adm)
 
-        return {'nome': nome, 'cpf': cpf, 'telefone': telefone, 'endereco': endereco,  'email': email, 'senha':  senha}
+  def mostra_usuario(self, dados_usuario):
+    string_todos_usuario = dados_usuario
+    sg.Popup('-------- LISTA DE USUARIO ----------', string_todos_usuario)
 
-    def pega_dado_adm(self):
+  #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
 
-        cabecalho('Insira os dados abaixo')
+  def mostra_mensagem(self, msg):
+    sg.popup("", msg)
 
-        nome = input("Nome: ")
-        cpf = input("CPF: ")
-        telefone = input("Telefone: ")
-        endereco = input("Endereço: ")
-        email = input("E-mail: ")
-        senha = input("Senha: ")
-        salario = input("Salário: ")
+  def close(self):
+    self.__window.Close()
 
-        return {'nome': nome, 'cpf': cpf, 'telefone': telefone, 'endereco': endereco,  'email': email, 'senha':  senha, 'salario': salario}
-
-    def mostra_adm(self, dados_adm):
-        print("NOME: ", dados_adm["nome"])
-        print("CPF: ", dados_adm["cpf"])
-        print("TELEFONE: ", dados_adm["telefone"])
-        print("ENDEREÇO: ", dados_adm["endereco"]) 
-        print("E-MAIL: ", dados_adm["email"])
-        print("SENHA: ", dados_adm["senha"])
-        print("SALÁRIO: ", dados_adm["salario"])
-        print("\n")
-
-    def mostra_usuario(self, dados_usuario):
-        print("NOME: ", dados_usuario["nome"])
-        print("CPF: ", dados_usuario["cpf"])
-        print("TELEFONE: ", dados_usuario["telefone"])
-        print("ENDEREÇO: ", dados_usuario["endereco"]) 
-        print("E-MAIL: ", dados_usuario["email"])
-        print("SENHA: ", dados_usuario["senha"])
-        print("\n")
-    
-    # tirei o tipo de pessoa (adm ou usuário) pq não vai precisar
-    def pega_dados_login(self):
-        email = input("Digite seu e-mail: ")
-        senha = input("Digite a sua senha: ")
-        return {'email': email, 'senha': senha}
-
-    def pega_cpf(self):
-        cpf = input()
-        return cpf
-    
-
-        
-
+  def open(self):
+    button, values = self.__window.Read()
+    return button, values
