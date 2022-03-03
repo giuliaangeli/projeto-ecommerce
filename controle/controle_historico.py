@@ -288,9 +288,9 @@ class ControladorHistorico():
         self.__historico.append(venda5)
         self.__historico.append(venda6)
 
-        for venda in self.__historico:
+        '''for venda in self.__historico:
             produto = venda.produto
-            self.__tela_historico.imprime_historico(produto)
+            self.__tela_historico.imprime_historico(produto)'''
             
 
 
