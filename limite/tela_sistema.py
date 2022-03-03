@@ -1,97 +1,153 @@
-from limite.tela_abstrata import *
+import PySimpleGUI as sg
+
 class TelaSistema:
+    def __init__(self):
+        self.__window = None
+        self.init_components()
+        self.init_components1()
+        self.init_components2()
+        self.init_components3()
+        self.init_components4()
+
     #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
+# precisa chamar self.init_components() aqui para o caso de chamar essa janela uma 2a vez. Não é possível reusar layouts de janelas depois de fechadas.
     def tela_inicial(self):
-        cabecalho('BEM-VINDO(A)')
-        opcoes = ['[1] Fazer Login','[2] Criar uma conta']
-     
-        for item in opcoes:
-            print(item)
-
-        print(linha())
-
-        while True:
-            try:
-                opcao = leiaInt('Digite sua opção: ')
-                if ( opcao != 1 and opcao != 2):
-                    raise ValueError
-                return opcao        
-            except ValueError:
-                print("O valor digitado deve ser um inteiro de 1 a 2")
-
+        self.init_components()
+        button, values = self.__window.Read()
+        opcao = 0
+        if values['1']:
+            opcao = 1
+        if values['2']:
+            opcao = 2
+        # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
+        if values['0'] or button in (None,'Cancelar'):
+            opcao = 0
+        self.close()
+        return opcao
 
     def tela_login(self):
-        cabecalho('ESCOLHA UMA OPÇÃO')
-        opcoes = ['[1] Login Administrador','[2] Login Cliente']
-        
-        for item in opcoes:
-            print(item)
-
-        print(linha())
-
-        while True:
-            try:
-                opcao = leiaInt('Digite sua opção: ')
-                if ( opcao != 1 and opcao != 2):
-                    raise ValueError
-                return opcao        
-            except ValueError:
-                print("O valor digitado deve ser um inteiro de 1 a 2")
-
+        self.init_components1()
+        button, values = self.__window.Read()
+        opcao = 0
+        if values['1']:
+            opcao = 1
+        if values['2']:
+            opcao = 2
+        # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
+        if values['0'] or button in (None,'Cancelar'):
+            opcao = 0
+        self.close()
+        return opcao
     def falha(self):
-
-        print('Escolha uma das opções abaixo')
-        opcoes = ['[1] Tentar novamente','[2] Voltar ao menu anterior']
-        
-        for item in opcoes:
-            print(item)
-
-        print(linha())
-
-        while True:
-            try:
-                opcao = leiaInt('Digite sua opção: ')
-                if ( opcao != 1 and opcao != 2):
-                    raise ValueError
-                return opcao        
-            except ValueError:
-                print("O valor digitado deve ser um inteiro de 1 a 2")
-        
+        self.init_components2()
+        button, values = self.__window.Read()
+        opcao = 0
+        if values['1']:
+            opcao = 1
+        if values['2']:
+            opcao = 2
+        # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
+        if values['0'] or button in (None,'Cancelar'):
+            opcao = 0
+        self.close()
+        return opcao
     def tela_opcoes_adm(self):
-        
-        cabecalho('ESCOLHA UMA OPÇÃO')
-        opcoes = ['[1] Pessoas','[2] Produtos','[3] Histórico', '[4] Finalizar Sessão']
-        
-        for item in opcoes:
-            print(item)
-
-        print(linha())
-
-        while True:
-            try:
-                opcao = leiaInt('Digite sua opção: ')
-                if ( opcao != 1 and opcao != 2 and opcao != 3 and opcao != 4):
-                    raise ValueError
-                return opcao        
-            except ValueError:
-                print("O valor digitado deve ser um inteiro de 1 a 4")
-
+        self.init_components3()
+        button, values = self.__window.Read()
+        opcao = 0
+        if values['1']:
+            opcao = 1
+        if values['2']:
+            opcao = 2
+        if values['3']:
+            opcao = 3
+        # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
+        if values['4'] or button in (None,'Cancelar'):
+            opcao = 4
+        self.close()
+        return opcao
 
     def tela_opcoes_usuario(self):
-        
-        cabecalho('ESCOLHA UMA OPÇÃO')
-        opcoes = ['[1] Ir as Compras','[2] Histórico de Compras','[3] Dados Pessoais', '[4] Finalizar Sessão']
-        
-        for item in opcoes:
-            print(item)
+        self.init_components4()
+        button, values = self.__window.Read()
+        opcao = 0
+        if values['1']:
+            opcao = 1
+        if values['2']:
+            opcao = 2
+        if values['3']:
+            opcao = 3
+        # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
+        if values['4'] or button in (None,'Cancelar'):
+            opcao = 4
+        self.close()
+        return opcao
 
-        print(linha())
+    def close(self):
+        self.__window.Close()
 
-        while True:
-            try:
-                opcao = leiaInt('Digite sua opção: ')
-                if ( opcao != 1 and opcao != 2 and opcao != 3 and opcao != 4):
-                    raise ValueError
-                return opcao        
-            except ValueError:
-                print("O valor digitado deve ser um inteiro de 1 a 4")
+    def init_components(self):
+        #sg.theme_previewer()
+        sg.ChangeLookAndFeel('DarkTeal4')
+        layout = [
+            [sg.Text('Bem vindo ao sistema E-commerce!', font=("Helvica",25))],
+            [sg.Text('Escolha sua opção', font=("Helvica",15))],
+            [sg.Radio('Fazer login',"RD1", key='1')],
+            [sg.Radio('Criar uma conta',"RD1", key='2')],
+            [sg.Radio('Finalizar sistema',"RD1", key='0')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
+        self.__window = sg.Window('Sistema E-commerce').Layout(layout)
+    def init_components1(self):
+        #sg.theme_previewer()
+        sg.ChangeLookAndFeel('DarkTeal4')
+        layout = [
+            [sg.Text('Bem vindo ao sistema E-commerce!', font=("Helvica",25))],
+            [sg.Text('Escolha sua opção', font=("Helvica",15))],
+            [sg.Radio('Login Administrador',"RD1", key='1')],
+            [sg.Radio('Login Cliente',"RD1", key='2')],
+            [sg.Radio('Finalizar sistema',"RD1", key='0')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
+        self.__window = sg.Window('Sistema E-commerce').Layout(layout)
+
+    def init_components2(self):
+        #sg.theme_previewer()
+        sg.ChangeLookAndFeel('DarkTeal4')
+        layout = [
+            [sg.Text('Bem vindo ao sistema E-commerce!', font=("Helvica",25))],
+            [sg.Text('Escolha sua opção', font=("Helvica",15))],
+            [sg.Radio('Tentar novamente',"RD1", key='1')],
+            [sg.Radio('Vltar ao menu anterior',"RD1", key='2')],
+            [sg.Radio('Finalizar sistema',"RD1", key='0')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
+        self.__window = sg.Window('Sistema E-commerce').Layout(layout)
+
+    def init_components3(self):
+        #sg.theme_previewer()
+        sg.ChangeLookAndFeel('DarkTeal4')
+        layout = [
+            [sg.Text('Bem vindo ao sistema E-commerce!', font=("Helvica",25))],
+            [sg.Text('Escolha sua opção', font=("Helvica",15))],
+            [sg.Radio('Pessoas',"RD1", key='1')],
+            [sg.Radio('Produtos',"RD1", key='2')],
+            [sg.Radio('Histórico',"RD1", key='3')],
+            [sg.Radio('Finalizar sistema',"RD1", key='4')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
+        self.__window = sg.Window('Sistema E-commerce').Layout(layout)
+
+    def init_components4(self):
+        #sg.theme_previewer()
+        sg.ChangeLookAndFeel('DarkTeal4')
+        layout = [
+            [sg.Text('Bem vindo ao sistema E-commerce!', font=("Helvica",25))],
+            [sg.Text('Escolha sua opção', font=("Helvica",15))],
+            [sg.Radio('Ir as Compras',"RD1", key='1')],
+            [sg.Radio('Histórico de Compras',"RD1", key='2')],
+            [sg.Radio('Dados Pessoais',"RD1", key='3')],
+            [sg.Radio('Finalizar sistema',"RD1", key='4')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+        ]
+        self.__window = sg.Window('Sistema E-commerce').Layout(layout)
