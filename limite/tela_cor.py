@@ -1,47 +1,93 @@
+from pyparsing import sgl_quoted_string
 from limite.tela_abstrata import *
-
+import PySimpleGUI as sg
 class TelaCor():
+  def __init__(self):
+    self.__window = None
+    self.init_opcoes()
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def tela_opcoes(self):
     cabecalho('MENU CORES')
-    opcoes = ['[1] Incluir Cor','[2] Alterar Cor','[3] Listar Cores', '[4] Excluir Cor', '[5] Voltar ao Menu Anterior', '[6] Sair']
-    
-    for item in opcoes:
-        print(item)
+    self.init_opcoes()
+    button, values = self.open()
+    if values['1']:
+      opcao = 1
+    if values['2']:
+      opcao = 2
+    if values['3']:
+      opcao = 3
+    if values['4']:
+      opcao = 4
+    if values['5']:
+      opcao = 5
+    # cobre os casos de Retornar, fechar janela, ou clicar cancelar
+    #Isso faz com que retornemos a tela do sistema caso qualquer uma dessas coisas aconteca
+    if values['6'] or button in (None, 'Cancelar'):
+      opcao = 6
+    self.close()
+    return opcao
 
-    print(linha())
 
-    while True:
-      try:
-        opcao = leiaInt('Digite sua opção: ')
-        if ( opcao != 1 and opcao != 2 and opcao != 3 and opcao != 4 and opcao != 5 and opcao != 6):
-          raise ValueError
-        return opcao        
-      except ValueError:
-        print("O valor digitado deve ser um inteiro de 1 a 6")
-
-
-
+  def init_opcoes(self):
+    # sg.theme_previewer()
+    sg.ChangeLookAndFeel('DarkTeal4')
+    layout = [
+      [sg.Text('-------- CORES ----------', font=("Helvica", 25))],
+      [sg.Text('Escolha sua opção', font=("Helvica", 15))],
+      [sg.Radio('Incluir cor', "RD1", key='1')],
+      [sg.Radio('Alterar cor', "RD1", key='2')],
+      [sg.Radio('Listar cor', "RD1", key='3')],
+      [sg.Radio('Excluir cor', "RD1", key='4')],
+      [sg.Radio('Voltar ao menu anterior', "RD1", key='5')],
+      [sg.Radio('Sair', "RD1", key='6')],
+      [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+    ]
+    self.__window = sg.Window('Sistema de cores').Layout(layout)
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def pega_dados_cor(self):
     print("-------- DADOS COR ----------")
-    nome = input("Nome: ").upper()
-    nome = nome.strip()
+    sg.ChangeLookAndFeel('DarkTeal4')
+    layout = [
+      [sg.Text('-------- DADOS COR ----------', font=("Helvica", 25))],
+      [sg.Text('Nome:', size=(15, 1)), sg.InputText('', key='nome')],
+      [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+    ]
+    self.__window = sg.Window('Sistema de livros').Layout(layout)
 
+    button, values = self.open()
+    nome = values['nome']
+
+    self.close()
     return nome
+    '''{"nome": nome}'''
 
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def mostra_cor(self, dados_cor):
-    print(dados_cor["nome"])
+    string_todos_cor = dados_cor
+    sg.Popup('-------- LISTA DE COR ----------', string_todos_cor)
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def seleciona_cor(self):
-    nome = input("Nome da cor que deseja selecionar: ").upper()
-    nome = nome.strip()
+    sg.ChangeLookAndFeel('DarkTeal4')
+    layout = [
+      [sg.Text('-------- SELECIONAR COR ----------', font=("Helvica", 25))],
+      [sg.Text('Digite o nome da cor que deseja selecionar:', font=("Helvica", 15))],
+      [sg.Text('nome:', size=(15, 1)), sg.InputText('', key='nome')],
+      [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+    ]
+    self.__window = sg.Window('Seleciona cor').Layout(layout)
+
+    button, values = self.open()
+    nome = values['nome']
+    self.close()
     return nome
 
   def mostra_mensagem(self, msg):
-    print(msg)
+    sg.popup("", msg)
 
-  def cabecalho_cores_cadastradas(self):
-    cabecalho('CORES CADASTRADAS')
+  def close(self):
+    self.__window.Close()
+
+  def open(self):
+    button, values = self.__window.Read()
+    return button, values
