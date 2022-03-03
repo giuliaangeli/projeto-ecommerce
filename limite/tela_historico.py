@@ -255,7 +255,7 @@ class TelaHistorico():
 
     sg.Popup('-------- LISTA DE HISTORICO ----------', string_todos_produtos)
 
-  def imprime_historico_generico(self, dados_compra, quantidade, nome):
+  def imprime_historico_filtrado(self, dados_compra, quantidade, nome):
     string_todos_produtos = ""
     print("CLIENTE: ", nome)
     print("PRODUTO: ", dados_compra["categoria"])
