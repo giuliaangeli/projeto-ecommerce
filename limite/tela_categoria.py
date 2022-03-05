@@ -1,4 +1,4 @@
-from pyparsing import sgl_quoted_string
+#from pyparsing import sgl_quoted_string
 from limite.tela_abstrata import *
 import PySimpleGUI as sg
 class TelaCategoria():
@@ -30,7 +30,7 @@ class TelaCategoria():
 
   def init_opcoes(self):
     # sg.theme_previewer()
-    sg.ChangeLookAndFeel('DarkTeal4')
+    sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
       [sg.Text('-------- CATEGORIAS ----------', font=("Helvica", 25))],
       [sg.Text('Escolha sua opção', font=("Helvica", 15))],
@@ -46,7 +46,7 @@ class TelaCategoria():
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def pega_dados_categoria(self):
     print("-------- DADOS CATEGORIAS ----------")
-    sg.ChangeLookAndFeel('DarkTeal4')
+    sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
       [sg.Text('-------- DADOS CATEGORIAS ----------', font=("Helvica", 25))],
       [sg.Text('Tipo:', size=(15, 1)), sg.InputText('', key='tipo')],
@@ -71,7 +71,7 @@ class TelaCategoria():
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def seleciona_categoria(self):
-    sg.ChangeLookAndFeel('DarkTeal4')
+    sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
       [sg.Text('-------- SELECIONAR CATEGORIA ----------', font=("Helvica", 25))],
       [sg.Text('Digite o tipo da categoria que deseja selecionar:', font=("Helvica", 15))],

@@ -1,4 +1,4 @@
-from pyparsing import sgl_quoted_string
+#from pyparsing import sgl_quoted_string
 from limite.tela_abstrata import *
 import PySimpleGUI as sg
 class TelaProduto():
@@ -73,7 +73,7 @@ class TelaProduto():
 
   def init_opcoes(self):
     # sg.theme_previewer()
-    sg.ChangeLookAndFeel('DarkTeal4')
+    sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
       [sg.Text('-------- PRODUTOS ----------', font=("Helvica", 25))],
       [sg.Text('Escolha sua opção', font=("Helvica", 15))],
@@ -88,7 +88,7 @@ class TelaProduto():
     self.__window = sg.Window('Sistema de produtos').Layout(layout)
   def init_opcoes1(self):
     # sg.theme_previewer()
-    sg.ChangeLookAndFeel('DarkTeal4')
+    sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
       [sg.Text('-------- PRODUTOS ----------', font=("Helvica", 25))],
       [sg.Text('Escolha sua opção', font=("Helvica", 15))],
@@ -103,7 +103,7 @@ class TelaProduto():
     self.__window = sg.Window('Sistema de produtos').Layout(layout)
   def init_opcoes2(self):
     # sg.theme_previewer()
-    sg.ChangeLookAndFeel('DarkTeal4')
+    sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
       [sg.Text('-------- PRODUTOS ----------', font=("Helvica", 25))],
       [sg.Text('Escolha sua opção', font=("Helvica", 15))],
@@ -117,7 +117,7 @@ class TelaProduto():
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def pega_dados_produto(self):
     print("-------- DADOS PRODUTOS ----------")
-    sg.ChangeLookAndFeel('DarkTeal4')
+    sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
       [sg.Text('-------- DADOS CATEGORIAS ----------', font=("Helvica", 25))],
       [sg.Text('Cor:', size=(15, 1)), sg.InputText('', key='cor')],
@@ -151,7 +151,7 @@ class TelaProduto():
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def seleciona_produto(self):
-    sg.ChangeLookAndFeel('DarkTeal4')
+    sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
       [sg.Text('-------- SELECIONAR PRODUTO ----------', font=("Helvica", 25))],
       [sg.Text('Digite o codigo do produto que deseja selecionar:', font=("Helvica", 15))],

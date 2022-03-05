@@ -1,4 +1,4 @@
-from pyparsing import sgl_quoted_string
+#from pyparsing import sgl_quoted_string
 from limite.tela_abstrata import *
 import PySimpleGUI as sg
 class TelaCor():
@@ -30,7 +30,7 @@ class TelaCor():
 
   def init_opcoes(self):
     # sg.theme_previewer()
-    sg.ChangeLookAndFeel('DarkTeal4')
+    sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
       [sg.Text('-------- CORES ----------', font=("Helvica", 25))],
       [sg.Text('Escolha sua opção', font=("Helvica", 15))],
@@ -46,7 +46,7 @@ class TelaCor():
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def pega_dados_cor(self):
     print("-------- DADOS COR ----------")
-    sg.ChangeLookAndFeel('DarkTeal4')
+    sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
       [sg.Text('-------- DADOS COR ----------', font=("Helvica", 25))],
       [sg.Text('Nome:', size=(15, 1)), sg.InputText('', key='nome')],
@@ -68,7 +68,7 @@ class TelaCor():
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def seleciona_cor(self):
-    sg.ChangeLookAndFeel('DarkTeal4')
+    sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
       [sg.Text('-------- SELECIONAR COR ----------', font=("Helvica", 25))],
       [sg.Text('Digite o nome da cor que deseja selecionar:', font=("Helvica", 15))],

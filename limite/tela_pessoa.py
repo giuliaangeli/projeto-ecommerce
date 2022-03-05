@@ -1,5 +1,5 @@
 from limite.tela_abstrata import *
-from pyparsing import sgl_quoted_string
+#from pyparsing import sgl_quoted_string
 import PySimpleGUI as sg
 class TelaPessoa():
   def __init__(self):
@@ -70,7 +70,7 @@ class TelaPessoa():
 
   def init_opcoes(self):
     # sg.theme_previewer()
-    sg.ChangeLookAndFeel('DarkTeal4')
+    sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
       [sg.Text('-------- Menu Inicial ----------', font=("Helvica", 25))],
       [sg.Text('Escolha sua opção', font=("Helvica", 15))],
@@ -83,7 +83,7 @@ class TelaPessoa():
 
   def init_opcoes1(self):
     # sg.theme_previewer()
-    sg.ChangeLookAndFeel('DarkTeal4')
+    sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
       [sg.Text('-------- Opções Administrador ----------', font=("Helvica", 25))],
       [sg.Text('Escolha sua opção', font=("Helvica", 15))],
@@ -102,7 +102,7 @@ class TelaPessoa():
 
   def init_opcoes2(self):
     # sg.theme_previewer()
-    sg.ChangeLookAndFeel('DarkTeal4')
+    sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
       [sg.Text('-------- Dados ----------', font=("Helvica", 25))],
       [sg.Text('Escolha sua opção', font=("Helvica", 15))],
@@ -117,7 +117,7 @@ class TelaPessoa():
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def pega_dados_usuario(self):
     print("-------- DADOS ----------")
-    sg.ChangeLookAndFeel('DarkTeal4')
+    sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
       [sg.Text('-------- DADOS  ----------', font=("Helvica", 25))],
       [sg.Text('Nome:', size=(15, 1)), sg.InputText('', key='nome')],
@@ -142,7 +142,7 @@ class TelaPessoa():
 
   def pega_dado_adm(self):
     print("-------- DADOS ----------")
-    sg.ChangeLookAndFeel('DarkTeal4')
+    sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
       [sg.Text('-------- DADOS ----------', font=("Helvica", 25))],
       [sg.Text('Nome:', size=(15, 1)), sg.InputText('', key='nome')],
@@ -170,7 +170,7 @@ class TelaPessoa():
 
   def pega_dados_login(self):
     print("-------- DADOS  ----------")
-    sg.ChangeLookAndFeel('DarkTeal4')
+    sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
       [sg.Text('-------- DADOS  ----------', font=("Helvica", 25))],
       [sg.Text('E-mail:', size=(15, 1)), sg.InputText('', key='email')],
@@ -188,7 +188,7 @@ class TelaPessoa():
 
   def pega_cpf(self):
     print("-------- DADOS ----------")
-    sg.ChangeLookAndFeel('DarkTeal4')
+    sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
       [sg.Text('-------- DADOS  ----------', font=("Helvica", 25))],
       [sg.Text('CPF:', size=(15, 1)), sg.InputText('', key='cpf')],

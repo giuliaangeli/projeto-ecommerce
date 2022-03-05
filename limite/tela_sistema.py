@@ -88,9 +88,9 @@ class TelaSistema:
 
     def init_components(self):
         #sg.theme_previewer()
-        sg.ChangeLookAndFeel('DarkTeal4')
+        sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
-            [sg.Text('Bem vindo ao sistema E-commerce!', font=("Helvica",25))],
+            [sg.Text('Bem vindo ao sistema E-commerce!', font=('Helvica 25 roman'))],
             [sg.Text('Escolha sua opção', font=("Helvica",15))],
             [sg.Radio('Fazer login',"RD1", key='1')],
             [sg.Radio('Criar uma conta',"RD1", key='2')],
@@ -100,7 +100,7 @@ class TelaSistema:
         self.__window = sg.Window('Sistema E-commerce').Layout(layout)
     def init_components1(self):
         #sg.theme_previewer()
-        sg.ChangeLookAndFeel('DarkTeal4')
+        sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
             [sg.Text('Bem vindo ao sistema E-commerce!', font=("Helvica",25))],
             [sg.Text('Escolha sua opção', font=("Helvica",15))],
@@ -113,12 +113,12 @@ class TelaSistema:
 
     def init_components2(self):
         #sg.theme_previewer()
-        sg.ChangeLookAndFeel('DarkTeal4')
+        sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
             [sg.Text('Bem vindo ao sistema E-commerce!', font=("Helvica",25))],
             [sg.Text('Escolha sua opção', font=("Helvica",15))],
             [sg.Radio('Tentar novamente',"RD1", key='1')],
-            [sg.Radio('Vltar ao menu anterior',"RD1", key='2')],
+            [sg.Radio('Voltar ao menu anterior',"RD1", key='2')],
             [sg.Radio('Finalizar sistema',"RD1", key='0')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
@@ -126,7 +126,7 @@ class TelaSistema:
 
     def init_components3(self):
         #sg.theme_previewer()
-        sg.ChangeLookAndFeel('DarkTeal4')
+        sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
             [sg.Text('Bem vindo ao sistema E-commerce!', font=("Helvica",25))],
             [sg.Text('Escolha sua opção', font=("Helvica",15))],
@@ -140,7 +140,7 @@ class TelaSistema:
 
     def init_components4(self):
         #sg.theme_previewer()
-        sg.ChangeLookAndFeel('DarkTeal4')
+        sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
             [sg.Text('Bem vindo ao sistema E-commerce!', font=("Helvica",25))],
             [sg.Text('Escolha sua opção', font=("Helvica",15))],

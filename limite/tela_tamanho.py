@@ -1,4 +1,4 @@
-from pyparsing import sgl_quoted_string
+#from pyparsing import sgl_quoted_string
 from limite.tela_abstrata import *
 import PySimpleGUI as sg
 class TelaTamanho():
@@ -30,7 +30,7 @@ class TelaTamanho():
 
   def init_opcoes(self):
     # sg.theme_previewer()
-    sg.ChangeLookAndFeel('DarkTeal4')
+    sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
       [sg.Text('-------- TAMANHOS ----------', font=("Helvica", 25))],
       [sg.Text('Escolha sua opção', font=("Helvica", 15))],
@@ -46,7 +46,7 @@ class TelaTamanho():
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def pega_dados_tamanho(self):
     print("-------- DADOS TAMANHO ----------")
-    sg.ChangeLookAndFeel('DarkTeal4')
+    sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
       [sg.Text('-------- DADOS TAMANHOS ----------', font=("Helvica", 25))],
       [sg.Text('Descricao:', size=(15, 1)), sg.InputText('', key='descricao')],
@@ -71,7 +71,7 @@ class TelaTamanho():
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def seleciona_tamanho(self):
-    sg.ChangeLookAndFeel('DarkTeal4')
+    sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
       [sg.Text('-------- SELECIONAR TAMANHO ----------', font=("Helvica", 25))],
       [sg.Text('Digite a descrição do tamanho que deseja selecionar:', font=("Helvica", 15))],
