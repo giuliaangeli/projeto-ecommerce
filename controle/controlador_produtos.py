@@ -116,7 +116,7 @@ class ControladorProdutos():
     return None
 
   def confere_produto_codigo(self):
-    codigo = self.__tela_produtos.seleciona_produto()
+    codigo = int(self.__tela_produtos.seleciona_produto())
     for produto in self.__produtos:
       if produto.codigo == codigo:
         return produto
