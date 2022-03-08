@@ -16,7 +16,7 @@ class TelaHistorico():
     # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
 
     def menu_principal_adm(self):
-        cabecalho('MENU HISTORICO')
+
         self.init_opcoes()
         button, values = self.open()
         if values['1']:
@@ -29,15 +29,13 @@ class TelaHistorico():
             opcao = 4
         if values['5']:
             opcao = 5
-        # cobre os casos de Retornar, fechar janela, ou clicar cancelar
-        # Isso faz com que retornemos a tela do sistema caso qualquer uma dessas coisas aconteca
         if values['6'] or button in (None, 'Cancelar'):
             opcao = 6
         self.close()
         return opcao
 
     def menu_opcao_filtro(self):
-        cabecalho('MENU HISTORICO')
+
         self.init_opcoes1()
         button, values = self.open()
         if values['1']:
@@ -46,82 +44,68 @@ class TelaHistorico():
             opcao = 2
         if values['3']:
             opcao = 3
-        # cobre os casos de Retornar, fechar janela, ou clicar cancelar
-        # Isso faz com que retornemos a tela do sistema caso qualquer uma dessas coisas aconteca
         if values['4'] or button in (None, 'Cancelar'):
             opcao = 4
         self.close()
         return opcao
 
     def filtro_cor(self):
-        #opcoes = ['[1] Ver Produtos Disponíveis','[2] Comprar um Produto Agora','[3] Voltar ao Menu Anterior', '[4] Finalizar Sessão']
-        cabecalho('MENU HISTORICO')
+
         self.init_opcoes2()
         button, values = self.open()
         if values['1']:
             opcao = 1
         if values['2']:
             opcao = 2
-        # cobre os casos de Retornar, fechar janela, ou clicar cancelar
-        # Isso faz com que retornemos a tela do sistema caso qualquer uma dessas coisas aconteca
         if values['0'] or button in (None, 'Cancelar'):
             opcao = 0
         self.close()
         return opcao
 
     def filtro_tamanho(self):
-        #opcoes = ['[1] Ver Produtos Disponíveis','[2] Comprar um Produto Agora','[3] Voltar ao Menu Anterior', '[4] Finalizar Sessão']
-        cabecalho('MENU HISTORICO')
+
         self.init_opcoes3()
         button, values = self.open()
         if values['1']:
             opcao = 1
         if values['2']:
             opcao = 2
-        # cobre os casos de Retornar, fechar janela, ou clicar cancelar
-        # Isso faz com que retornemos a tela do sistema caso qualquer uma dessas coisas aconteca
         if values['0'] or button in (None, 'Cancelar'):
             opcao = 0
         self.close()
         return opcao
 
     def filtro_categoria(self):
-        #opcoes = ['[1] Ver Produtos Disponíveis','[2] Comprar um Produto Agora','[3] Voltar ao Menu Anterior', '[4] Finalizar Sessão']
-        cabecalho('MENU HISTORICO')
+
         self.init_opcoes4()
         button, values = self.open()
         if values['1']:
             opcao = 1
         if values['2']:
             opcao = 2
-        # cobre os casos de Retornar, fechar janela, ou clicar cancelar
-        # Isso faz com que retornemos a tela do sistema caso qualquer uma dessas coisas aconteca
         if values['0'] or button in (None, 'Cancelar'):
             opcao = 0
         self.close()
         return opcao
 
     def filtro_cliente(self):
-        #opcoes = ['[1] Ver Produtos Disponíveis','[2] Comprar um Produto Agora','[3] Voltar ao Menu Anterior', '[4] Finalizar Sessão']
-        cabecalho('MENU HISTORICO')
+
         self.init_opcoes5()
         button, values = self.open()
         if values['1']:
             opcao = 1
         if values['2']:
             opcao = 2
-        # cobre os casos de Retornar, fechar janela, ou clicar cancelar
-        # Isso faz com que retornemos a tela do sistema caso qualquer uma dessas coisas aconteca
         if values['0'] or button in (None, 'Cancelar'):
             opcao = 0
         self.close()
         return opcao
 
     def init_opcoes(self):
-        # sg.theme_previewer()
-        sg.ChangeLookAndFeel('DarkTeal4')
+       
+        sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
-            [sg.Text('-------- HISTORICO ----------', font=("Helvica", 25))],
+            [sg.Text('HISTÓRICO', font=("Helvica", 25))],
             [sg.Text('Escolha sua opção', font=("Helvica", 15))],
             [sg.Radio('Ver Histórico de Vendas', "RD1", key='1')],
             [sg.Radio('Alterar Histórico de Vendas', "RD1", key='2')],
@@ -134,10 +118,10 @@ class TelaHistorico():
         self.__window = sg.Window('Sistema de produtos').Layout(layout)
 
     def init_opcoes1(self):
-        # sg.theme_previewer()
-        sg.ChangeLookAndFeel('DarkTeal4')
+       
+        sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
-            [sg.Text('-------- HISTORICO ----------', font=("Helvica", 25))],
+            [sg.Text('VISUALIZAÇÃO HISTÓRICO', font=("Helvica", 25))],
             [sg.Text('Escolha sua opção', font=("Helvica", 15))],
             [sg.Radio('Ver Todas as Vendas', "RD1", key='1')],
             [sg.Radio('Aplicar Filtro', "RD1", key='2')],
@@ -148,10 +132,10 @@ class TelaHistorico():
         self.__window = sg.Window('Sistema de produtos').Layout(layout)
 
     def init_opcoes2(self):
-        # sg.theme_previewer()
-        sg.ChangeLookAndFeel('DarkTeal4')
+       
+        sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
-            [sg.Text('-------- PRODUTOS ----------', font=("Helvica", 25))],
+            [sg.Text('COR', font=("Helvica", 25))],
             [sg.Text('Escolha sua opção', font=("Helvica", 15))],
             [sg.Radio('Todas as Cores', "RD1", key='1')],
             [sg.Radio('Escolher uma Cor', "RD1", key='2')],
@@ -161,10 +145,10 @@ class TelaHistorico():
         self.__window = sg.Window('Sistema de produtos').Layout(layout)
 
     def init_opcoes3(self):
-        # sg.theme_previewer()
-        sg.ChangeLookAndFeel('DarkTeal4')
+       
+        sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
-            [sg.Text('-------- PRODUTOS ----------', font=("Helvica", 25))],
+            [sg.Text('TAMANHO', font=("Helvica", 25))],
             [sg.Text('Escolha sua opção', font=("Helvica", 15))],
             [sg.Radio('Todas os Tamanhos', "RD1", key='1')],
             [sg.Radio('Escolher um Tamanho', "RD1", key='2')],
@@ -174,10 +158,10 @@ class TelaHistorico():
         self.__window = sg.Window('Sistema de produtos').Layout(layout)
 
     def init_opcoes4(self):
-        # sg.theme_previewer()
-        sg.ChangeLookAndFeel('DarkTeal4')
+
+        sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
-            [sg.Text('-------- PRODUTOS ----------', font=("Helvica", 25))],
+            [sg.Text('CATEGORIA', font=("Helvica", 25))],
             [sg.Text('Escolha sua opção', font=("Helvica", 15))],
             [sg.Radio('Todas as Categorias', "RD1", key='1')],
             [sg.Radio('Escolher uma Categorias', "RD1", key='2')],
@@ -187,10 +171,10 @@ class TelaHistorico():
         self.__window = sg.Window('Sistema de produtos').Layout(layout)
 
     def init_opcoes5(self):
-        # sg.theme_previewer()
-        sg.ChangeLookAndFeel('DarkTeal4')
+
+        sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
-            [sg.Text('-------- PRODUTOS ----------', font=("Helvica", 25))],
+            [sg.Text('PRODUTOS', font=("Helvica", 25))],
             [sg.Text('Escolha sua opção', font=("Helvica", 15))],
             [sg.Radio('Todos os Clientes', "RD1", key='1')],
             [sg.Radio('Escolher um Cliente', "RD1", key='2')],
@@ -198,13 +182,12 @@ class TelaHistorico():
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
         self.__window = sg.Window('Sistema de produtos').Layout(layout)
-    # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
 
     def escolha_cor(self):
-        print("-------- DADOS COR ----------")
-        sg.ChangeLookAndFeel('DarkTeal4')
+        
+        sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
-            [sg.Text('-------- DADOS CATEGORIAS ----------', font=("Helvica", 25))],
+            [sg.Text('DADOS CATEGORIAS ', font=("Helvica", 25))],
             [sg.Text('Cor:', size=(15, 1)), sg.InputText('', key='cor')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
 
@@ -218,10 +201,10 @@ class TelaHistorico():
         return cor
 
     def escolha_tamanho(self):
-        print("-------- DADOS TAMANHO ----------")
-        sg.ChangeLookAndFeel('DarkTeal4')
+
+        sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
-            [sg.Text('-------- DADOS CATEGORIAS ----------', font=("Helvica", 25))],
+            [sg.Text('DADOS CATEGORIAS', font=("Helvica", 25))],
             [sg.Text('Tamanho:', size=(15, 1)),
              sg.InputText('', key='tamanho')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
@@ -235,10 +218,10 @@ class TelaHistorico():
         return tamanho
 
     def escolha_categoria(self):
-        print("-------- DADOS CATEGORIAS ----------")
-        sg.ChangeLookAndFeel('DarkTeal4')
+        
+        sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
-            [sg.Text('-------- DADOS CATEGORIAS ----------', font=("Helvica", 25))],
+            [sg.Text('DADOS CATEGORIAS', font=("Helvica", 25))],
             [sg.Text('Categoria:', size=(15, 1)),
              sg.InputText('', key='categoria')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
@@ -252,8 +235,7 @@ class TelaHistorico():
         self.close()
         return categoria
 
-    # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
-    def imprime_historico_generico(self, relatorio):
+    def imprime_historico(self, relatorio):
         string_todos_produtos = ""
         print(relatorio)
         
@@ -266,40 +248,12 @@ class TelaHistorico():
             string_todos_produtos = string_todos_produtos + "TAMANHO: " + produto.tamanho.descricao + '\n'
             string_todos_produtos = string_todos_produtos + "QUANTIDADE: " + str(quantidade) + '\n\n'
 
+        sg.Popup('LISTA DE HISTORICO', string_todos_produtos)
 
-        # print("PRODUTO: ", produto.categoria.tipo)
-        # print("COR: ", produto.cor.nome)
-        # print("TAMANHO: ", produto.tamanho.descricao)
-        # print("QUANTIDADE ", quantidade)
-        # print('\n')
-
-        sg.Popup('-------- LISTA DE HISTORICO ----------',
-                 string_todos_produtos)
-
-    def imprime_historico_filtrado(self, dados_compra, quantidade, nome):
-        string_todos_produtos = ""
-
-
-        string_todos_produtos = string_todos_produtos + "CLIENTE: " + nome + '\n'
-        string_todos_produtos = string_todos_produtos + "PRODUTO: " + dados_compra["categoria"] + '\n'
-        string_todos_produtos = string_todos_produtos + "COR: " + dados_compra["cor"] + '\n'
-        string_todos_produtos = string_todos_produtos + "TAMANHO: " + dados_compra["tamanho"] + '\n'
-        string_todos_produtos = string_todos_produtos + "QUANTIDADE: " + str(quantidade) + '\n'
-        # print("CLIENTE: ", nome)
-        # print("PRODUTO: ", dados_compra["categoria"])
-        # print("COR: ", dados_compra["cor"])
-        # print("TAMANHO: ", dados_compra["tamanho"])
-        # print("QUANTIDADE VENDIDA: ", quantidade)
-
-        sg.Popup('-------- LISTA DE HISTORICO ----------',
-                 string_todos_produtos)
-
-    # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
     def escolha_cor(self):
-        sg.ChangeLookAndFeel('DarkTeal4')
+        sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
-            [sg.Text('-------- SELECIONAR PRODUTO ----------',
-                     font=("Helvica", 25))],
+            [sg.Text('SELECIONAR PRODUTO', font=("Helvica", 25))],
             [sg.Text('Digite o codigo do produto que deseja selecionar:',
                      font=("Helvica", 15))],
             [sg.Text('codigo:', size=(15, 1)), sg.InputText('', key='codigo')],
