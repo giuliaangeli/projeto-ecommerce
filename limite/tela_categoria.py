@@ -29,10 +29,10 @@ class TelaCategoria():
 
 
   def init_opcoes(self):
-    # sg.theme_previewer()
+   
     sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
-      [sg.Text('-------- CATEGORIAS ----------', font=("Helvica", 25))],
+      [sg.Text('CATEGORIAS ', font=("Helvica", 25))],
       [sg.Text('Escolha sua opção', font=("Helvica", 15))],
       [sg.Radio('Incluir categoria', "RD1", key='1')],
       [sg.Radio('Alterar categorias', "RD1", key='2')],
@@ -45,10 +45,10 @@ class TelaCategoria():
     self.__window = sg.Window('Sistema de categorias').Layout(layout)
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def pega_dados_categoria(self):
-    print("-------- DADOS CATEGORIAS ----------")
+    print("DADOS CATEGORIAS ")
     sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
-      [sg.Text('-------- DADOS CATEGORIAS ----------', font=("Helvica", 25))],
+      [sg.Text('DADOS CATEGORIAS ', font=("Helvica", 25))],
       [sg.Text('Tipo:', size=(15, 1)), sg.InputText('', key='tipo')],
       [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
     ]
@@ -67,13 +67,13 @@ class TelaCategoria():
     #for dado in dados_categoria:
     #  string_todos_categorias = string_todos_categorias + "TIPO DA CATEGORIA: " + dado["tipo"] + '\n'
 
-    sg.Popup('-------- LISTA DE CATEGORIA ----------', string_todos_categorias)
+    sg.Popup('LISTA DE CATEGORIA ', string_todos_categorias)
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def seleciona_categoria(self):
     sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
-      [sg.Text('-------- SELECIONAR CATEGORIA ----------', font=("Helvica", 25))],
+      [sg.Text('SELECIONAR CATEGORIA ', font=("Helvica", 25))],
       [sg.Text('Digite o tipo da categoria que deseja selecionar:', font=("Helvica", 15))],
       [sg.Text('tipo:', size=(15, 1)), sg.InputText('', key='tipo')],
       [sg.Button('Confirmar'), sg.Cancel('Cancelar')]

@@ -69,10 +69,10 @@ class TelaPessoa():
 
 
   def init_opcoes(self):
-    # sg.theme_previewer()
+   
     sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
-      [sg.Text('-------- Menu Inicial ----------', font=("Helvica", 25))],
+      [sg.Text('Menu Inicial ', font=("Helvica", 25))],
       [sg.Text('Escolha sua opção', font=("Helvica", 15))],
       [sg.Radio('Administrador', "RD1", key='1')],
       [sg.Radio('Usuário', "RD1", key='2')],
@@ -82,10 +82,10 @@ class TelaPessoa():
     self.__window = sg.Window('Sistema E-commerce').Layout(layout)
 
   def init_opcoes1(self):
-    # sg.theme_previewer()
+   
     sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
-      [sg.Text('-------- Opções Administrador ----------', font=("Helvica", 25))],
+      [sg.Text('Opções Administrador ', font=("Helvica", 25))],
       [sg.Text('Escolha sua opção', font=("Helvica", 15))],
       [sg.Radio('Incluir Administrador', "RD1", key='1')],
       [sg.Radio('Excluir Administrador', "RD1", key='2')],
@@ -101,10 +101,10 @@ class TelaPessoa():
     self.__window = sg.Window('Sistema E-commerce').Layout(layout)
 
   def init_opcoes2(self):
-    # sg.theme_previewer()
+   
     sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
-      [sg.Text('-------- Dados ----------', font=("Helvica", 25))],
+      [sg.Text('Dados ', font=("Helvica", 25))],
       [sg.Text('Escolha sua opção', font=("Helvica", 15))],
       [sg.Radio('Consultar Dados', "RD1", key='1')],
       [sg.Radio('Alterar Dados', "RD1", key='2')],
@@ -116,10 +116,10 @@ class TelaPessoa():
     self.__window = sg.Window('Sistema E-commerce').Layout(layout)
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def pega_dados_usuario(self):
-    print("-------- DADOS ----------")
+    print("DADOS ")
     sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
-      [sg.Text('-------- DADOS  ----------', font=("Helvica", 25))],
+      [sg.Text('DADOS  ', font=("Helvica", 25))],
       [sg.Text('Nome:', size=(15, 1)), sg.InputText('', key='nome')],
       [sg.Text('CPF:', size=(15, 1)), sg.InputText('', key='cpf')],
       [sg.Text('Telefone:', size=(15, 1)), sg.InputText('', key='telefone')],
@@ -141,10 +141,10 @@ class TelaPessoa():
     return {"nome": nome, 'cpf': cpf, 'telefone': telefone, 'endereco': endereco, 'email': email, 'senha': senha}
 
   def pega_dado_adm(self):
-    print("-------- DADOS ----------")
+    print("DADOS ")
     sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
-      [sg.Text('-------- DADOS ----------', font=("Helvica", 25))],
+      [sg.Text('DADOS ', font=("Helvica", 25))],
       [sg.Text('Nome:', size=(15, 1)), sg.InputText('', key='nome')],
       [sg.Text('CPF:', size=(15, 1)), sg.InputText('', key='cpf')],
       [sg.Text('Telefone:', size=(15, 1)), sg.InputText('', key='telefone')],
@@ -169,10 +169,10 @@ class TelaPessoa():
     return {"nome": nome, 'cpf': cpf, 'telefone': telefone, 'endereco': endereco, 'email': email, 'senha': senha, 'salario': salario}
 
   def pega_dados_login(self):
-    print("-------- DADOS  ----------")
+    print("DADOS  ")
     sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
-      [sg.Text('-------- DADOS  ----------', font=("Helvica", 25))],
+      [sg.Text('DADOS  ', font=("Helvica", 25))],
       [sg.Text('E-mail:', size=(15, 1)), sg.InputText('', key='email')],
       [sg.Text('Senha:', size=(15, 1)), sg.InputText('', key='senha')],
       [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
@@ -187,10 +187,10 @@ class TelaPessoa():
     return {'email': email, 'senha': senha}
 
   def pega_cpf(self):
-    print("-------- DADOS ----------")
+    print("DADOS ")
     sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
-      [sg.Text('-------- DADOS  ----------', font=("Helvica", 25))],
+      [sg.Text('DADOS  ', font=("Helvica", 25))],
       [sg.Text('CPF:', size=(15, 1)), sg.InputText('', key='cpf')],
       [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
     ]
@@ -205,11 +205,11 @@ class TelaPessoa():
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def mostra_adm(self, mostra_adm):
     string_todos_adm = mostra_adm
-    sg.Popup('-------- LISTA DE ADM ----------', string_todos_adm)
+    sg.Popup('LISTA DE ADM ', string_todos_adm)
 
   def mostra_usuario(self, dados_usuario):
     string_todos_usuario = dados_usuario
-    sg.Popup('-------- LISTA DE USUARIO ----------', string_todos_usuario)
+    sg.Popup('LISTA DE USUARIO ', string_todos_usuario)
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
 

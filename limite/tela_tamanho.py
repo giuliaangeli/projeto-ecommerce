@@ -29,10 +29,10 @@ class TelaTamanho():
 
 
   def init_opcoes(self):
-    # sg.theme_previewer()
+   
     sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
-      [sg.Text('-------- TAMANHOS ----------', font=("Helvica", 25))],
+      [sg.Text('TAMANHOS ', font=("Helvica", 25))],
       [sg.Text('Escolha sua opção', font=("Helvica", 15))],
       [sg.Radio('Incluir tamanhos', "RD1", key='1')],
       [sg.Radio('Alterar tamanhos', "RD1", key='2')],
@@ -45,10 +45,10 @@ class TelaTamanho():
     self.__window = sg.Window('Sistema de tamanhos').Layout(layout)
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def pega_dados_tamanho(self):
-    print("-------- DADOS TAMANHO ----------")
+    print("DADOS TAMANHO ")
     sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
-      [sg.Text('-------- DADOS TAMANHOS ----------', font=("Helvica", 25))],
+      [sg.Text('DADOS TAMANHOS ', font=("Helvica", 25))],
       [sg.Text('Descricao:', size=(15, 1)), sg.InputText('', key='descricao')],
       [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
     ]
@@ -67,13 +67,13 @@ class TelaTamanho():
     #for dado in dados_tamanho:
      # string_todos_tamanhos = string_todos_tamanhos + "DESCRICAO DO TAMANHO: " + dado["descricao"] + '\n'
 
-    sg.Popup('-------- LISTA DE TAMANHO ----------', string_todos_tamanhos)
+    sg.Popup('LISTA DE TAMANHO ', string_todos_tamanhos)
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def seleciona_tamanho(self):
     sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
-      [sg.Text('-------- SELECIONAR TAMANHO ----------', font=("Helvica", 25))],
+      [sg.Text('SELECIONAR TAMANHO ', font=("Helvica", 25))],
       [sg.Text('Digite a descrição do tamanho que deseja selecionar:', font=("Helvica", 15))],
       [sg.Text('descricao:', size=(15, 1)), sg.InputText('', key='descricao')],
       [sg.Button('Confirmar'), sg.Cancel('Cancelar')]

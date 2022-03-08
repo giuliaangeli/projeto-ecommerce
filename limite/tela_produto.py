@@ -72,10 +72,10 @@ class TelaProduto():
 
 
   def init_opcoes(self):
-    # sg.theme_previewer()
+   
     sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
-      [sg.Text('-------- PRODUTOS ----------', font=("Helvica", 25))],
+      [sg.Text('PRODUTOS ', font=("Helvica", 25))],
       [sg.Text('Escolha sua opção', font=("Helvica", 15))],
       [sg.Radio('Incluir produto', "RD1", key='1')],
       [sg.Radio('Listar produto', "RD1", key='2')],
@@ -87,10 +87,10 @@ class TelaProduto():
     ]
     self.__window = sg.Window('Sistema de produtos').Layout(layout)
   def init_opcoes1(self):
-    # sg.theme_previewer()
+   
     sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
-      [sg.Text('-------- PRODUTOS ----------', font=("Helvica", 25))],
+      [sg.Text('PRODUTOS ', font=("Helvica", 25))],
       [sg.Text('Escolha sua opção', font=("Helvica", 15))],
       [sg.Radio('Incluir produto agora', "RD1", key='1')],
       [sg.Radio('Menu cor', "RD1", key='2')],
@@ -102,10 +102,10 @@ class TelaProduto():
     ]
     self.__window = sg.Window('Sistema de produtos').Layout(layout)
   def init_opcoes2(self):
-    # sg.theme_previewer()
+   
     sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
-      [sg.Text('-------- PRODUTOS ----------', font=("Helvica", 25))],
+      [sg.Text('PRODUTOS ', font=("Helvica", 25))],
       [sg.Text('Escolha sua opção', font=("Helvica", 15))],
       [sg.Radio('Ver Produtos Disponíveis', "RD1", key='1')],
       [sg.Radio('Comprar um Produto Agora', "RD1", key='2')],
@@ -116,10 +116,10 @@ class TelaProduto():
     self.__window = sg.Window('Sistema de produtos').Layout(layout)
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def pega_dados_produto(self):
-    print("-------- DADOS PRODUTOS ----------")
+    print("DADOS PRODUTOS ")
     sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
-      [sg.Text('-------- DADOS CATEGORIAS ----------', font=("Helvica", 25))],
+      [sg.Text('DADOS CATEGORIAS ', font=("Helvica", 25))],
       [sg.Text('Cor:', size=(15, 1)), sg.InputText('', key='cor')],
       [sg.Text('Tamanho:', size=(15, 1)), sg.InputText('', key='tamanho')],
       [sg.Text('Categoria:', size=(15, 1)), sg.InputText('', key='categoria')],
@@ -147,13 +147,13 @@ class TelaProduto():
       string_todos_produtos = string_todos_produtos + "CATEGORIA DA PRODUTO: " + dado["tipo_categoria"] + '\n'''
 
 
-    sg.Popup('-------- LISTA DE PRODUTO ----------', string_todos_produtos)
+    sg.Popup('LISTA DE PRODUTO ', string_todos_produtos)
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def seleciona_produto(self):
     sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
-      [sg.Text('-------- SELECIONAR PRODUTO ----------', font=("Helvica", 25))],
+      [sg.Text('SELECIONAR PRODUTO ', font=("Helvica", 25))],
       [sg.Text('Digite o codigo do produto que deseja selecionar:', font=("Helvica", 15))],
       [sg.Text('codigo:', size=(15, 1)), sg.InputText('', key='codigo')],
       [sg.Button('Confirmar'), sg.Cancel('Cancelar')]

@@ -29,10 +29,10 @@ class TelaCor():
 
 
   def init_opcoes(self):
-    # sg.theme_previewer()
+   
     sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
-      [sg.Text('-------- CORES ----------', font=("Helvica", 25))],
+      [sg.Text('CORES ', font=("Helvica", 25))],
       [sg.Text('Escolha sua opção', font=("Helvica", 15))],
       [sg.Radio('Incluir cor', "RD1", key='1')],
       [sg.Radio('Alterar cor', "RD1", key='2')],
@@ -45,10 +45,10 @@ class TelaCor():
     self.__window = sg.Window('Sistema de cores').Layout(layout)
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def pega_dados_cor(self):
-    print("-------- DADOS COR ----------")
+    print("DADOS COR ")
     sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
-      [sg.Text('-------- DADOS COR ----------', font=("Helvica", 25))],
+      [sg.Text('DADOS COR ', font=("Helvica", 25))],
       [sg.Text('Nome:', size=(15, 1)), sg.InputText('', key='nome')],
       [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
     ]
@@ -64,13 +64,13 @@ class TelaCor():
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def mostra_cor(self, dados_cor):
     string_todos_cor = dados_cor
-    sg.Popup('-------- LISTA DE COR ----------', string_todos_cor)
+    sg.Popup('LISTA DE COR ', string_todos_cor)
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def seleciona_cor(self):
     sg.ChangeLookAndFeel('DarkGrey3')
     layout = [
-      [sg.Text('-------- SELECIONAR COR ----------', font=("Helvica", 25))],
+      [sg.Text('SELECIONAR COR ', font=("Helvica", 25))],
       [sg.Text('Digite o nome da cor que deseja selecionar:', font=("Helvica", 15))],
       [sg.Text('nome:', size=(15, 1)), sg.InputText('', key='nome')],
       [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
