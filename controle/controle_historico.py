@@ -24,13 +24,6 @@ class ControladorHistorico():
         produto = self.__controlador_sistema.controlador_produtos.confere_produto_codigo()
         self.recebe_dados_venda(usuario, produto)
 
-    def listar_quantidade_produtos_historico(self, relatorio):
-
-        for codigo in relatorio:
-            produto = relatorio[codigo][0]
-            quantidade = relatorio[codigo][1]
-            self.__tela_historico.imprime_historico_generico(produto, quantidade)
-
     def recebe_dados_venda(self, usuario, produto):
         venda = Historico(usuario, produto)
         self.__historico.append(venda)
@@ -64,7 +57,7 @@ class ControladorHistorico():
                 historico_usuario.append(venda.produto)
 
         relatorio = self.relatorio_produtos_iguais(historico_usuario)
-        self.listar_quantidade_produtos_historico(relatorio)
+        self.__tela_historico.imprime_historico(relatorio)
 
     def relatorio_produtos_iguais(self, lista_historico):
         relatorio = {}
@@ -93,7 +86,7 @@ class ControladorHistorico():
             lista_historico_produto.append(produto_vendido)
 
         relatorio = self.relatorio_produtos_iguais(lista_historico_produto)
-        self.__tela_historico.imprime_historico_generico(relatorio)
+        self.__tela_historico.imprime_historico(relatorio)
 
     def listar_historico_por_pessoa(self, adm):
         historico_pessoa = []
@@ -236,10 +229,10 @@ class ControladorHistorico():
             if relatorio[codigo][1] != 0:
 
                 relatorio_sem_nulos[i] = relatorio[codigo]
-                i = i + 1
-
-        self.listar_quantidade_produtos_historico(relatorio_sem_nulos)
-
+                i = i + 1        
+        self.__tela_historico.imprime_historico(relatorio_sem_nulos)
+        
+        
     def voltar_menu_principal_adm(self, adm):
         self.__controlador_sistema.controla_menu_principal_adm(adm)
 
