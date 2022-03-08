@@ -220,7 +220,7 @@ class ControladorProdutos():
     categoria2 = self.__controlador_sistema.controlador_categorias.confere_categoria_tipo('MOLETON')
     categoria3 = self.__controlador_sistema.controlador_categorias.confere_categoria_tipo('SHORT')
     produto1 = Produto(cor1, tamanho2, categoria3,1)
-    produto2 = Produto(cor2, tamanho3, categoria2,2)
+    produto2 = Produto(cor3, tamanho2, categoria1,2)
     produto3 = Produto(cor3, tamanho1, categoria1,3)
     self.__produtos.append(produto1)
     self.__produtos.append(produto2)
