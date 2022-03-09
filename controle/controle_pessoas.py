@@ -129,7 +129,7 @@ class ControladorPessoa():
         elif isinstance(pessoa, Usuario):
             self.__usuarios.remove(pessoa)
             self.__tela_pessoa.mostra_mensagem("ATENÇÃO: Sua conta foi excluida")
-            exit(0)
+            self.__controlador_sistema.abre_tela_inicial()
 
     def alterar_pessoa(self, pessoa):
         
