@@ -165,19 +165,15 @@ class ControladorPessoa():
         if isinstance(pessoa, Adm):
 
             if funcao == 1:
-                cabecalho('ADMINISTRADORES')
-                for adm in self.__adms:
-                    self.__tela_pessoa.mostra_adm({"nome": adm.nome, "cpf": adm.cpf, "telefone": adm.telefone, "endereco": adm.endereco, "email": adm.email, "senha": adm.senha, "salario": adm.salario})
+                self.__tela_pessoa.mostra_adm(self.__adms)
 
             elif funcao == 2:
-                cabecalho('USUÁRIOS')
-                for usuario in self.__usuarios:
-                    self.__tela_pessoa.mostra_usuario({"nome": usuario.nome, "cpf": usuario.cpf, "telefone": usuario.telefone, "endereco": usuario.endereco, "email": usuario.email, "senha": usuario.senha})
+                self.__tela_pessoa.mostra_usuario(1,self.__usuarios)
 
         elif isinstance(pessoa, Usuario):
-
-            cabecalho('SUAS INFORMAÇÕES')
-            self.__tela_pessoa.mostra_usuario({"nome": pessoa.nome, "cpf": pessoa.cpf, "telefone": pessoa.cpf, "endereco": pessoa.endereco, "email": pessoa.email, "senha": pessoa.senha})
+            dados_usuario = []
+            dados_usuario.append(pessoa)
+            self.__tela_pessoa.mostra_usuario(0,dados_usuario)
 
     def retornar_menu_adm(self, adm):
         self.__controlador_sistema.controla_menu_principal_adm(adm)
