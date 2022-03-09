@@ -101,7 +101,7 @@ class TelaHistorico():
             self.close()
         self.close()
         return opcao
-  def filtro_cliente(self):
+    def filtro_cliente(self):
         cabecalho('MENU HISTORICO')
         opcao  = - 1
         while opcao == -1:
