@@ -8,22 +8,24 @@ class TelaCategoria():
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def tela_opcoes(self):
     cabecalho('MENU CATEGORIAS')
-    self.init_opcoes()
-    button, values = self.open()
-    if values['1']:
-      opcao = 1
-    if values['2']:
-      opcao = 2
-    if values['3']:
-      opcao = 3
-    if values['4']:
-      opcao = 4
-    if values['5']:
-      opcao = 5
-    # cobre os casos de Retornar, fechar janela, ou clicar cancelar
-    #Isso faz com que retornemos a tela do sistema caso qualquer uma dessas coisas aconteca
-    if values['6'] or button in (None, 'Cancelar'):
-      opcao = 6
+    opcao  = - 1
+    while opcao == -1:
+      self.init_opcoes()
+      button, values = self.__window.Read()
+      if values['1']:
+        opcao = 1
+      if values['2']:
+        opcao = 2
+      if values['3']:
+        opcao = 3
+      if values['4']:
+        opcao = 4
+      if values['5']:
+        opcao = 5
+        # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
+      if values['6'] or button in (None,'Cancelar'):
+        opcao = 6
+      self.close()
     self.close()
     return opcao
 
