@@ -10,66 +10,67 @@ class TelaPessoa():
         self.init_opcoes()
         self.init_opcoes1()
         self.init_opcoes2()
-    # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
-
     def adm_ou_usuario(self):
-        cabecalho('Opções Login')
-        self.init_opcoes()
-        button, values = self.open()
-        if values['1']:
+        opcao  = - 1
+        while opcao == -1:
+          self.init_opcoes()
+          button, values = self.__window.Read()
+          if values['1']:
             opcao = 1
-        if values['2']:
+          if values['2']:
             opcao = 2
-        # cobre os casos de Retornar, fechar janela, ou clicar cancelar
-        # Isso faz com que retornemos a tela do sistema caso qualquer uma dessas coisas aconteca
-        if values['0'] or button in (None, 'Cancelar'):
-            opcao = 0
-        self.close()
-        return opcao
-
-    def tela_pessoa_adm(self):
-        cabecalho('Opções Administrador')
-        self.init_opcoes1()
-        button, values = self.open()
-        if values['1']:
-            opcao = 1
-        if values['2']:
-            opcao = 2
-        if values['3']:
-            opcao = 3
-        if values['4']:
-            opcao = 4
-        if values['5']:
-            opcao = 5
-        if values['6']:
+            # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
+          if values['6'] or button in (None,'Cancelar'):
             opcao = 6
-        if values['7']:
-            opcao = 7
-        if values['8']:
-            opcao = 8
-        # cobre os casos de Retornar, fechar janela, ou clicar cancelar
-        # Isso faz com que retornemos a tela do sistema caso qualquer uma dessas coisas aconteca
-        if values['9'] or button in (None, 'Cancelar'):
-            opcao = 9
+          self.close()
         self.close()
         return opcao
-
-    def tela_pessoa_usuario(self):
-        cabecalho('Opções Usuario')
-        self.init_opcoes2()
-        button, values = self.open()
-        if values['1']:
+      def tela_pessoa_adm(self):
+        cabecalho('Opções Administrador')
+        opcao  = - 1
+        while opcao == -1:
+          self.init_opcoes1()
+          button, values = self.__window.Read()
+          if values['1']:
             opcao = 1
-        if values['2']:
+          if values['2']:
             opcao = 2
-        if values['3']:
+          if values['3']:
             opcao = 3
-        if values['4']:
+          if values['4']:
             opcao = 4
-        # cobre os casos de Retornar, fechar janela, ou clicar cancelar
-        # Isso faz com que retornemos a tela do sistema caso qualquer uma dessas coisas aconteca
-        if values['5'] or button in (None, 'Cancelar'):
+          if values['5']:
             opcao = 5
+          if values['6']:
+            opcao = 6
+          if values['7']:
+            opcao = 7
+          if values['8']:
+            opcao = 8
+            # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
+          if values['9'] or button in (None,'Cancelar'):
+            opcao = 9
+          self.close()
+        self.close()
+        return opcao
+      def tela_pessoa_usuario(self):
+        cabecalho('Opções Usuario')
+        opcao  = - 1
+        while opcao == -1:
+          self.init_opcoes2()
+          button, values = self.__window.Read()
+          if values['1']:
+            opcao = 1
+          if values['2']:
+            opcao = 2
+          if values['3']:
+            opcao = 3
+          if values['4']:
+            opcao = 4
+            # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
+          if values['5'] or button in (None,'Cancelar'):
+            opcao = 5
+          self.close()
         self.close()
         return opcao
 
