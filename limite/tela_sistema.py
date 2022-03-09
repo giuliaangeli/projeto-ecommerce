@@ -12,74 +12,84 @@ class TelaSistema:
     #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
 # precisa chamar self.init_components() aqui para o caso de chamar essa janela uma 2a vez. Não é possível reusar layouts de janelas depois de fechadas.
     def tela_inicial(self):
-        self.init_components()
-        button, values = self.__window.Read()
-        opcao = 0
-        if values['1']:
-            opcao = 1
-        if values['2']:
-            opcao = 2
+        opcao  = - 1
+        while opcao == -1:
+            self.init_components()
+            button, values = self.__window.Read()
+            if values['1']:
+                opcao = 1
+            if values['2']:
+                opcao = 2
         # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
-        if values['0'] or button in (None,'Cancelar'):
-            opcao = 0
+            if values['0'] or button in (None,'Cancelar'):
+                opcao = 0
+            self.close()
         self.close()
         return opcao
 
     def tela_login(self):
-        self.init_components1()
-        button, values = self.__window.Read()
-        opcao = 0
-        if values['1']:
-            opcao = 1
-        if values['2']:
-            opcao = 2
+        opcao  = - 1
+        while opcao == -1:
+            self.init_components1()
+            button, values = self.__window.Read()
+            if values['1']:
+                opcao = 1
+            if values['2']:
+                opcao = 2
         # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
-        if values['0'] or button in (None,'Cancelar'):
-            opcao = 0
+            if values['0'] or button in (None,'Cancelar'):
+                opcao = 0
+            self.close()
         self.close()
         return opcao
     def falha(self):
-        self.init_components2()
-        button, values = self.__window.Read()
-        opcao = 0
-        if values['1']:
-            opcao = 1
-        if values['2']:
-            opcao = 2
+        opcao  = - 1
+        while opcao == -1:
+            self.init_components2()
+            button, values = self.__window.Read()
+            if values['1']:
+                opcao = 1
+            if values['2']:
+                opcao = 2
         # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
-        if values['0'] or button in (None,'Cancelar'):
-            opcao = 0
+            if values['0'] or button in (None,'Cancelar'):
+                opcao = 0
+            self.close()
         self.close()
         return opcao
     def tela_opcoes_adm(self):
-        self.init_components3()
-        button, values = self.__window.Read()
-        opcao = 0
-        if values['1']:
-            opcao = 1
-        if values['2']:
-            opcao = 2
-        if values['3']:
-            opcao = 3
+        opcao  = - 1
+        while opcao == -1:
+            self.init_components3()
+            button, values = self.__window.Read()
+            if values['1']:
+                opcao = 1
+            if values['2']:
+                opcao = 2
+            if values['3']:
+                opcao = 3
         # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
-        if values['4'] or button in (None,'Cancelar'):
-            opcao = 4
+            if values['4'] or button in (None,'Cancelar'):
+                opcao = 4
+            self.close()
         self.close()
         return opcao
 
     def tela_opcoes_usuario(self):
-        self.init_components4()
-        button, values = self.__window.Read()
-        opcao = 0
-        if values['1']:
-            opcao = 1
-        if values['2']:
-            opcao = 2
-        if values['3']:
-            opcao = 3
+        opcao  = - 1
+        while opcao == -1:
+            self.init_components4()
+            button, values = self.__window.Read()
+            if values['1']:
+                opcao = 1
+            if values['2']:
+                opcao = 2
+            if values['3']:
+                opcao = 3
         # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
-        if values['4'] or button in (None,'Cancelar'):
-            opcao = 4
+            if values['4'] or button in (None,'Cancelar'):
+                opcao = 4
+            self.close()
         self.close()
         return opcao
 
