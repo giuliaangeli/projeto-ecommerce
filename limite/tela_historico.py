@@ -37,7 +37,7 @@ class TelaHistorico():
         return opcao
     def menu_opcao_filtro(self):
 
-    cabecalho('MENU HISTORICO')
+        cabecalho('MENU HISTORICO')
         opcao  = - 1
         while opcao == -1:
             self.init_opcoes1()
@@ -55,7 +55,7 @@ class TelaHistorico():
         return opcao
 
     def filtro_cor(self):
-    cabecalho('MENU HISTORICO')
+        cabecalho('MENU HISTORICO')
         opcao  = - 1
         while opcao == -1:
             self.init_opcoes2()
@@ -71,7 +71,7 @@ class TelaHistorico():
         return opcao
 
     def filtro_tamanho(self):
-    cabecalho('MENU HISTORICO')
+        cabecalho('MENU HISTORICO')
         opcao  = - 1
         while opcao == -1:
             self.init_opcoes3()
@@ -87,7 +87,7 @@ class TelaHistorico():
         return opcao
 
     def filtro_categoria(self):
-    cabecalho('MENU HISTORICO')
+        cabecalho('MENU HISTORICO')
         opcao  = - 1
         while opcao == -1:
             self.init_opcoes4()
@@ -102,7 +102,7 @@ class TelaHistorico():
         self.close()
         return opcao
   def filtro_cliente(self):
-    cabecalho('MENU HISTORICO')
+        cabecalho('MENU HISTORICO')
         opcao  = - 1
         while opcao == -1:
             self.init_opcoes5()
