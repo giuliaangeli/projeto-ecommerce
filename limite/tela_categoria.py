@@ -63,10 +63,10 @@ class TelaCategoria():
 
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def mostra_categoria(self, dados_categoria):
-    string_todos_categorias = dados_categoria
-    #for dado in dados_categoria:
-    #  string_todos_categorias = string_todos_categorias + "TIPO DA CATEGORIA: " + dado["tipo"] + '\n'
-
+    string_todos_categorias = ""
+  
+    for categoria in dados_categoria:
+      string_todos_categorias  = string_todos_categorias  + categoria.tipo +'\n'
     sg.Popup('LISTA DE CATEGORIA ', string_todos_categorias)
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado

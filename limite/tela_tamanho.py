@@ -63,11 +63,10 @@ class TelaTamanho():
 
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def mostra_tamanho(self, dados_tamanho):
-    string_todos_tamanhos = dados_tamanho
-    #for dado in dados_tamanho:
-     # string_todos_tamanhos = string_todos_tamanhos + "DESCRICAO DO TAMANHO: " + dado["descricao"] + '\n'
-
-    sg.Popup('LISTA DE TAMANHO ', string_todos_tamanhos)
+    string_todos_tamanhos = ""
+    for tamanho in dados_tamanho:
+      string_todos_tamanhos = string_todos_tamanhos + tamanho.descricao +'\n'
+    sg.Popup('LISTA DE TAMANHOS ', string_todos_tamanhos)
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def seleciona_tamanho(self):

@@ -63,8 +63,10 @@ class TelaCor():
 
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def mostra_cor(self, dados_cor):
-    string_todos_cor = dados_cor
-    sg.Popup('LISTA DE COR ', string_todos_cor)
+    string_todas_cores = ""
+    for cor in dados_cor:
+      string_todas_cores = string_todas_cores + cor.nome +'\n'
+    sg.Popup('LISTA DE COR ', string_todas_cores)
 
   #fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def seleciona_cor(self):

@@ -52,8 +52,8 @@ class ControladorCategorias():
 
   # Sugestão: se a lista estiver vazia, mostrar a mensagem de lista vazia
   def lista_categoria(self):
-    for categoria in self.__categorias:
-      self.__tela_categoria.mostra_categoria({"tipo": categoria.tipo})
+
+    self.__tela_categoria.mostra_categoria(self.__categorias)
 
   def excluir_categoria(self):
     tipo = self.__tela_categoria.seleciona_categoria()

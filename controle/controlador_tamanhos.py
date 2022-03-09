@@ -59,9 +59,8 @@ class ControladorTamanhos():
 
     # Sugestão: se a lista estiver vazia, mostrar a mensagem de lista vazia
     def lista_tamanho(self):
-        for tamanho in self.__tamanhos:
-            self.__tela_tamanho.mostra_tamanho(
-                {"descricao": tamanho.descricao})
+        
+        self.__tela_tamanho.mostra_tamanho(self.__tamanhos)
 
     def excluir_tamanho(self):
         descricao = self.__tela_tamanho.seleciona_tamanho()

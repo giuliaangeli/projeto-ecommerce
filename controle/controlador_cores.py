@@ -48,8 +48,7 @@ class ControladorCores():
       self.__tela_cor.mostra_mensagem("ATENÇÃO: A cor que deseja alterar não se encontra na lista de cores")
 
   def lista_cor(self):
-    for cor in self.__cores:
-      self.__tela_cor.mostra_cor({"nome": cor.nome})
+      self.__tela_cor.mostra_cor(self.__cores)
 
   def excluir_cor(self):
     nome = self.__tela_cor.seleciona_cor()
