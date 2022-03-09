@@ -3,7 +3,6 @@ from limite.tela_abstrata import *
 class TelaCor():
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def tela_opcoes(self):
-    cabecalho('MENU CORES')
     opcoes = ['[1] Incluir Cor','[2] Alterar Cor','[3] Listar Cores', '[4] Excluir Cor', '[5] Voltar ao Menu Anterior', '[6] Sair']
     
     for item in opcoes:
