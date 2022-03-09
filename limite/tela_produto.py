@@ -9,65 +9,67 @@ class TelaProduto():
         self.init_opcoes()
         self.init_opcoes1()
         self.init_opcoes2()
-    # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
-
     def tela_produtos_inicial_adm(self):
         cabecalho('MENU PRODUTOS')
-        self.init_opcoes()
-        button, values = self.open()
-        if values['1']:
-            opcao = 1
-        if values['2']:
-            opcao = 2
-        if values['3']:
-            opcao = 3
-        if values['4']:
-            opcao = 4
-        if values['5']:
-            opcao = 5
-        # cobre os casos de Retornar, fechar janela, ou clicar cancelar
-        # Isso faz com que retornemos a tela do sistema caso qualquer uma dessas coisas aconteca
-        if values['6'] or button in (None, 'Cancelar'):
-            opcao = 6
+        opcao  = - 1
+        while opcao == -1:
+            self.init_opcoes()
+            button, values = self.__window.Read()
+            if values['1']:
+                opcao = 1
+            if values['2']:
+                opcao = 2
+            if values['3']:
+                opcao = 3
+            if values['4']:
+                opcao = 4
+            if values['5']:
+                opcao = 5
+            # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
+            if values['6'] or button in (None,'Cancelar'):
+                opcao = 6
+            self.close()
         self.close()
-        return opcao
+        return opcao 
 
     def tela_produtos__adm(self):
         cabecalho('MENU PRODUTOS')
-        self.init_opcoes1()
-        button, values = self.open()
-        if values['1']:
+        opcao  = - 1
+        while opcao == -1:
+          self.init_opcoes1()
+          button, values = self.__window.Read()
+          if values['1']:
             opcao = 1
-        if values['2']:
+          if values['2']:
             opcao = 2
-        if values['3']:
+          if values['3']:
             opcao = 3
-        if values['4']:
+          if values['4']:
             opcao = 4
-        if values['5']:
+          if values['5']:
             opcao = 5
-        # cobre os casos de Retornar, fechar janela, ou clicar cancelar
-        # Isso faz com que retornemos a tela do sistema caso qualquer uma dessas coisas aconteca
-        if values['6'] or button in (None, 'Cancelar'):
+            # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
+          if values['6'] or button in (None,'Cancelar'):
             opcao = 6
+          self.close()
         self.close()
         return opcao
-
     def tela_produto_usuario(self):
-        #opcoes = ['[1] Ver Produtos Disponíveis','[2] Comprar um Produto Agora','[3] Voltar ao Menu Anterior', '[4] Finalizar Sessão']
         cabecalho('MENU PRODUTOS')
-        self.init_opcoes2()
-        button, values = self.open()
-        if values['1']:
+        opcao  = - 1
+        while opcao == -1:
+          self.init_opcoes2()
+          button, values = self.__window.Read()
+          if values['1']:
             opcao = 1
-        if values['2']:
+          if values['2']:
             opcao = 2
-        if values['3']:
+          if values['3']:
             opcao = 3
-        # cobre os casos de Retornar, fechar janela, ou clicar cancelar
-        # Isso faz com que retornemos a tela do sistema caso qualquer uma dessas coisas aconteca
-        if values['4'] or button in (None, 'Cancelar'):
+            # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
+          if values['4'] or button in (None,'Cancelar'):
             opcao = 4
+          self.close()
         self.close()
         return opcao
 
