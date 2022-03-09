@@ -13,91 +13,107 @@ class TelaHistorico():
         self.init_opcoes3()
         self.init_opcoes4()
         self.init_opcoes5()
-    # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
-
     def menu_principal_adm(self):
-
-        self.init_opcoes()
-        button, values = self.open()
-        if values['1']:
-            opcao = 1
-        if values['2']:
-            opcao = 2
-        if values['3']:
-            opcao = 3
-        if values['4']:
-            opcao = 4
-        if values['5']:
-            opcao = 5
-        if values['6'] or button in (None, 'Cancelar'):
-            opcao = 6
+        cabecalho('MENU HISTORICO')
+        opcao  = - 1
+        while opcao == -1:
+            self.init_opcoes()
+            button, values = self.__window.Read()
+            if values['1']:
+                opcao = 1
+            if values['2']:
+                opcao = 2
+            if values['3']:
+                opcao = 3
+            if values['4']:
+                opcao = 4
+            if values['5']:
+                opcao = 5
+        # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
+            if values['6'] or button in (None,'Cancelar'):
+                opcao = 6
+            self.close()
         self.close()
         return opcao
-
     def menu_opcao_filtro(self):
 
-        self.init_opcoes1()
-        button, values = self.open()
-        if values['1']:
-            opcao = 1
-        if values['2']:
-            opcao = 2
-        if values['3']:
-            opcao = 3
-        if values['4'] or button in (None, 'Cancelar'):
-            opcao = 4
+    cabecalho('MENU HISTORICO')
+        opcao  = - 1
+        while opcao == -1:
+            self.init_opcoes1()
+            button, values = self.__window.Read()
+            if values['1']:
+                opcao = 1
+            if values['2']:
+                opcao = 2
+            if values['3']:
+                opcao = 3
+            if values['4'] or button in (None,'Cancelar'):
+                opcao = 4
+            self.close()
         self.close()
         return opcao
 
     def filtro_cor(self):
-
-        self.init_opcoes2()
-        button, values = self.open()
-        if values['1']:
-            opcao = 1
-        if values['2']:
-            opcao = 2
-        if values['0'] or button in (None, 'Cancelar'):
-            opcao = 0
+    cabecalho('MENU HISTORICO')
+        opcao  = - 1
+        while opcao == -1:
+            self.init_opcoes2()
+            button, values = self.__window.Read()
+            if values['1']:
+                opcao = 1
+            if values['2']:
+                opcao = 2
+            if values['0'] or button in (None,'Cancelar'):
+                opcao = 0
+            self.close()
         self.close()
         return opcao
 
     def filtro_tamanho(self):
-
-        self.init_opcoes3()
-        button, values = self.open()
-        if values['1']:
-            opcao = 1
-        if values['2']:
-            opcao = 2
-        if values['0'] or button in (None, 'Cancelar'):
-            opcao = 0
+    cabecalho('MENU HISTORICO')
+        opcao  = - 1
+        while opcao == -1:
+            self.init_opcoes3()
+            button, values = self.__window.Read()
+            if values['1']:
+                opcao = 1
+            if values['2']:
+                opcao = 2
+            if values['0'] or button in (None,'Cancelar'):
+                opcao = 0
+            self.close()
         self.close()
         return opcao
 
     def filtro_categoria(self):
-
-        self.init_opcoes4()
-        button, values = self.open()
-        if values['1']:
-            opcao = 1
-        if values['2']:
-            opcao = 2
-        if values['0'] or button in (None, 'Cancelar'):
-            opcao = 0
+    cabecalho('MENU HISTORICO')
+        opcao  = - 1
+        while opcao == -1:
+            self.init_opcoes4()
+            button, values = self.__window.Read()
+            if values['1']:
+                opcao = 1
+            if values['2']:
+                opcao = 2
+            if values['0'] or button in (None,'Cancelar'):
+                opcao = 0
+            self.close()
         self.close()
         return opcao
-
-    def filtro_cliente(self):
-
-        self.init_opcoes5()
-        button, values = self.open()
-        if values['1']:
-            opcao = 1
-        if values['2']:
-            opcao = 2
-        if values['0'] or button in (None, 'Cancelar'):
-            opcao = 0
+  def filtro_cliente(self):
+    cabecalho('MENU HISTORICO')
+        opcao  = - 1
+        while opcao == -1:
+            self.init_opcoes5()
+            button, values = self.__window.Read()
+            if values['1']:
+                opcao = 1
+            if values['2']:
+                opcao = 2
+            if values['0'] or button in (None,'Cancelar'):
+                opcao = 0
+            self.close()
         self.close()
         return opcao
 
