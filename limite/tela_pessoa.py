@@ -212,7 +212,7 @@ class TelaPessoa():
         cpf = values['cpf']
 
         self.close()
-        return {'cpf': cpf}
+        return cpf
 
     # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
     def mostra_adm(self, dados_adms):
