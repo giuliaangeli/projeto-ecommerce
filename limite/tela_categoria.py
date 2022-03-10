@@ -57,11 +57,15 @@ class TelaCategoria():
     self.__window = sg.Window('Sistema de categorias').Layout(layout)
 
     button, values = self.open()
+    if len(values['tipo']) == 0:
+      self.mostra_mensagem("É preciso digitar algo")
+      self.close()
+      self.pega_dados_categoria()
     tipo = values
+
 
     self.close()
     return tipo
-    #return {"tipo": tipo}
 
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def mostra_categoria(self, dados_categoria):
