@@ -25,7 +25,7 @@ class TelaPessoa():
           self.close()
         self.close()
         return opcao
-      def tela_pessoa_adm(self):
+    def tela_pessoa_adm(self):
         cabecalho('Opções Administrador')
         opcao  = - 1
         while opcao == -1:
@@ -53,7 +53,7 @@ class TelaPessoa():
           self.close()
         self.close()
         return opcao
-      def tela_pessoa_usuario(self):
+    def tela_pessoa_usuario(self):
         cabecalho('Opções Usuario')
         opcao  = - 1
         while opcao == -1:
