@@ -57,11 +57,15 @@ class TelaTamanho():
     self.__window = sg.Window('Sistema de tamanhos').Layout(layout)
 
     button, values = self.open()
+    if len(values['descricao']) == 0:
+      self.mostra_mensagem("É preciso digitar algo")
+      self.close()
+      return self.pega_dados_tamanho()
     descricao = values
+
 
     self.close()
     return descricao
-    #return {"descricao": descricao}
 
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def mostra_tamanho(self, dados_tamanho):

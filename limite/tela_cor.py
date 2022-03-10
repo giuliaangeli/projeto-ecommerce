@@ -56,11 +56,15 @@ class TelaCor():
     self.__window = sg.Window('Sistema de livros').Layout(layout)
 
     button, values = self.open()
-    nome = values['nome']
+    if len(values['nome']) == 0:
+      self.mostra_mensagem("É preciso digitar algo")
+      self.close()
+      return self.pega_dados_cor()
+    nome = values
+
 
     self.close()
     return nome
-    '''{"nome": nome}'''
 
   # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
   def mostra_cor(self, dados_cor):

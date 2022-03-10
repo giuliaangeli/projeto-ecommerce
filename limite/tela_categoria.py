@@ -60,7 +60,7 @@ class TelaCategoria():
     if len(values['tipo']) == 0:
       self.mostra_mensagem("É preciso digitar algo")
       self.close()
-      self.pega_dados_categoria()
+      return self.pega_dados_categoria()
     tipo = values
 
 
