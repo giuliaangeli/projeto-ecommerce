@@ -1,11 +1,12 @@
 from limite.tela_abstrata import *
 
+
 class TelaPessoa():
 
     def adm_ou_usuario(self):
-        
-        opcoes = ['[1] Administrador','[2] Usuário']
-        
+
+        opcoes = ['[1] Administrador', '[2] Usuário']
+
         for item in opcoes:
             print(item)
 
@@ -15,10 +16,11 @@ class TelaPessoa():
         return opcao
 
     def tela_pessoa_adm(self):
-        
+
         cabecalho('ESCOLHA UMA OPÇÃO')
-        opcoes = ['[1] Incluir Administrador','[2] Excluir Administrador','[3] Listar Administradores', '[4] Alterar meus Dados', '[5] Incluir Usuário','[6] Excluir Usuário','[7] Listar Usuários', '[8] Voltar ao Menu Anterior','[9] Encerrar Sessão']
-        
+        opcoes = ['[1] Incluir Administrador', '[2] Excluir Administrador', '[3] Listar Administradores', '[4] Alterar meus Dados',
+                  '[5] Incluir Usuário', '[6] Excluir Usuário', '[7] Listar Usuários', '[8] Voltar ao Menu Anterior', '[9] Encerrar Sessão']
+
         for item in opcoes:
             print(item)
 
@@ -31,8 +33,9 @@ class TelaPessoa():
     def tela_pessoa_usuario(self):
 
         cabecalho('ESCOLHA UMA OPÇÃO')
-        opcoes = ['[1] Consultar Dados','[2] Alterar Dados', '[3] Excluir Conta', '[4] Voltar ao Menu Anterior','[5] Encerrar Sessão']
-        
+        opcoes = ['[1] Consultar Dados', '[2] Alterar Dados', '[3] Excluir Conta',
+                  '[4] Voltar ao Menu Anterior', '[5] Encerrar Sessão']
+
         for item in opcoes:
             print(item)
 
@@ -73,7 +76,7 @@ class TelaPessoa():
         print("NOME: ", dados_adm["nome"])
         print("CPF: ", dados_adm["cpf"])
         print("TELEFONE: ", dados_adm["telefone"])
-        print("ENDEREÇO: ", dados_adm["endereco"]) 
+        print("ENDEREÇO: ", dados_adm["endereco"])
         print("E-MAIL: ", dados_adm["email"])
         print("SENHA: ", dados_adm["senha"])
         print("SALÁRIO: ", dados_adm["salario"])
@@ -83,11 +86,11 @@ class TelaPessoa():
         print("NOME: ", dados_usuario["nome"])
         print("CPF: ", dados_usuario["cpf"])
         print("TELEFONE: ", dados_usuario["telefone"])
-        print("ENDEREÇO: ", dados_usuario["endereco"]) 
+        print("ENDEREÇO: ", dados_usuario["endereco"])
         print("E-MAIL: ", dados_usuario["email"])
         print("SENHA: ", dados_usuario["senha"])
         print("\n")
-    
+
     # tirei o tipo de pessoa (adm ou usuário) pq não vai precisar
     def pega_dados_login(self):
         email = input("Digite seu e-mail: ")
@@ -97,7 +100,3 @@ class TelaPessoa():
     def pega_cpf(self):
         cpf = input()
         return cpf
-    
-
-        
-
