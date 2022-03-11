@@ -1,3 +1,4 @@
+from tkinter import Button
 from controle.controle_historico import ControladorHistorico
 from limite.tela_abstrata import *
 from limite.tela_sistema  import TelaSistema
@@ -106,28 +107,20 @@ class ControladorSistema:
             self.falha_login_usuario()
 
     def falha_login_adm(self):
-        lista_opcoes = {1: self.confere_login_adm, 2: self.controla_tela_login}
-        cabecalho('E-MAIL E/OU SENHA INCORRETOS')
+        lista_opcoes = {1: self.confere_login_adm, 2: self.controla_tela_login, 3: self.encerra_sistema}
         opcao_escolhida = self.__tela_sistema.falha()
         lista_opcoes[opcao_escolhida]()
 
     def falha_login_usuario(self):
-        lista_opcoes = {1: self.confere_login_usuario, 2: self.controla_tela_login}
-        cabecalho('E-MAIL E/OU SENHA INCORRETOS')
+        lista_opcoes = {1: self.confere_login_usuario, 2: self.controla_tela_login, 3: self.encerra_sistema}
         opcao_escolhida = self.__tela_sistema.falha()
         lista_opcoes[opcao_escolhida]()
 
     def controla_tela_login(self):
-        lista_opcoes = {1:self.confere_login_adm, 2:self.confere_login_usuario}
+        lista_opcoes = {1:self.confere_login_adm, 2:self.confere_login_usuario, 3:self.abre_tela_inicial, 4:self.encerra_sistema}
         opcao_escolhida = self.__tela_sistema.tela_login()
+        lista_opcoes[opcao_escolhida]()
 
-        if opcao_escolhida != 1 and opcao_escolhida != 2:
-            self.__tela_sistema.mostra_mensagem("ATENÇÃO: A opção digitada é inválida, digite uma das opções dada!")
-            self.controla_tela_login()
-        
-        else:
-            lista_opcoes[opcao_escolhida]()
-    
     def incluir_usuario(self):
         usuario = self.__controle_pessoas.incluir_usuario()
         if usuario is not None:
@@ -136,12 +129,12 @@ class ControladorSistema:
             self.falha_cpf_ja_cadastrado()
 
     def falha_cpf_ja_cadastrado(self):
-        lista_opcoes = {1: self.incluir_usuario, 2: self.abre_tela_inicial}
+        lista_opcoes = {1: self.incluir_usuario, 2: self.abre_tela_inicial, 3: self.encerra_sistema}
         opcao_escolhida = self.__tela_sistema.falha()
         lista_opcoes[opcao_escolhida]()
 
     def abre_tela_inicial(self):
-        lista_opcoes = {1: self.controla_tela_login, 2: self.incluir_usuario}
+        lista_opcoes = {1: self.controla_tela_login, 2: self.incluir_usuario, 3: self.encerra_sistema}
         opcao_escolhida = self.__tela_sistema.tela_inicial()
         lista_opcoes[opcao_escolhida]()
 

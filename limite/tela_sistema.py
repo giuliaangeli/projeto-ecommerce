@@ -16,14 +16,15 @@ class TelaSistema:
         while opcao == -1:
             self.init_components()
             button, values = self.__window.Read()
+            print(button)
             if values['1']:
                 opcao = 1
             if values['2']:
                 opcao = 2
-        # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
-            if values['0'] or button in (None,'Cancelar'):
-                opcao = 0
+            if button == "Sair":
+                opcao = 3
             self.close()
+
         self.close()
         return opcao
 
@@ -36,27 +37,31 @@ class TelaSistema:
                 opcao = 1
             if values['2']:
                 opcao = 2
-        # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
-            if values['0'] or button in (None,'Cancelar'):
-                opcao = 0
+            if button == "Voltar" :
+                opcao = 3
+            if button == "Sair":
+                opcao = 4
             self.close()
+
         self.close()
         return opcao
+
     def falha(self):
         opcao  = - 1
         while opcao == -1:
             self.init_components2()
-            button, values = self.__window.Read()
-            if values['1']:
+            button, values = self.__window.Read() 
+            if button == "Tentar Novamente":
                 opcao = 1
-            if values['2']:
+            if button == "Voltar":
                 opcao = 2
-        # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
-            if values['0'] or button in (None,'Cancelar'):
-                opcao = 0
+            if button == "Sair":
+                opcao = 3
             self.close()
+             
         self.close()
         return opcao
+
     def tela_opcoes_adm(self):
         opcao  = - 1
         while opcao == -1:
@@ -66,12 +71,12 @@ class TelaSistema:
                 opcao = 1
             if values['2']:
                 opcao = 2
-            if values['3']:
+            if  values['3']:
                 opcao = 3
-        # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
-            if values['4'] or button in (None,'Cancelar'):
+            if button == "Sair":
                 opcao = 4
             self.close()
+
         self.close()
         return opcao
 
@@ -86,10 +91,10 @@ class TelaSistema:
                 opcao = 2
             if values['3']:
                 opcao = 3
-        # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
-            if values['4'] or button in (None,'Cancelar'):
+            if button == "Sair":
                 opcao = 4
             self.close()
+
         self.close()
         return opcao
 
@@ -104,33 +109,28 @@ class TelaSistema:
             [sg.Text('Escolha sua opção', font=("Helvica",15))],
             [sg.Radio('Fazer login',"RD1", key='1')],
             [sg.Radio('Criar uma conta',"RD1", key='2')],
-            [sg.Radio('Finalizar sistema',"RD1", key='0')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+            [sg.Button('Confirmar'),sg.Button('Sair')]
         ]
         self.__window = sg.Window('Sistema E-commerce').Layout(layout)
     def init_components1(self):
         #sg.theme_previewer()
         sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
-            [sg.Text('Bem vindo ao sistema E-commerce!', font=("Helvica",25))],
             [sg.Text('Escolha sua opção', font=("Helvica",15))],
             [sg.Radio('Login Administrador',"RD1", key='1')],
             [sg.Radio('Login Cliente',"RD1", key='2')],
-            [sg.Radio('Finalizar sistema',"RD1", key='0')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
         ]
         self.__window = sg.Window('Sistema E-commerce').Layout(layout)
 
     def init_components2(self):
-        #sg.theme_previewer()
+
         sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
-            [sg.Text('Bem vindo ao sistema E-commerce!', font=("Helvica",25))],
-            [sg.Text('Escolha sua opção', font=("Helvica",15))],
-            [sg.Radio('Tentar novamente',"RD1", key='1')],
-            [sg.Radio('Voltar ao menu anterior',"RD1", key='2')],
-            [sg.Radio('Finalizar sistema',"RD1", key='0')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+            
+            [sg.Text('Entrada Incorreta!', font=("Helvica",25))],
+            [sg.Text('O que você deseja?', font=("Helvica",15))],
+            [sg.Button('Tentar Novamente'), sg.Button('Voltar'), sg.Button('Sair')]
         ]
         self.__window = sg.Window('Sistema E-commerce').Layout(layout)
 
@@ -143,8 +143,7 @@ class TelaSistema:
             [sg.Radio('Pessoas',"RD1", key='1')],
             [sg.Radio('Produtos',"RD1", key='2')],
             [sg.Radio('Histórico',"RD1", key='3')],
-            [sg.Radio('Finalizar sistema',"RD1", key='4')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+            [sg.Button('Confirmar'), sg.Button('Sair')]
         ]
         self.__window = sg.Window('Sistema E-commerce').Layout(layout)
 
@@ -152,12 +151,11 @@ class TelaSistema:
         #sg.theme_previewer()
         sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
-            [sg.Text('Bem vindo ao sistema E-commerce!', font=("Helvica",25))],
+
             [sg.Text('Escolha sua opção', font=("Helvica",15))],
             [sg.Radio('Ir as Compras',"RD1", key='1')],
             [sg.Radio('Histórico de Compras',"RD1", key='2')],
             [sg.Radio('Dados Pessoais',"RD1", key='3')],
-            [sg.Radio('Finalizar sistema',"RD1", key='4')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
         ]
         self.__window = sg.Window('Sistema E-commerce').Layout(layout)
