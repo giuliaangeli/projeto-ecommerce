@@ -209,8 +209,11 @@ class TelaPessoa():
         self.__window = sg.Window('Sistema E-commerce').Layout(layout)
 
         button, values = self.open()
-        cpf = values['cpf']
-
+        if len(values['cpf']) == 0:
+            self.mostra_mensagem("É preciso digitar algo")
+            self.close()
+            return self.pega_cpf()
+        cpf = values
         self.close()
         return cpf
 
