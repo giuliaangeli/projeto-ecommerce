@@ -1,6 +1,4 @@
-from entidade.usuario import Usuario
 from limite.tela_abstrata import *
-#from pyparsing import sgl_quoted_string
 import PySimpleGUI as sg
 
 
@@ -10,67 +8,70 @@ class TelaPessoa():
         self.init_opcoes()
         self.init_opcoes1()
         self.init_opcoes2()
+
     def adm_ou_usuario(self):
-        opcao  = - 1
+        opcao = - 1
         while opcao == -1:
-          self.init_opcoes()
-          button, values = self.__window.Read()
-          if values['1']:
-            opcao = 1
-          if values['2']:
-            opcao = 2
-            # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
-          if values['6'] or button in (None,'Cancelar'):
-            opcao = 6
-          self.close()
+            self.init_opcoes()
+            button, values = self.__window.Read()
+            if values['1']:
+                opcao = 1
+            if values['2']:
+                opcao = 2
+                # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
+            if values['6'] or button in (None, 'Cancelar'):
+                opcao = 6
+            self.close()
         self.close()
         return opcao
+
     def tela_pessoa_adm(self):
         cabecalho('Opções Administrador')
-        opcao  = - 1
+        opcao = - 1
         while opcao == -1:
-          self.init_opcoes1()
-          button, values = self.__window.Read()
-          if values['1']:
-            opcao = 1
-          if values['2']:
-            opcao = 2
-          if values['3']:
-            opcao = 3
-          if values['4']:
-            opcao = 4
-          if values['5']:
-            opcao = 5
-          if values['6']:
-            opcao = 6
-          if values['7']:
-            opcao = 7
-          if values['8']:
-            opcao = 8
-            # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
-          if values['9'] or button in (None,'Cancelar'):
-            opcao = 9
-          self.close()
+            self.init_opcoes1()
+            button, values = self.__window.Read()
+            if values['1']:
+                opcao = 1
+            if values['2']:
+                opcao = 2
+            if values['3']:
+                opcao = 3
+            if values['4']:
+                opcao = 4
+            if values['5']:
+                opcao = 5
+            if values['6']:
+                opcao = 6
+            if values['7']:
+                opcao = 7
+            if values['8']:
+                opcao = 8
+                # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
+            if values['9'] or button in (None, 'Cancelar'):
+                opcao = 9
+            self.close()
         self.close()
         return opcao
+
     def tela_pessoa_usuario(self):
         cabecalho('Opções Usuario')
-        opcao  = - 1
+        opcao = - 1
         while opcao == -1:
-          self.init_opcoes2()
-          button, values = self.__window.Read()
-          if values['1']:
-            opcao = 1
-          if values['2']:
-            opcao = 2
-          if values['3']:
-            opcao = 3
-          if values['4']:
-            opcao = 4
-            # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
-          if values['5'] or button in (None,'Cancelar'):
-            opcao = 5
-          self.close()
+            self.init_opcoes2()
+            button, values = self.__window.Read()
+            if values['1']:
+                opcao = 1
+            if values['2']:
+                opcao = 2
+            if values['3']:
+                opcao = 3
+            if values['4']:
+                opcao = 4
+                # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
+            if values['5'] or button in (None, 'Cancelar'):
+                opcao = 5
+            self.close()
         self.close()
         return opcao
 
@@ -235,8 +236,10 @@ class TelaPessoa():
             for usuario in dados_usuario:
                 string_dados_usuário = string_dados_usuário + 'NOME: ' + usuario.nome + '\n'
                 string_dados_usuário = string_dados_usuário + 'CPF: ' + usuario.cpf + '\n'
-                string_dados_usuário = string_dados_usuário + 'TELEFONE: ' + usuario.telefone + '\n'
-                string_dados_usuário = string_dados_usuário + 'ENDEREÇO: ' + usuario.endereco + '\n'
+                string_dados_usuário = string_dados_usuário + \
+                    'TELEFONE: ' + usuario.telefone + '\n'
+                string_dados_usuário = string_dados_usuário + \
+                    'ENDEREÇO: ' + usuario.endereco + '\n'
                 string_dados_usuário = string_dados_usuário + 'EMAIL: ' + usuario.email + '\n\n'
             sg.Popup('USUÁRIOS CADASTRADOS', string_dados_usuário)
 
@@ -244,8 +247,10 @@ class TelaPessoa():
             for usuario in dados_usuario:
                 string_dados_usuário = string_dados_usuário + 'NOME: ' + usuario.nome + '\n'
                 string_dados_usuário = string_dados_usuário + 'CPF: ' + usuario.cpf + '\n'
-                string_dados_usuário = string_dados_usuário + 'TELEFONE: ' + usuario.telefone + '\n'
-                string_dados_usuário = string_dados_usuário + 'ENDEREÇO: ' + usuario.endereco + '\n'
+                string_dados_usuário = string_dados_usuário + \
+                    'TELEFONE: ' + usuario.telefone + '\n'
+                string_dados_usuário = string_dados_usuário + \
+                    'ENDEREÇO: ' + usuario.endereco + '\n'
                 string_dados_usuário = string_dados_usuário + 'EMAIL: ' + usuario.email + '\n'
                 string_dados_usuário = string_dados_usuário + 'SENHA: ' + usuario.senha + '\n\n'
             sg.Popup('SEUS DADOS', string_dados_usuário)
