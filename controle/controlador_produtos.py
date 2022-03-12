@@ -29,30 +29,33 @@ class ControladorProdutos():
 
     def incluir_produto(self, adm):
 
-        cabecalho('CORES CADASTRADAS')
         self.__controlador_sistema.controlador_cores.lista_cor()
-        cabecalho('TAMANHOS CADASTRADOS')
         self.__controlador_sistema.controlador_tamanhos.lista_tamanho()
-        cabecalho('CATEGORIAS CADASTRADAS')
         self.__controlador_sistema.controlador_categorias.lista_categoria()
         dados_produto = self.__tela_produtos.pega_dados_produto()
-        print(dados_produto)
 
-        cor1 = self.valida_cor(dados_produto)
-        tamanho1 = self.valida_tamanho(dados_produto)
-        categoria1 = self.valida_categoria(dados_produto)
+        if dados_produto == "Sair":
+            self.__controlador_sistema.encerra_sistema()
+        
+        elif dados_produto == "Voltar":
+            self.abre_tela_produtos_adm(adm)
 
-        for produto in self.__produtos:
-            if produto.cor == cor1 and produto.tamanho == tamanho1 and produto.categoria == categoria1:
-                self.__tela_produtos.mostra_mensagem(
-                    "ATENCAO:O produto que você está tentando incluir já está na lista de produtos!")
-                return None
-        self.__tela_produtos.mostra_mensagem(
-            "ATENCAO:O produto foi adicionado a lista de produtos!")
-        codigo = len(self.__produtos) + 1
-        novo_produto = Produto(cor1, tamanho1, categoria1, codigo)
-        self.__produtos.append(novo_produto)
-        return None
+        else:
+            cor1 = self.valida_cor(dados_produto)
+            tamanho1 = self.valida_tamanho(dados_produto)
+            categoria1 = self.valida_categoria(dados_produto)
+
+            for produto in self.__produtos:
+                if produto.cor == cor1 and produto.tamanho == tamanho1 and produto.categoria == categoria1:
+                    self.__tela_produtos.mostra_mensagem(
+                        "ATENCAO:O produto que você está tentando incluir já está na lista de produtos!")
+                    return None
+            self.__tela_produtos.mostra_mensagem(
+                "ATENCAO:O produto foi adicionado a lista de produtos!")
+            codigo = len(self.__produtos) + 1
+            novo_produto = Produto(cor1, tamanho1, categoria1, codigo)
+            self.__produtos.append(novo_produto)
+            return None
 
     def valida_cor(self, dados_produto):
         cor = self.__controlador_sistema.controlador_cores.confere_cor_nome(dados_produto["cor"])
@@ -124,15 +127,23 @@ class ControladorProdutos():
                 return produto
         return None
 
-    def confere_produto_codigo(self):
-        codigo = int(self.__tela_produtos.seleciona_produto())
-        for produto in self.__produtos:
-            if produto.codigo == codigo:
-                return produto
+    def confere_produto_codigo(self,pessoa):
+        codigo = self.__tela_produtos.seleciona_produto()
+        print(codigo)
+        if codigo == "Sair":
+            self.__controlador_sistema.encerra_sistema()
+        
+        elif codigo == "Voltar":
+            self.abre_menu_usuario(pessoa)
+        else:  
+            codigo = int(self.__tela_produtos.seleciona_produto())
+            for produto in self.__produtos:
+                if produto.codigo == codigo:
+                    return produto
 
-        self.__tela_produtos.mostra_mensagem(
-            "ATENÇÃO: O código digitado não corresponde a nenhum produto cadastrado, digite um código válido!")
-        self.confere_produto_codigo()
+            self.__tela_produtos.mostra_mensagem(
+                "ATENÇÃO: O código digitado não corresponde a nenhum produto cadastrado, digite um código válido!")
+            self.confere_produto_codigo(pessoa)
 
     def alterar_produto(self):
         codigo1 = input('Digite o codigo do produto')
@@ -173,7 +184,7 @@ class ControladorProdutos():
 
     def abre_tela_produtos_adm(self, adm):
         lista_opcoes = {1: self.menu_incluir_produto, 2: self.lista_produto, 3: self.alterar_produto,
-                        4: self.excluir_produto, 5: self.retornar_tela_adm_principal, 6: self.__controlador_sistema.abre_tela_inicial}
+                        4: self.excluir_produto, 5: self.__controlador_sistema.controla_menu_principal_adm, 6: self.__controlador_sistema.encerra_sistema}
 
         continua = True
         while continua:
@@ -198,7 +209,7 @@ class ControladorProdutos():
     def menu_incluir_produto(self, adm):
 
         lista_opcoes = {1: self.incluir_produto, 2: self.abre_menu_cor, 3: self.abre_menu_tamanho,
-                        4: self.abre_menu_categoria, 5: self.retornar_tela_adm_produto, 6: self.__controlador_sistema.abre_tela_inicial}
+                        4: self.abre_menu_categoria, 5: self.retornar_tela_adm_produto, 6: self.__controlador_sistema.encerra_sistema}
 
         continua = True
         while continua:
@@ -209,16 +220,16 @@ class ControladorProdutos():
                 lista_opcoes[opcao_escolhida](adm)
 
     def usuario_compra_produto(self, usuario):
-        produto = self.confere_produto_codigo()
+        produto = self.confere_produto_codigo(usuario)
         self.__controlador_sistema.controlador_historico.recebe_dados_venda(
             usuario, produto)
 
     def retorna_menu_principal_usuario(self, usuario):
         self.__controlador_sistema.controla_menu_principal_usuario(usuario)
 
-    def abri_menu_usuario(self, usuario):
+    def abre_menu_usuario(self, usuario):
         lista_opcoes = {1: self.lista_produto, 2: self.usuario_compra_produto,
-                        3: self.retorna_menu_principal_usuario, 4: self.__controlador_sistema.abre_tela_inicial}
+                        3: self.__controlador_sistema.controla_menu_principal_usuario, 4: self.__controlador_sistema.encerra_sistema}
 
         continua = True
         while continua:
