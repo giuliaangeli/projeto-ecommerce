@@ -127,7 +127,7 @@ class TelaPessoa():
             return {"nome": nome, 'cpf': cpf, 'telefone': telefone, 'endereco': endereco, 'email': email, 'senha': senha}
 
     def pega_dado_adm(self):
-        print("DADOS ")
+
         sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
             [sg.Text('DADOS ', font=("Helvica", 25))],
@@ -165,7 +165,7 @@ class TelaPessoa():
             return {"nome": nome, 'cpf': cpf, 'telefone': telefone, 'endereco': endereco, 'email': email, 'senha': senha, 'salario': salario}
 
     def pega_dados_login(self):
-        print("DADOS  ")
+
         sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
             [sg.Text('DADOS  ', font=("Helvica", 25))],
