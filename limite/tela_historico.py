@@ -27,12 +27,12 @@ class TelaHistorico():
                 opcao = 3
             if values['4']:
                 opcao = 4
-            if values['5']:
+            if button == "Voltar":
                 opcao = 5
-        # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
-            if values['6'] or button in (None,'Cancelar'):
+            if button == "Sair":
                 opcao = 6
             self.close()
+
         self.close()
         return opcao
 
@@ -46,11 +46,12 @@ class TelaHistorico():
                 opcao = 1
             if values['2']:
                 opcao = 2
-            if values['3']:
+            if button == "Voltar":
                 opcao = 3
-            if values['4'] or button in (None,'Cancelar'):
+            if button == "Sair":
                 opcao = 4
             self.close()
+
         self.close()
         return opcao
 
@@ -64,8 +65,10 @@ class TelaHistorico():
                 opcao = 1
             if values['2']:
                 opcao = 2
-            if values['0'] or button in (None,'Cancelar'):
-                opcao = 0
+            if button == "Voltar":
+                opcao = 3
+            if button == "Sair":
+                opcao = 4
             self.close()
         self.close()
         return opcao
@@ -80,8 +83,10 @@ class TelaHistorico():
                 opcao = 1
             if values['2']:
                 opcao = 2
-            if values['0'] or button in (None,'Cancelar'):
-                opcao = 0
+            if button == "Voltar":
+                opcao = 3
+            if button == "Sair":
+                opcao = 4
             self.close()
         self.close()
         return opcao
@@ -95,8 +100,10 @@ class TelaHistorico():
                 opcao = 1
             if values['2']:
                 opcao = 2
-            if values['0'] or button in (None,'Cancelar'):
-                opcao = 0
+            if button == "Voltar":
+                opcao = 3
+            if button == "Sair":
+                opcao = 4
             self.close()
         self.close()
         return opcao
@@ -111,8 +118,10 @@ class TelaHistorico():
                 opcao = 1
             if values['2']:
                 opcao = 2
-            if values['0'] or button in (None,'Cancelar'):
-                opcao = 0
+            if button == "Voltar":
+                opcao = 3
+            if button == "Sair":
+                opcao = 4
             self.close()
         self.close()
         return opcao
@@ -127,9 +136,8 @@ class TelaHistorico():
             [sg.Radio('Alterar Histórico de Vendas', "RD1", key='2')],
             [sg.Radio('Incluir uma Venda no Histórico', "RD1", key='3')],
             [sg.Radio('Excluir uma Venda do Histórico', "RD1", key='4')],
-            [sg.Radio('Voltar ao Menu Anterior', "RD1", key='5')],
-            [sg.Radio('Encerrar Sessão', "RD1", key='6')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
+
         ]
         self.__window = sg.Window('Sistema de produtos').Layout(layout)
 
@@ -141,9 +149,8 @@ class TelaHistorico():
             [sg.Text('Escolha sua opção', font=("Helvica", 15))],
             [sg.Radio('Ver Todas as Vendas', "RD1", key='1')],
             [sg.Radio('Aplicar Filtro', "RD1", key='2')],
-            [sg.Radio('Voltar ao Menu Anterior', "RD1", key='3')],
-            [sg.Radio(' Encerrar Sessão', "RD1", key='4')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
+
         ]
         self.__window = sg.Window('Sistema de produtos').Layout(layout)
 
@@ -155,8 +162,8 @@ class TelaHistorico():
             [sg.Text('Escolha sua opção', font=("Helvica", 15))],
             [sg.Radio('Todas as Cores', "RD1", key='1')],
             [sg.Radio('Escolher uma Cor', "RD1", key='2')],
-            [sg.Radio('Encerrar Sessão', "RD1", key='0')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
+
         ]
         self.__window = sg.Window('Sistema de produtos').Layout(layout)
 
@@ -168,8 +175,8 @@ class TelaHistorico():
             [sg.Text('Escolha sua opção', font=("Helvica", 15))],
             [sg.Radio('Todas os Tamanhos', "RD1", key='1')],
             [sg.Radio('Escolher um Tamanho', "RD1", key='2')],
-            [sg.Radio('Encerrar Sessão', "RD1", key='0')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
+
         ]
         self.__window = sg.Window('Sistema de produtos').Layout(layout)
 
@@ -181,8 +188,8 @@ class TelaHistorico():
             [sg.Text('Escolha sua opção', font=("Helvica", 15))],
             [sg.Radio('Todas as Categorias', "RD1", key='1')],
             [sg.Radio('Escolher uma Categorias', "RD1", key='2')],
-            [sg.Radio('Encerrar Sessão', "RD1", key='0')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
+
         ]
         self.__window = sg.Window('Sistema de produtos').Layout(layout)
 
@@ -194,8 +201,8 @@ class TelaHistorico():
             [sg.Text('Escolha sua opção', font=("Helvica", 15))],
             [sg.Radio('Todos os Clientes', "RD1", key='1')],
             [sg.Radio('Escolher um Cliente', "RD1", key='2')],
-            [sg.Radio('Encerrar Sessão', "RD1", key='0')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
+
         ]
         self.__window = sg.Window('Sistema de produtos').Layout(layout)
 
@@ -205,8 +212,7 @@ class TelaHistorico():
         layout = [
             [sg.Text('DADOS CATEGORIAS ', font=("Helvica", 25))],
             [sg.Text('Cor:', size=(15, 1)), sg.InputText('', key='cor')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
-
+            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
         ]
         self.__window = sg.Window('Sistema de COR').Layout(layout)
 
@@ -223,8 +229,7 @@ class TelaHistorico():
             [sg.Text('DADOS CATEGORIAS', font=("Helvica", 25))],
             [sg.Text('Tamanho:', size=(15, 1)),
              sg.InputText('', key='tamanho')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
-
+            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
         ]
         self.__window = sg.Window('Sistema de Tamanho').Layout(layout)
 
@@ -240,7 +245,7 @@ class TelaHistorico():
             [sg.Text('DADOS CATEGORIAS', font=("Helvica", 25))],
             [sg.Text('Categoria:', size=(15, 1)),
              sg.InputText('', key='categoria')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
 
         ]
         self.__window = sg.Window('Sistema de categorias').Layout(layout)
@@ -273,7 +278,7 @@ class TelaHistorico():
             [sg.Text('Digite o codigo do produto que deseja selecionar:',
                      font=("Helvica", 15))],
             [sg.Text('codigo:', size=(15, 1)), sg.InputText('', key='codigo')],
-            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
         ]
         self.__window = sg.Window('Seleciona produto').Layout(layout)
 
