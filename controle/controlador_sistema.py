@@ -81,7 +81,7 @@ class ControladorSistema:
             lista_opcoes[opcao_escolhida](usuario)
 
     def controla_produto_usuario(self, usuario):
-        self.__controlador_produtos.abri_menu_usuario(usuario)
+        self.__controlador_produtos.abre_menu_usuario(usuario)
 
     def controla_historico_usuario(self, usuario):
         self.__controlador_historico.listar_historico_usuario(usuario)
