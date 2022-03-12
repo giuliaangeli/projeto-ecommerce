@@ -14,11 +14,19 @@ class ControladorTamanhos():
             if (tamanho.descricao == descricao):
                 return tamanho
         return None
+    
+    def confere_output(self, adm, output):
+        if output == "Sair":
+            self.__controlador_sistema.encerra_sistema()
+        elif output == "Voltar":
+            self.abre_tela(adm)
+        else:
+            return output
 
-    def incluir_tamanho(self):
+    def incluir_tamanho(self, adm):
         dados_tamanho = self.__tela_tamanho.pega_dados_tamanho()
-        nova_tamanho = self.confere_tamanho_descricao(
-            dados_tamanho["descricao"])
+        dados_tamanho = self.confere_output(adm, dados_tamanho)
+        nova_tamanho = self.confere_tamanho_descricao(dados_tamanho["descricao"])
 
         if nova_tamanho == None:
             tamanho = Tamanho(dados_tamanho["descricao"])
@@ -29,7 +37,7 @@ class ControladorTamanhos():
         self.__tela_tamanho.mostra_mensagem(
             "ATENÇÃO: Esse tamanho já está cadastrado")
 
-    def alterar_tamanho(self):
+    def alterar_tamanho(self, adm):
         self.__tela_tamanho.mostra_mensagem(
             "ATENÇÃO: Digite a descrição do tamanho que você deseja alterar")
         tamanhoAntigo = input().upper()
@@ -62,7 +70,7 @@ class ControladorTamanhos():
         
         self.__tela_tamanho.mostra_tamanho(self.__tamanhos)
 
-    def excluir_tamanho(self):
+    def excluir_tamanho(self, adm):
         descricao = self.__tela_tamanho.seleciona_tamanho()
         for tamanho in self.__tamanhos:
             if tamanho.descricao == descricao:
@@ -79,15 +87,15 @@ class ControladorTamanhos():
 
     def abre_tela(self, adm):
         lista_opcoes = {1: self.incluir_tamanho, 2: self.alterar_tamanho, 3: self.lista_tamanho,
-                        4: self.excluir_tamanho, 5: self.retornar_menu__produto, 6: self.__controlador_sistema.abre_tela_inicial}
+                        4: self.excluir_tamanho, 5: self.retornar_menu__produto, 6: self.__controlador_sistema.encerra_sistema}
 
         continua = True
         while continua:
             opcao_escolhida = self.__tela_tamanho.tela_opcoes()
-            if opcao_escolhida == 5:
-                lista_opcoes[opcao_escolhida](adm)
-            else:
+            if opcao_escolhida == 3 or opcao_escolhida == 6:
                 lista_opcoes[opcao_escolhida]()
+            else:
+                lista_opcoes[opcao_escolhida](adm)
 
     def instancia_tamanho(self):
         tamanho1 = Tamanho('P')
