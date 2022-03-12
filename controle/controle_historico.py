@@ -19,9 +19,9 @@ class ControladorHistorico():
     def historico(self):
         return self.__historico
 
-    def incluir_historico(self):
+    def incluir_historico(self, pessoa):
         usuario = self.__controlador_sistema.controlador_pessoas.confere_usuario_cpf_historico()
-        produto = self.__controlador_sistema.controlador_produtos.confere_produto_codigo()
+        produto = self.__controlador_sistema.controlador_produtos.confere_produto_codigo(pessoa)
         self.recebe_dados_venda(usuario, produto)
 
     def recebe_dados_venda(self, usuario, produto):
@@ -29,9 +29,9 @@ class ControladorHistorico():
         self.__historico.append(venda)
         self.__tela_historico.mostra_mensagem("ATENÇÃO: A venda foi adicionada ao histórico!")
 
-    def confere_venda_historico(self):
+    def confere_venda_historico(self, pessoa):
         usuario = self.__controlador_sistema.controle_pessoas.confere_usuario_cpf_historico()
-        produto = self.__controlador_sistema.controlador_produtos.confere_produto_codigo()
+        produto = self.__controlador_sistema.controlador_produtos.confere_produto_codigo(pessoa)
         venda_para_validar = Historico(usuario, produto)
 
         for venda in self.__historico:
@@ -39,15 +39,15 @@ class ControladorHistorico():
                 return venda
             else:
                 self.__tela_historico.mostra_mensagem("ATENÇÃO: A venda informada não consta no histórico, tente novamente!")
-                self.confere_venda_historico()
+                self.confere_venda_historico(pessoa)
 
-    def excluir_historico(self):
-        venda_excluir = self.confere_venda_historico()
+    def excluir_historico(self, pessoa):
+        venda_excluir = self.confere_venda_historico(pessoa)
         self.__historico.remove(venda_excluir)
 
-    def alterar_historico_produto(self):
-        venda_alterar = self.confere_venda_historico()
-        produto_alterado = self.__controlador_sistema.controlador_produtos.confere_produto_codigo()
+    def alterar_historico_produto(self, pessoa):
+        venda_alterar = self.confere_venda_historico(pessoa)
+        produto_alterado = self.__controlador_sistema.controlador_produtos.confere_produto_codigo(pessoa)
         venda_alterar.produto = produto_alterado
 
     def listar_historico_usuario(self, usuario):
@@ -255,10 +255,10 @@ class ControladorHistorico():
         continua = True
         while continua:
             opcao_escolhida = self.__tela_historico.menu_principal_adm()
-            if opcao_escolhida == 1 or opcao_escolhida == 5:
-                lista_opcoes[opcao_escolhida](adm)
-            else:
+            if opcao_escolhida == 6:
                 lista_opcoes[opcao_escolhida]()
+            else:
+                lista_opcoes[opcao_escolhida](adm)
     
     def instancia_historico(self):
         usuario1 = self.__controlador_sistema.controlador_pessoas.confere_usuario_cpf('09641787969')
