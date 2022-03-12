@@ -16,7 +16,6 @@ class TelaSistema:
         while opcao == -1:
             self.init_components()
             button, values = self.__window.Read()
-            print(button)
             if values['1']:
                 opcao = 1
             if values['2']:
