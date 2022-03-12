@@ -76,7 +76,7 @@ class TelaPessoa():
             [sg.Radio('Listar Usuário', "RD1", key='7')],
             [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
         ]
-        self.__window = sg.Window('Sistema E-commerce').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
     def init_opcoes2(self):
 
@@ -90,7 +90,7 @@ class TelaPessoa():
             [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
 
         ]
-        self.__window = sg.Window('Sistema E-commerce').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
     # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
 
     def pega_dados_usuario(self):
@@ -108,7 +108,7 @@ class TelaPessoa():
             [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
 
         ]
-        self.__window = sg.Window('Sistema E-commerce').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
         button, values = self.open()
 
         if button == "Voltar" or button == "Sair":
@@ -144,7 +144,7 @@ class TelaPessoa():
             [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
 
         ]
-        self.__window = sg.Window('Sistema E-commerce').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
         button, values = self.open()
         
@@ -174,7 +174,7 @@ class TelaPessoa():
             [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
 
         ]
-        self.__window = sg.Window('Sistema E-commerce').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
         button, values = self.open()
         if button == "Voltar" or button == "Sair":
@@ -197,7 +197,7 @@ class TelaPessoa():
             [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
 
         ]
-        self.__window = sg.Window('Sistema E-commerce').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
         button, values = self.open()
         if button == "Voltar" or button == "Sair":

@@ -82,7 +82,7 @@ class TelaProduto():
             [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
 
         ]
-        self.__window = sg.Window('Sistema de produtos').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
     def init_opcoes1(self):
 
@@ -97,7 +97,7 @@ class TelaProduto():
             [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
 
         ]
-        self.__window = sg.Window('Sistema de produtos').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
     def init_opcoes2(self):
 
@@ -110,7 +110,7 @@ class TelaProduto():
             [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
 
         ]
-        self.__window = sg.Window('Sistema de produtos').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
     # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
 
     def pega_dados_produto(self):
@@ -126,7 +126,7 @@ class TelaProduto():
             [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
 
         ]
-        self.__window = sg.Window('Sistema de categorias').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
         button, values = self.open()
 
@@ -163,7 +163,7 @@ class TelaProduto():
             [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
 
         ]
-        self.__window = sg.Window('Seleciona produto').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
         button, values = self.open()
 
