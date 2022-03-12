@@ -31,26 +31,26 @@ class ControladorCategorias():
 
   def alterar_categoria(self):
     self.__tela_categoria.mostra_mensagem("ATENÇÃO: Digite a categoria que deseja alterar")
-    corAntiga = input().upper()
-    corAntiga = corAntiga.strip()
+    dados_categoria = self.__tela_categoria.pega_dados_categoria()
+    antiga_categoria = self.confere_categoria_tipo(dados_categoria["tipo"])
     self.__tela_categoria.mostra_mensagem("ATENÇÃO: Digite a categoria pela qual você deseja alterar")
-    corNova = input().upper()
-    corNova = corNova.strip()
-    verefica1 = False
-    verefica = False
-    for cor in self.__categorias:
-      if cor.tipo == corAntiga:
-        verefica = True
-    for cor in self.__categorias:
-      if cor.tipo == corNova:
-        verefica1 = True
-        self.__tela_categoria.mostra_mensagem("ATENÇÃO: A categoria que deseja alterada não se encontra na lista")
-    if verefica == True and verefica1 != True:
+    dados_categoria = self.__tela_categoria.pega_dados_categoria()
+    nova_categoria = self.confere_categoria_tipo(dados_categoria["tipo"])
+    #verefica1 = False
+    #verefica = False
+ #   for cor in self.__categorias:
+  #    if cor.tipo == antiga_categoria:
+   #     verefica = True
+    #for cor in self.__categorias:
+     # if cor.tipo == corNova:
+      #  verefica1 = True
+       # self.__tela_categoria.mostra_mensagem("ATENÇÃO: A categoria que deseja alterada não se encontra na lista")
+    if nova_categoria == None and antiga_categoria != None:
       for cor in self.__categorias:
-        if cor.tipo == corAntiga:
-          cor.tipo = corNova
+        if cor.tipo == antiga_categoria:
+          cor.tipo = nova_categoria
           self.__tela_categoria.mostra_mensagem("ATENÇÃO: Categoria alterada com sucesso")
-    elif verefica == False:
+    elif nova_categoria != None:
       self.__tela_categoria.mostra_mensagem("ATENÇÃO: A categoria que deseja alterada não se encontra na lista")
         
 
