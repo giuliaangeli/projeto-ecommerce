@@ -136,41 +136,25 @@ class ControladorPessoa():
         if isinstance(pessoa, Adm):
         
             novos_dados_adm = self.__tela_pessoa.pega_dado_adm()
-
-            if novos_dados_adm == "Sair":
-                self.__controlador_sistema.encerra_sistema()
-
-            elif novos_dados_adm == "Voltar":
-                self.abre_tela_adm(pessoa)
-
-            else:
-                pessoa.nome = novos_dados_adm["nome"]
-                pessoa.cpf = novos_dados_adm["cpf"]
-                pessoa.telefone = novos_dados_adm["telefone"]
-                pessoa.endereco = novos_dados_adm["endereco"]
-                pessoa.email = novos_dados_adm["email"]
-                pessoa.senha = novos_dados_adm["senha"]
-                pessoa.salario = novos_dados_adm["salario"]
-                self.__tela_pessoa.mostra_mensagem("\n Dados alterados com sucesso!\n")
+            pessoa.nome = novos_dados_adm["nome"]
+            pessoa.cpf = novos_dados_adm["cpf"]
+            pessoa.telefone = novos_dados_adm["telefone"]
+            pessoa.endereco = novos_dados_adm["endereco"]
+            pessoa.email = novos_dados_adm["email"]
+            pessoa.senha = novos_dados_adm["senha"]
+            pessoa.salario = novos_dados_adm["salario"]
+            self.__tela_pessoa.mostra_mensagem("\n Dados alterados com sucesso!\n")
 
         elif isinstance(pessoa, Usuario):
             
             novos_dados_usuario = self.__tela_pessoa.pega_dados_usuario()
-            
-            if novos_dados_usuario == "Sair":
-                self.__controlador_sistema.encerra_sistema()
-
-            elif novos_dados_usuario == "Voltar":
-                self.abre_tela_usuario(pessoa)
-            
-            else:
-                pessoa.nome = novos_dados_usuario["nome"]
-                pessoa.cpf = novos_dados_usuario["cpf"]
-                pessoa.telefone = novos_dados_usuario["telefone"]
-                pessoa.endereco = novos_dados_usuario["endereco"]
-                pessoa.email = novos_dados_usuario["email"]
-                pessoa.senha = novos_dados_usuario["senha"]
-                self.__tela_pessoa.mostra_mensagem("\n Dados alterados com sucesso!\n")
+            pessoa.nome = novos_dados_usuario["nome"]
+            pessoa.cpf = novos_dados_usuario["cpf"]
+            pessoa.telefone = novos_dados_usuario["telefone"]
+            pessoa.endereco = novos_dados_usuario["endereco"]
+            pessoa.email = novos_dados_usuario["email"]
+            pessoa.senha = novos_dados_usuario["senha"]
+            self.__tela_pessoa.mostra_mensagem("\n Dados alterados com sucesso!\n")
 
     def listar_dados(self, pessoa, funcao = 0):
 
@@ -199,7 +183,7 @@ class ControladorPessoa():
 
     def abre_tela_adm(self, adm):
 
-        lista_opcoes = {1: self.incluir_adm, 2: self.excluir_pessoa, 3: self.listar_dados, 4: self.alterar_pessoa , 5: self.incluir_usuario, 6: self.excluir_pessoa, 7: self.listar_dados , 8: self.retornar_menu_adm, 9: self.__controlador_sistema.encerra_sistema}
+        lista_opcoes = {1: self.incluir_adm, 2: self.excluir_pessoa, 3: self.listar_dados, 4: self.alterar_pessoa , 5: self.incluir_usuario, 6: self.excluir_pessoa, 7: self.listar_dados , 8: self.retornar_menu_adm, 9: self.__controlador_sistema.abre_tela_inicial}
 
         continua = True
         while continua:
@@ -215,7 +199,7 @@ class ControladorPessoa():
     
     def abre_tela_usuario(self, usuario):
     
-        lista_opcoes = {1: self.listar_dados, 2: self.alterar_pessoa , 3: self.excluir_pessoa, 4: self.retornar_menu_usuario, 5: self.__controlador_sistema.encerra_sistema}
+        lista_opcoes = {1: self.listar_dados, 2: self.alterar_pessoa , 3: self.excluir_pessoa, 4: self.retornar_menu_usuario, 5: self.__controlador_sistema.abre_tela_inicial}
 
         continua = True
         while continua:

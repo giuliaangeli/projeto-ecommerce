@@ -1,5 +1,6 @@
 from limite.tela_categoria import TelaCategoria
 from entidade.categoria import Categoria
+from limite.ja_cadastrado import JaCadastrado
 
 class ControladorCategorias():
   # Fazer lançamento e tratamento de exceções, ao invés de apenas mostrar mensagem na tela.
@@ -18,35 +19,38 @@ class ControladorCategorias():
     dados_categoria = self.__tela_categoria.pega_dados_categoria()
     nova_categoria = self.confere_categoria_tipo(dados_categoria["tipo"])
 
-    if nova_categoria == None:
-      categoria = Categoria(dados_categoria["tipo"])
-      self.__categorias.append(categoria)
-      self.__tela_categoria.mostra_mensagem("ATENÇÃO: Categoria adicionada com sucesso")
-    else:
-      self.__tela_categoria.mostra_mensagem("ATENÇÃO: Categoria já está cadastrada")
+    try:
+      if nova_categoria == None:
+        categoria = Categoria(dados_categoria["tipo"])
+        self.__categorias.append(categoria)
+        self.__tela_categoria.mostra_mensagem("ATENÇÃO: Categoria adicionada com sucesso")
+      else:
+        raise JaCadastrado
+    except JaCadastrado as j:
+      self.__tela_categoria.mostra_mensagem("Categoria" + str(j))
 
   def alterar_categoria(self):
     self.__tela_categoria.mostra_mensagem("ATENÇÃO: Digite a categoria que deseja alterar")
-    corAntiga = input().upper()
-    corAntiga = corAntiga.strip()
+    antiga_categoria = input().upper()
+    antiga_categoria = antiga_categoria.strip()
     self.__tela_categoria.mostra_mensagem("ATENÇÃO: Digite a categoria pela qual você deseja alterar")
-    corNova = input().upper()
-    corNova = corNova.strip()
+    nova_categoria = input().upper()
+    nova_categoria = nova_categoria.strip()
     verefica1 = False
     verefica = False
     for cor in self.__categorias:
-      if cor.tipo == corAntiga:
+      if cor.tipo == antiga_categoria:
         verefica = True
     for cor in self.__categorias:
-      if cor.tipo == corNova:
+      if cor.tipo == nova_categoria:
         verefica1 = True
         self.__tela_categoria.mostra_mensagem("ATENÇÃO: A categoria que deseja alterada não se encontra na lista")
-    if verefica == True and verefica1 != True:
+    if nova_categoria == None and antiga_categoria != None:
       for cor in self.__categorias:
-        if cor.tipo == corAntiga:
-          cor.tipo = corNova
+        if cor.tipo == antiga_categoria:
+          cor.tipo = nova_categoria
           self.__tela_categoria.mostra_mensagem("ATENÇÃO: Categoria alterada com sucesso")
-    elif verefica == False:
+    elif nova_categoria != None:
       self.__tela_categoria.mostra_mensagem("ATENÇÃO: A categoria que deseja alterada não se encontra na lista")
         
 
