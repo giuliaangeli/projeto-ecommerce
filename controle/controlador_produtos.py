@@ -36,6 +36,7 @@ class ControladorProdutos():
         cabecalho('CATEGORIAS CADASTRADAS')
         self.__controlador_sistema.controlador_categorias.lista_categoria()
         dados_produto = self.__tela_produtos.pega_dados_produto()
+        print(dados_produto)
 
         cor1 = self.valida_cor(dados_produto)
         tamanho1 = self.valida_tamanho(dados_produto)
@@ -54,8 +55,7 @@ class ControladorProdutos():
         return None
 
     def valida_cor(self, dados_produto):
-        cor = self.__controlador_sistema.controlador_cores.confere_cor_nome(
-            dados_produto["nome"])
+        cor = self.__controlador_sistema.controlador_cores.confere_cor_nome(dados_produto["cor"])
         if isinstance(cor, Cor):
             return cor
         else:

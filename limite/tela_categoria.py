@@ -88,6 +88,8 @@ class TelaCategoria():
 
     button, values = self.open()
     tipo = values['tipo']
+    tipo = str(tipo)
+    tipo = tipo.upper()
     self.close()
     return tipo
 

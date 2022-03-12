@@ -1,5 +1,6 @@
 from limite.tela_categoria import TelaCategoria
 from entidade.categoria import Categoria
+from limite.ja_cadastrado import JaCadastrado
 
 class ControladorCategorias():
   # Fazer lançamento e tratamento de exceções, ao invés de apenas mostrar mensagem na tela.
@@ -18,12 +19,15 @@ class ControladorCategorias():
     dados_categoria = self.__tela_categoria.pega_dados_categoria()
     nova_categoria = self.confere_categoria_tipo(dados_categoria["tipo"])
 
-    if nova_categoria == None:
-      categoria = Categoria(dados_categoria["tipo"])
-      self.__categorias.append(categoria)
-      self.__tela_categoria.mostra_mensagem("ATENÇÃO: Categoria adicionada com sucesso")
-    else:
-      self.__tela_categoria.mostra_mensagem("ATENÇÃO: Categoria já está cadastrada")
+    try:
+      if nova_categoria == None:
+        categoria = Categoria(dados_categoria["tipo"])
+        self.__categorias.append(categoria)
+        self.__tela_categoria.mostra_mensagem("ATENÇÃO: Categoria adicionada com sucesso")
+      else:
+        raise JaCadastrado
+    except JaCadastrado as j:
+      self.__tela_categoria.mostra_mensagem("Categoria" + str(j))
 
   def alterar_categoria(self):
     self.__tela_categoria.mostra_mensagem("ATENÇÃO: Digite a categoria que deseja alterar")
