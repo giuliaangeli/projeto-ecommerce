@@ -56,20 +56,27 @@ class ControladorPessoa():
     def confere_login(self, tipo_pessoa: int):
         dados_login = self.__tela_pessoa.pega_dados_login()
 
-        #se for adm
-        if tipo_pessoa == 1:
-            for adm in self.__adms:
-                if(adm.email == dados_login['email']) and (adm.senha == dados_login['senha']):
-                    return adm
-            return None
+        if dados_login == "Sair":
+            self.__controlador_sistema.encerra_sistema()
 
-        #se for usuário
+        elif dados_login == "Voltar":
+            self.__controlador_sistema.controla_tela_login()
+
         else:
-            for usuario in self.__usuarios:
-                if(usuario.email == dados_login['email']) and (usuario.senha == dados_login['senha']):
-                    return usuario
-            return None
-    #AQUI TEM QUE VER COMO VAI FAZER PQ ESSA FUNÇÃO É CHAMADA PRA O USUARIO QUE NÃO TEM CONTA CRIAR UMA E TBM É CHAMADA PELO ADM QUE QUER
+            #se for adm
+            if tipo_pessoa == 1:
+                for adm in self.__adms:
+                    if(adm.email == dados_login['email']) and (adm.senha == dados_login['senha']):
+                        return adm
+                return None
+
+            #se for usuário
+            else:
+                for usuario in self.__usuarios:
+                    if(usuario.email == dados_login['email']) and (usuario.senha == dados_login['senha']):
+                        return usuario
+                return None
+
     def incluir_usuario(self, pessoa):
         dados_novo_usuario = self.__tela_pessoa.pega_dados_usuario()
         if dados_novo_usuario == "Sair":
@@ -94,17 +101,25 @@ class ControladorPessoa():
                 self.__tela_pessoa.mostra_mensagem("ATENÇÃO: O CPF ou o e-mail digitado já estão cadastrados")
                 return None
         
-    def incluir_adm(self):
+    def incluir_adm(self, pessoa):
         dados_novo_adm = self.__tela_pessoa.pega_dado_adm()
-        adm_cpf = self.confere_adm_cpf(dados_novo_adm["cpf"])
-        adm_email = self.confere_adm_email(dados_novo_adm["email"])
-        if adm_cpf == None and adm_email == None:
-            novo_adm = Adm(dados_novo_adm["nome"], dados_novo_adm["cpf"], dados_novo_adm["telefone"], dados_novo_adm["endereco"], dados_novo_adm["email"], dados_novo_adm["senha"], dados_novo_adm["salario"])
-            self.__adms.append(novo_adm)
-            self.__tela_pessoa.mostra_mensagem("Administrador adicionado com sucesso!")
 
+        if dados_novo_adm == "Sair":
+            self.__controlador_sistema.encerra_sistema()
+        
+        elif dados_novo_adm == "Voltar":
+            self.abre_tela_adm(pessoa)
+        
         else:
-            self.__tela_pessoa.mostra_mensagem("ATENÇÃO: O CPF ou o e-mail digitado já estão cadastrados")
+            adm_cpf = self.confere_adm_cpf(dados_novo_adm["cpf"])
+            adm_email = self.confere_adm_email(dados_novo_adm["email"])
+            if adm_cpf == None and adm_email == None:
+                novo_adm = Adm(dados_novo_adm["nome"], dados_novo_adm["cpf"], dados_novo_adm["telefone"], dados_novo_adm["endereco"], dados_novo_adm["email"], dados_novo_adm["senha"], dados_novo_adm["salario"])
+                self.__adms.append(novo_adm)
+                self.__tela_pessoa.mostra_mensagem("Administrador adicionado com sucesso!")
+
+            else:
+                self.__tela_pessoa.mostra_mensagem("ATENÇÃO: O CPF ou o e-mail digitado já estão cadastrados")
 
     def excluir_pessoa(self, pessoa, tipo_pessoa_excluir):
         
@@ -145,25 +160,39 @@ class ControladorPessoa():
         if isinstance(pessoa, Adm):
         
             novos_dados_adm = self.__tela_pessoa.pega_dado_adm()
-            pessoa.nome = novos_dados_adm["nome"]
-            pessoa.cpf = novos_dados_adm["cpf"]
-            pessoa.telefone = novos_dados_adm["telefone"]
-            pessoa.endereco = novos_dados_adm["endereco"]
-            pessoa.email = novos_dados_adm["email"]
-            pessoa.senha = novos_dados_adm["senha"]
-            pessoa.salario = novos_dados_adm["salario"]
-            self.__tela_pessoa.mostra_mensagem("\n Dados alterados com sucesso!\n")
+            if novos_dados_adm == "Sair":
+                self.__controlador_sistema.encerra_sistema()
+            
+            elif novos_dados_adm == "Voltar":
+                self.abre_tela_adm(pessoa)
+            
+            else:
+                pessoa.nome = novos_dados_adm["nome"]
+                pessoa.cpf = novos_dados_adm["cpf"]
+                pessoa.telefone = novos_dados_adm["telefone"]
+                pessoa.endereco = novos_dados_adm["endereco"]
+                pessoa.email = novos_dados_adm["email"]
+                pessoa.senha = novos_dados_adm["senha"]
+                pessoa.salario = novos_dados_adm["salario"]
+                self.__tela_pessoa.mostra_mensagem("\n Dados alterados com sucesso!\n")
 
         elif isinstance(pessoa, Usuario):
             
             novos_dados_usuario = self.__tela_pessoa.pega_dados_usuario()
-            pessoa.nome = novos_dados_usuario["nome"]
-            pessoa.cpf = novos_dados_usuario["cpf"]
-            pessoa.telefone = novos_dados_usuario["telefone"]
-            pessoa.endereco = novos_dados_usuario["endereco"]
-            pessoa.email = novos_dados_usuario["email"]
-            pessoa.senha = novos_dados_usuario["senha"]
-            self.__tela_pessoa.mostra_mensagem("\n Dados alterados com sucesso!\n")
+            if novos_dados_usuario == "Sair":
+                self.__controlador_sistema.encerra_sistema()
+        
+            elif novos_dados_usuario == "Voltar":
+                self.abre_tela_usuario(pessoa)
+            
+            else:
+                pessoa.nome = novos_dados_usuario["nome"]
+                pessoa.cpf = novos_dados_usuario["cpf"]
+                pessoa.telefone = novos_dados_usuario["telefone"]
+                pessoa.endereco = novos_dados_usuario["endereco"]
+                pessoa.email = novos_dados_usuario["email"]
+                pessoa.senha = novos_dados_usuario["senha"]
+                self.__tela_pessoa.mostra_mensagem("\n Dados alterados com sucesso!\n")
 
     def listar_dados(self, pessoa, funcao = 0):
 
@@ -199,12 +228,12 @@ class ControladorPessoa():
             opcao_escolhida = self.__tela_pessoa.tela_pessoa_adm()
             if opcao_escolhida == 2 or opcao_escolhida == 3:
                 lista_opcoes[opcao_escolhida](adm,1)
-            elif opcao_escolhida == 4 or opcao_escolhida == 5 or opcao_escolhida == 8 :
-                lista_opcoes[opcao_escolhida](adm)
+            elif opcao_escolhida == 9:
+                lista_opcoes[opcao_escolhida]()
             elif opcao_escolhida == 6 or opcao_escolhida == 7:
                 lista_opcoes[opcao_escolhida](adm,2)
             else:
-                lista_opcoes[opcao_escolhida]()
+                lista_opcoes[opcao_escolhida](adm)
     
     def abre_tela_usuario(self, usuario):
     
