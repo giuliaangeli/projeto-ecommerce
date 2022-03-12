@@ -238,19 +238,19 @@ class ControladorHistorico():
 
     def abrir_menu_filtro_adm(self, adm):
 
-        lista_opcoes = {1: self.listar_historico_simples, 2: self.listar_historico_personalizado}
+        lista_opcoes = {1: self.listar_historico_simples, 2: self.listar_historico_personalizado, 3: self.__controlador_sistema.controla_menu_principal_adm, 4: self.__controlador_sistema.encerra_sistema}
         
         continua = True
         while continua:
             opcao_escolhida = self.__tela_historico.menu_opcao_filtro()
-            if opcao_escolhida == 1:
+            if opcao_escolhida == 1 or opcao_escolhida == 4:
                 lista_opcoes[opcao_escolhida]()
             else:
                 lista_opcoes[opcao_escolhida](adm)
 
     def abrir_menu_historico_adm(self, adm):
          
-        lista_opcoes = {1: self.abrir_menu_filtro_adm, 2: self.alterar_historico_produto, 3: self.incluir_historico, 4: self.excluir_historico}
+        lista_opcoes = {1: self.abrir_menu_filtro_adm, 2: self.alterar_historico_produto, 3: self.incluir_historico, 4: self.excluir_historico, 5: self.__controlador_sistema.controla_menu_principal_adm, 6: self.__controlador_sistema.encerra_sistema}
         
         continua = True
         while continua:

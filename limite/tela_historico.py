@@ -65,10 +65,6 @@ class TelaHistorico():
                 opcao = 1
             if values['2']:
                 opcao = 2
-            if button == "Voltar":
-                opcao = 3
-            if button == "Sair":
-                opcao = 4
             self.close()
         self.close()
         return opcao
@@ -83,10 +79,6 @@ class TelaHistorico():
                 opcao = 1
             if values['2']:
                 opcao = 2
-            if button == "Voltar":
-                opcao = 3
-            if button == "Sair":
-                opcao = 4
             self.close()
         self.close()
         return opcao
@@ -100,10 +92,6 @@ class TelaHistorico():
                 opcao = 1
             if values['2']:
                 opcao = 2
-            if button == "Voltar":
-                opcao = 3
-            if button == "Sair":
-                opcao = 4
             self.close()
         self.close()
         return opcao
@@ -118,10 +106,6 @@ class TelaHistorico():
                 opcao = 1
             if values['2']:
                 opcao = 2
-            if button == "Voltar":
-                opcao = 3
-            if button == "Sair":
-                opcao = 4
             self.close()
         self.close()
         return opcao
@@ -162,7 +146,7 @@ class TelaHistorico():
             [sg.Text('Escolha sua opção', font=("Helvica", 15))],
             [sg.Radio('Todas as Cores', "RD1", key='1')],
             [sg.Radio('Escolher uma Cor', "RD1", key='2')],
-            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
+            [sg.Button('Confirmar')]
 
         ]
         self.__window = sg.Window('Sistema de produtos').Layout(layout)
@@ -175,7 +159,7 @@ class TelaHistorico():
             [sg.Text('Escolha sua opção', font=("Helvica", 15))],
             [sg.Radio('Todas os Tamanhos', "RD1", key='1')],
             [sg.Radio('Escolher um Tamanho', "RD1", key='2')],
-            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
+            [sg.Button('Confirmar')]
 
         ]
         self.__window = sg.Window('Sistema de produtos').Layout(layout)
@@ -188,7 +172,7 @@ class TelaHistorico():
             [sg.Text('Escolha sua opção', font=("Helvica", 15))],
             [sg.Radio('Todas as Categorias', "RD1", key='1')],
             [sg.Radio('Escolher uma Categorias', "RD1", key='2')],
-            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
+            [sg.Button('Confirmar')]
 
         ]
         self.__window = sg.Window('Sistema de produtos').Layout(layout)
@@ -201,7 +185,7 @@ class TelaHistorico():
             [sg.Text('Escolha sua opção', font=("Helvica", 15))],
             [sg.Radio('Todos os Clientes', "RD1", key='1')],
             [sg.Radio('Escolher um Cliente', "RD1", key='2')],
-            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
+            [sg.Button('Confirmar')]
 
         ]
         self.__window = sg.Window('Sistema de produtos').Layout(layout)
@@ -212,7 +196,7 @@ class TelaHistorico():
         layout = [
             [sg.Text('DADOS CATEGORIAS ', font=("Helvica", 25))],
             [sg.Text('Cor:', size=(15, 1)), sg.InputText('', key='cor')],
-            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
+            [sg.Button('Confirmar')]
         ]
         self.__window = sg.Window('Sistema de COR').Layout(layout)
 
@@ -229,7 +213,7 @@ class TelaHistorico():
             [sg.Text('DADOS CATEGORIAS', font=("Helvica", 25))],
             [sg.Text('Tamanho:', size=(15, 1)),
              sg.InputText('', key='tamanho')],
-            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
+            [sg.Button('Confirmar')]
         ]
         self.__window = sg.Window('Sistema de Tamanho').Layout(layout)
 
@@ -245,7 +229,7 @@ class TelaHistorico():
             [sg.Text('DADOS CATEGORIAS', font=("Helvica", 25))],
             [sg.Text('Categoria:', size=(15, 1)),
              sg.InputText('', key='categoria')],
-            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
+            [sg.Button('Confirmar')]
 
         ]
         self.__window = sg.Window('Sistema de categorias').Layout(layout)
@@ -258,7 +242,6 @@ class TelaHistorico():
 
     def imprime_historico(self, relatorio):
         string_todos_produtos = ""
-        print(relatorio)
         
         for codigo in relatorio:
             produto = relatorio[codigo][0]
@@ -278,7 +261,7 @@ class TelaHistorico():
             [sg.Text('Digite o codigo do produto que deseja selecionar:',
                      font=("Helvica", 15))],
             [sg.Text('codigo:', size=(15, 1)), sg.InputText('', key='codigo')],
-            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
+            [sg.Button('Confirmar')]
         ]
         self.__window = sg.Window('Seleciona produto').Layout(layout)
 
