@@ -13,8 +13,8 @@ class TelaHistorico():
         self.init_opcoes3()
         self.init_opcoes4()
         self.init_opcoes5()
+
     def menu_principal_adm(self):
-        cabecalho('MENU HISTORICO')
         opcao  = - 1
         while opcao == -1:
             self.init_opcoes()
@@ -35,9 +35,9 @@ class TelaHistorico():
             self.close()
         self.close()
         return opcao
+
     def menu_opcao_filtro(self):
 
-        cabecalho('MENU HISTORICO')
         opcao  = - 1
         while opcao == -1:
             self.init_opcoes1()
@@ -55,7 +55,7 @@ class TelaHistorico():
         return opcao
 
     def filtro_cor(self):
-        cabecalho('MENU HISTORICO')
+
         opcao  = - 1
         while opcao == -1:
             self.init_opcoes2()
@@ -71,7 +71,7 @@ class TelaHistorico():
         return opcao
 
     def filtro_tamanho(self):
-        cabecalho('MENU HISTORICO')
+
         opcao  = - 1
         while opcao == -1:
             self.init_opcoes3()
@@ -87,7 +87,6 @@ class TelaHistorico():
         return opcao
 
     def filtro_categoria(self):
-        cabecalho('MENU HISTORICO')
         opcao  = - 1
         while opcao == -1:
             self.init_opcoes4()
@@ -101,8 +100,9 @@ class TelaHistorico():
             self.close()
         self.close()
         return opcao
+
     def filtro_cliente(self):
-        cabecalho('MENU HISTORICO')
+
         opcao  = - 1
         while opcao == -1:
             self.init_opcoes5()
@@ -283,7 +283,6 @@ class TelaHistorico():
         return codigo
 
     def escolha_cliente(self):
-        cabecalho('DIGITE O CPF DO CLIENTE')
         cpf = input().upper()
         cpf = cpf.strip()
         return cpf
@@ -292,7 +291,6 @@ class TelaHistorico():
         sg.popup("", msg)
 
     def entrada_incorreta(self):
-        cabecalho('SELECIONE UMA DAS OPÇÕES')
         opcoes = ['[1] Tentar Novamente','[2] Voltar para o menu anterior']
         
         for item in opcoes:
