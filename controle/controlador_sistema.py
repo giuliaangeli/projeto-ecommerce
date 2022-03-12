@@ -122,7 +122,8 @@ class ControladorSistema:
         lista_opcoes[opcao_escolhida]()
 
     def incluir_usuario(self):
-        usuario = self.__controle_pessoas.incluir_usuario()
+        novo_usuario = None
+        usuario = self.__controle_pessoas.incluir_usuario(novo_usuario)
         if usuario is not None:
             self.abre_tela_inicial()
         else: 

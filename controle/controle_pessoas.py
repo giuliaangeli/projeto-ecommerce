@@ -69,19 +69,30 @@ class ControladorPessoa():
                 if(usuario.email == dados_login['email']) and (usuario.senha == dados_login['senha']):
                     return usuario
             return None
-
-    def incluir_usuario(self):
+    #AQUI TEM QUE VER COMO VAI FAZER PQ ESSA FUNÇÃO É CHAMADA PRA O USUARIO QUE NÃO TEM CONTA CRIAR UMA E TBM É CHAMADA PELO ADM QUE QUER
+    def incluir_usuario(self, pessoa):
         dados_novo_usuario = self.__tela_pessoa.pega_dados_usuario()
-        usuario_cpf = self.confere_usuario_cpf(dados_novo_usuario["cpf"])
-        usuario_email = self.confere_usuario_email(dados_novo_usuario["email"])
-        if usuario_cpf == None and usuario_email == None:
-            novo_usuario = Usuario(dados_novo_usuario["nome"], dados_novo_usuario["cpf"], dados_novo_usuario["telefone"], dados_novo_usuario["endereco"], dados_novo_usuario["email"], dados_novo_usuario["senha"])
-            self.__usuarios.append(novo_usuario)
-            self.__tela_pessoa.mostra_mensagem("ATENÇÃO: Seu cadastro foi realizado com sucesso!")
-            return novo_usuario
+        if dados_novo_usuario == "Sair":
+            self.__controlador_sistema.encerra_sistema()
+        
+        elif dados_novo_usuario == "Voltar":
+            if isinstance(pessoa, Adm):
+                return self.abre_tela_adm(pessoa)
+
+            else:
+                return self.__controlador_sistema.abre_tela_inicial()
+
         else:
-            self.__tela_pessoa.mostra_mensagem("ATENÇÃO: O CPF ou o e-mail digitado já estão cadastrados")
-            return None
+            usuario_cpf = self.confere_usuario_cpf(dados_novo_usuario["cpf"])
+            usuario_email = self.confere_usuario_email(dados_novo_usuario["email"])
+            if usuario_cpf == None and usuario_email == None:
+                novo_usuario = Usuario(dados_novo_usuario["nome"], dados_novo_usuario["cpf"], dados_novo_usuario["telefone"], dados_novo_usuario["endereco"], dados_novo_usuario["email"], dados_novo_usuario["senha"])
+                self.__usuarios.append(novo_usuario)
+                self.__tela_pessoa.mostra_mensagem("ATENÇÃO: Seu cadastro foi realizado com sucesso!")
+                return novo_usuario
+            else:
+                self.__tela_pessoa.mostra_mensagem("ATENÇÃO: O CPF ou o e-mail digitado já estão cadastrados")
+                return None
         
     def incluir_adm(self):
         dados_novo_adm = self.__tela_pessoa.pega_dado_adm()
@@ -104,7 +115,6 @@ class ControladorPessoa():
         if isinstance(pessoa, Adm):
 
             if tipo_pessoa_excluir == 1:
-                cabecalho('DIGITE O CPF DO ADM QUE DESEJA EXCLUIR')
                 cpf = self.__tela_pessoa.pega_cpf()
                 for adm in self.__adms:
                     if adm.cpf == cpf:
@@ -115,7 +125,6 @@ class ControladorPessoa():
                     self.__tela_pessoa.mostra_mensagem("ATENÇÃO: Esse administrador não está cadastrado")
 
             else:
-                cabecalho('DIGITE O CPF DO USUÁRIO QUE DESEJA EXCLUIR')
                 cpf = self.__tela_pessoa.pega_cpf()
                 for usuario in self.__usuarios:
                     if usuario.cpf == cpf:
@@ -183,14 +192,14 @@ class ControladorPessoa():
 
     def abre_tela_adm(self, adm):
 
-        lista_opcoes = {1: self.incluir_adm, 2: self.excluir_pessoa, 3: self.listar_dados, 4: self.alterar_pessoa , 5: self.incluir_usuario, 6: self.excluir_pessoa, 7: self.listar_dados , 8: self.retornar_menu_adm, 9: self.__controlador_sistema.abre_tela_inicial}
+        lista_opcoes = {1: self.incluir_adm, 2: self.excluir_pessoa, 3: self.listar_dados, 4: self.alterar_pessoa , 5: self.incluir_usuario, 6: self.excluir_pessoa, 7: self.listar_dados , 8: self.retornar_menu_adm, 9: self.__controlador_sistema.encerra_sistema}
 
         continua = True
         while continua:
             opcao_escolhida = self.__tela_pessoa.tela_pessoa_adm()
             if opcao_escolhida == 2 or opcao_escolhida == 3:
                 lista_opcoes[opcao_escolhida](adm,1)
-            elif opcao_escolhida == 4 or opcao_escolhida == 8:
+            elif opcao_escolhida == 4 or opcao_escolhida == 5 or opcao_escolhida == 8 :
                 lista_opcoes[opcao_escolhida](adm)
             elif opcao_escolhida == 6 or opcao_escolhida == 7:
                 lista_opcoes[opcao_escolhida](adm,2)
@@ -199,7 +208,7 @@ class ControladorPessoa():
     
     def abre_tela_usuario(self, usuario):
     
-        lista_opcoes = {1: self.listar_dados, 2: self.alterar_pessoa , 3: self.excluir_pessoa, 4: self.retornar_menu_usuario, 5: self.__controlador_sistema.abre_tela_inicial}
+        lista_opcoes = {1: self.listar_dados, 2: self.alterar_pessoa , 3: self.excluir_pessoa, 4: self.retornar_menu_usuario, 5: self.__controlador_sistema.encerra_sistema}
 
         continua = True
         while continua:
