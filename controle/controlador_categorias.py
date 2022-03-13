@@ -1,6 +1,7 @@
 from limite.tela_categoria import TelaCategoria
 from entidade.categoria import Categoria
 from limite.ja_cadastrado import JaCadastrado
+from limite.cadrasto import Cadastrado
 
 class ControladorCategorias():
   # Fazer lançamento e tratamento de exceções, ao invés de apenas mostrar mensagem na tela.
@@ -23,11 +24,14 @@ class ControladorCategorias():
       if nova_categoria == None:
         categoria = Categoria(dados_categoria["tipo"])
         self.__categorias.append(categoria)
-        self.__tela_categoria.mostra_mensagem("ATENÇÃO: Categoria adicionada com sucesso")
+        raise Cadastrado
       else:
         raise JaCadastrado
     except JaCadastrado as j:
-      self.__tela_categoria.mostra_mensagem("Categoria" + str(j))
+      self.__tela_categoria.mostra_mensagem("Cor não foi" + str(j))
+    except Cadastrado as i:
+      self.__tela_categoria.mostra_mensagem("A categoria foi" + str(i))
+
 
   def alterar_categoria(self):
     self.__tela_categoria.mostra_mensagem("ATENÇÃO: Digite a categoria que deseja alterar")
@@ -60,13 +64,19 @@ class ControladorCategorias():
     self.__tela_categoria.mostra_categoria(self.__categorias)
 
   def excluir_categoria(self):
-    tipo = self.__tela_categoria.seleciona_categoria()
-    for categoria in self.__categorias:
-      if categoria.tipo == tipo:
-        self.__categorias.remove(categoria)
-        self.__tela_categoria.mostra_mensagem("ATENÇÃO: Categoria removida")
-      else:
-        self.__tela_categoria.mostra_mensagem("ATENÇÃO: Categoria não está cadastrada")
+    try:
+      tipo = self.__tela_categoria.seleciona_categoria()
+      for categoria in self.__categorias:
+        if categoria.tipo == tipo:
+          self.__categorias.remove(categoria)
+          raise Cadastrado
+        else:
+          raise JaCadastrado
+    except JaCadastrado as j:
+      self.__tela_categoria.mostra_mensagem("Categoria" + str(j))
+    except Cadastrado as i:
+      self.__tela_categoria.mostra_mensagem("A categoria foi" + str(i))
+
     
   def retornar_menu__produto(self, adm):
     self.__controlador_sistema.controlador_produtos.menu_incluir_produto(adm)

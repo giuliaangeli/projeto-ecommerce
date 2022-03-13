@@ -2,6 +2,8 @@ from entidade.adm import Adm
 from entidade.usuario import Usuario
 from limite.tela_pessoa import TelaPessoa
 from limite.tela_abstrata import *
+from limite.cadrasto import Cadastrado
+from limite.ja_cadastrado import JaCadastrado
 
 
 class ControladorPessoa():
@@ -74,26 +76,33 @@ class ControladorPessoa():
         dados_novo_usuario = self.__tela_pessoa.pega_dados_usuario()
         usuario_cpf = self.confere_usuario_cpf(dados_novo_usuario["cpf"])
         usuario_email = self.confere_usuario_email(dados_novo_usuario["email"])
-        if usuario_cpf == None and usuario_email == None:
-            novo_usuario = Usuario(dados_novo_usuario["nome"], dados_novo_usuario["cpf"], dados_novo_usuario["telefone"], dados_novo_usuario["endereco"], dados_novo_usuario["email"], dados_novo_usuario["senha"])
-            self.__usuarios.append(novo_usuario)
-            self.__tela_pessoa.mostra_mensagem("ATENÇÃO: Seu cadastro foi realizado com sucesso!")
-            return novo_usuario
-        else:
-            self.__tela_pessoa.mostra_mensagem("ATENÇÃO: O CPF ou o e-mail digitado já estão cadastrados")
-            return None
+        try:
+            if usuario_cpf == None and usuario_email == None:
+                novo_usuario = Usuario(dados_novo_usuario["nome"], dados_novo_usuario["cpf"], dados_novo_usuario["telefone"], dados_novo_usuario["endereco"], dados_novo_usuario["email"], dados_novo_usuario["senha"])
+                self.__usuarios.append(novo_usuario)
+                raise Cadastrado
+            else:
+                raise JaCadastrado
+        except JaCadastrado as j:
+            self.__tela_pessoa.mostra_mensagem("Usuario" + str(j))
+        except Cadastrado as i:
+            self.__tela_pessoa.mostra_mensagem("O usuario foi" + "" + str(i))
         
     def incluir_adm(self):
         dados_novo_adm = self.__tela_pessoa.pega_dado_adm()
         adm_cpf = self.confere_adm_cpf(dados_novo_adm["cpf"])
         adm_email = self.confere_adm_email(dados_novo_adm["email"])
-        if adm_cpf == None and adm_email == None:
-            novo_adm = Adm(dados_novo_adm["nome"], dados_novo_adm["cpf"], dados_novo_adm["telefone"], dados_novo_adm["endereco"], dados_novo_adm["email"], dados_novo_adm["senha"], dados_novo_adm["salario"])
-            self.__adms.append(novo_adm)
-            self.__tela_pessoa.mostra_mensagem("Administrador adicionado com sucesso!")
-
-        else:
-            self.__tela_pessoa.mostra_mensagem("ATENÇÃO: O CPF ou o e-mail digitado já estão cadastrados")
+        try:
+            if adm_cpf == None and adm_email == None:
+                novo_adm = Adm(dados_novo_adm["nome"], dados_novo_adm["cpf"], dados_novo_adm["telefone"], dados_novo_adm["endereco"], dados_novo_adm["email"], dados_novo_adm["senha"], dados_novo_adm["salario"])
+                self.__adms.append(novo_adm)
+                raise Cadastrado
+            else:
+                raise JaCadastrado
+        except JaCadastrado as j:
+            self.__tela_pessoa.mostra_mensagem("ADM" + str(j))
+        except Cadastrado as i:
+            self.__tela_pessoa.mostra_mensagem("O ADM foi" + "" + str(i))
 
     def excluir_pessoa(self, pessoa, tipo_pessoa_excluir):
         

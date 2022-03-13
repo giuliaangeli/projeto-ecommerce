@@ -1,5 +1,7 @@
 from limite.tela_cor import TelaCor
 from entidade.cor import Cor
+from limite.ja_cadastrado import JaCadastrado
+from limite.cadrasto import Cadastrado
 
 class ControladorCores():
   # Fazer lançamento e tratamento de exceções, ao invés de apenas mostrar mensagem na tela.
@@ -16,13 +18,18 @@ class ControladorCores():
 
   def incluir_cor(self):
     dados_cor = self.__tela_cor.pega_dados_cor()
-    dados_confere = self.confere_nome_cor(dados_cor)
-    if dados_confere == None:
-      dados_cor = Cor(dados_cor)
-      self.__cores.append(dados_cor)
-      self.__tela_cor.mostra_mensagem("ATENÇÃO: COR foi adicionada com sucesso!")
-    else:
-      self.__tela_cor.mostra_mensagem("ATENÇÃO: Essa COR já cadastrada!")
+    dados_confere = self.confere_nome_cor(dados_cor['nome'])
+    try:
+      if dados_confere == None:
+        cor = Cor(dados_cor["nome"])
+        self.__cores.append(cor)
+        raise Cadastrado
+      else:
+        raise JaCadastrado
+    except JaCadastrado as j:
+      self.__tela_cor.mostra_mensagem("Cor" + str(j))
+    except Cadastrado as i:
+      self.__tela_cor.mostra_mensagem("A cor foi" + str(i))
 
   def alterar_cor(self):
     self.__tela_cor.mostra_mensagem("ATENÇÃO: Digite o nome da cor que você deseja alterar")

@@ -7,6 +7,8 @@ from entidade.cor import Cor
 from entidade.categoria import Categoria
 from limite.tela_produto import TelaProduto
 from limite.tela_abstrata import cabecalho
+from limite.cadrasto import Cadastrado
+from limite.ja_cadastrado import JaCadastrado
 
 # Fazer lançamento e tratamento de exceções, ao invés de apenas mostrar mensagem na tela.
 
@@ -41,14 +43,16 @@ class ControladorProdutos():
         cor1 = self.valida_cor(dados_produto)
         tamanho1 = self.valida_tamanho(dados_produto)
         categoria1 = self.valida_categoria(dados_produto)
-
-        for produto in self.__produtos:
-            if produto.cor == cor1 and produto.tamanho == tamanho1 and produto.categoria == categoria1:
-                self.__tela_produtos.mostra_mensagem(
-                    "ATENCAO:O produto que você está tentando incluir já está na lista de produtos!")
-                return None
-        self.__tela_produtos.mostra_mensagem(
-            "ATENCAO:O produto foi adicionado a lista de produtos!")
+        try:
+            for produto in self.__produtos:
+                if produto.cor == cor1 and produto.tamanho == tamanho1 and produto.categoria == categoria1:
+                    raise JaCadastrado
+                else:
+                    raise Cadastrado
+        except JaCadastrado as j:
+            self.__tela_produtos.mostra_mensagem("Produto" + str(j))
+        except Cadastrado as i:
+            self.__tela_produtos.mostra_mensagem("O produto foi" + str(i))        
         codigo = len(self.__produtos) + 1
         novo_produto = Produto(cor1, tamanho1, categoria1, codigo)
         self.__produtos.append(novo_produto)

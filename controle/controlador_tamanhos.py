@@ -1,5 +1,7 @@
 from limite.tela_tamanho import TelaTamanho
 from entidade.tamanho import Tamanho
+from limite.cadrasto import Cadastrado
+from limite.ja_cadastrado import JaCadastrado
 
 
 class ControladorTamanhos():
@@ -20,14 +22,17 @@ class ControladorTamanhos():
         nova_tamanho = self.confere_tamanho_descricao(
             dados_tamanho["descricao"])
 
-        if nova_tamanho == None:
-            tamanho = Tamanho(dados_tamanho["descricao"])
-            self.__tamanhos.append(tamanho)
-            self.__tela_tamanho.mostra_mensagem(
-                "ATENÇÃO: Tamanho foi selecionado com sucesso")
-            return None
-        self.__tela_tamanho.mostra_mensagem(
-            "ATENÇÃO: Esse tamanho já está cadastrado")
+        try:
+            if nova_tamanho == None:
+                categoria = Tamanho(dados_tamanho["descricao"])
+                self.__tamanhos.append(categoria)
+                raise Cadastrado
+            else:
+                raise JaCadastrado
+        except JaCadastrado as j:
+            self.__tela_tamanho.mostra_mensagem("Categoria" + str(j))
+        except Cadastrado as i:
+            self.__tela_tamanho.mostra_mensagem("A categoria foi" + str(i))
 
     def alterar_tamanho(self):
         self.__tela_tamanho.mostra_mensagem(
