@@ -26,6 +26,7 @@ class ControladorCategorias():
         self.__categorias.append(categoria)
         raise Cadastrado
       else:
+        
         raise JaCadastrado
     except JaCadastrado as j:
       self.__tela_categoria.mostra_mensagem("Cor não foi" + str(j))
