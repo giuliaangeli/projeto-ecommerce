@@ -37,11 +37,8 @@ class ControladorCategorias():
   def alterar_categoria(self):
         self.__tela_categoria.mostra_mensagem("ATENÇÃO: Digite o tipo da categoria que você deseja alterar")
         categoriaAntigo = self.__tela_categoria.seleciona_categoria()
-        categoriaAntigo = categoriaAntigo.upper()
-        categoriaAntigo = categoriaAntigo.strip()
         self.__tela_categoria.mostra_mensagem("ATENÇÃO: Digite o tipo da categoria pelo qual você deseja substituir")
-        categoriaNova = self.__tela_categoria.seleciona_categoria().upper()
-        categoriaNova = categoriaNova.strip()
+        categoriaNova = self.__tela_categoria.seleciona_categoria()
         verefica1 = False
         verefica = False
         for tamanho in self.__categorias:
@@ -50,15 +47,15 @@ class ControladorCategorias():
             if tamanho.tipo == categoriaNova:
                 verefica1 = True
                 self.__tela_categoria.mostra_mensagem(
-                    "ATENÇÃO: O tamanho que você deseja alterar já se encontra na lista")
+                    "ATENÇÃO: A categoria que você deseja alterar já se encontra na lista")
         if verefica == True and verefica1 != True:
             for tamanho in self.__categorias:
                 if tamanho.tipo == categoriaAntigo:
-                    self.__tela_categoria.mostra_mensagem("ATENÇÃO: Tamanho alterado com suesso")
+                    self.__tela_categoria.mostra_mensagem("ATENÇÃO: Categoria alterado com suesso")
                     tamanho.tipo = categoriaNova
         if verefica == False:
             self.__tela_categoria.mostra_mensagem(
-                "ATENÇÃO: O trabalho que deseja alterar não se encontra na lista de cores")
+                "ATENÇÃO: A categoria que deseja alterar não se encontra na lista de categorias")
         
 
   # Sugestão: se a lista estiver vazia, mostrar a mensagem de lista vazia

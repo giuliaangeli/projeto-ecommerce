@@ -30,32 +30,38 @@ class ControladorProdutos():
         return None
 
     def incluir_produto(self, adm):
+        try:
+            cabecalho('CORES CADASTRADAS')
+            self.__controlador_sistema.controlador_cores.lista_cor()
+            cabecalho('TAMANHOS CADASTRADOS')
+            self.__controlador_sistema.controlador_tamanhos.lista_tamanho()
+            cabecalho('CATEGORIAS CADASTRADAS')
+            self.__controlador_sistema.controlador_categorias.lista_categoria()
+            dados_produto = self.__tela_produtos.pega_dados_produto()
+            print(dados_produto)
 
-        cabecalho('CORES CADASTRADAS')
-        self.__controlador_sistema.controlador_cores.lista_cor()
-        cabecalho('TAMANHOS CADASTRADOS')
-        self.__controlador_sistema.controlador_tamanhos.lista_tamanho()
-        cabecalho('CATEGORIAS CADASTRADAS')
-        self.__controlador_sistema.controlador_categorias.lista_categoria()
-        dados_produto = self.__tela_produtos.pega_dados_produto()
-        print(dados_produto)
-
-        cor1 = self.valida_cor(dados_produto)
-        tamanho1 = self.valida_tamanho(dados_produto)
-        categoria1 = self.valida_categoria(dados_produto)
-        for produto in self.__produtos:
-            if produto.cor == cor1 and produto.tamanho == tamanho1 and produto.categoria == categoria1:
-                self.__tela_produtos.mostra_mensagem(
-                    "ATENCAO:O produto que você está tentando incluir já está na lista de produtos!")
+            cor1 = self.valida_cor(dados_produto)
+            tamanho1 = self.valida_tamanho(dados_produto)
+            categoria1 = self.valida_categoria(dados_produto)
+            for produto in self.__produtos:
+                if produto.cor == cor1 and produto.tamanho == tamanho1 and produto.categoria == categoria1:
+                    self.__tela_produtos.mostra_mensagem("ATENCAO:O produto que você está tentando incluir já está na lista de produtos!")
+                    raise Cadastrado
+                    return None
+            if  cor1 != None and tamanho1 != None and categoria1 != None:
+                self.__tela_produtos.mostra_mensagem("ATENCAO:O produto foi adicionado a lista de produtos!")
+                codigo = len(self.__produtos) + 1
+                novo_produto = Produto(cor1, tamanho1, categoria1, codigo)
+                self.__produtos.append(novo_produto)
+                raise Cadastrado
                 return None
-        if  cor1 != None and tamanho1 != None and categoria1 != None:
-            self.__tela_produtos.mostra_mensagem("ATENCAO:O produto foi adicionado a lista de produtos!")
-            codigo = len(self.__produtos) + 1
-            novo_produto = Produto(cor1, tamanho1, categoria1, codigo)
-            self.__produtos.append(novo_produto)
-            return None
-        else:
-            self.__tela_produtos.mostra_mensagem("ATENCAO:O produto com elementos invalidos!")
+            else:
+                raise Cadastrado
+                #self.__tela_produtos.mostra_mensagem("ATENCAO:O produto com elementos invalidos!")
+        except JaCadastrado as j:
+            self.__tela_produtos.mostra_mensagem("Produto não foi" + str(j))
+        except Cadastrado as i:
+            self.__tela_produtos.mostra_mensagem("O produto foi" + str(i))
 
         '''        try:
             for produto in self.__produtos:
