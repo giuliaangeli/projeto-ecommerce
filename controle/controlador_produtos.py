@@ -43,7 +43,21 @@ class ControladorProdutos():
         cor1 = self.valida_cor(dados_produto)
         tamanho1 = self.valida_tamanho(dados_produto)
         categoria1 = self.valida_categoria(dados_produto)
-        try:
+        for produto in self.__produtos:
+            if produto.cor == cor1 and produto.tamanho == tamanho1 and produto.categoria == categoria1:
+                self.__tela_produtos.mostra_mensagem(
+                    "ATENCAO:O produto que você está tentando incluir já está na lista de produtos!")
+                return None
+        if  cor1 != None and tamanho1 != None and categoria1 != None:
+            self.__tela_produtos.mostra_mensagem("ATENCAO:O produto foi adicionado a lista de produtos!")
+            codigo = len(self.__produtos) + 1
+            novo_produto = Produto(cor1, tamanho1, categoria1, codigo)
+            self.__produtos.append(novo_produto)
+            return None
+        else:
+            self.__tela_produtos.mostra_mensagem("ATENCAO:O produto com elementos invalidos!")
+
+        '''        try:
             for produto in self.__produtos:
                 if produto.cor == cor1 and produto.tamanho == tamanho1 and produto.categoria == categoria1:
                     raise JaCadastrado
@@ -56,16 +70,17 @@ class ControladorProdutos():
         codigo = len(self.__produtos) + 1
         novo_produto = Produto(cor1, tamanho1, categoria1, codigo)
         self.__produtos.append(novo_produto)
-        return None
+        return None'''
 
     def valida_cor(self, dados_produto):
         cor = self.__controlador_sistema.controlador_cores.confere_cor_nome(dados_produto["cor"])
         if isinstance(cor, Cor):
             return cor
         else:
-            self.__tela_produtos.mostra_mensagem(
-                "ATENCAO:A cor digitada não está cadastrada na lista de cores, digite um cor válida!")
-            self.valida_cor(dados_produto)
+            self.__tela_produtos.mostra_mensagem("ATENCAO:A cor digitada não está cadastrada na lista de cores, digite um cor válida!")
+            #self.valida_cor(dados_produto)
+            return None
+
 
     def valida_tamanho(self, dados_produto):
         tamanho = self.__controlador_sistema.controlador_tamanhos.confere_tamanho_descricao(
@@ -74,8 +89,9 @@ class ControladorProdutos():
             return tamanho
         else:
             self.__tela_produtos.mostra_mensagem(
-                "ATENCAO: A cor digitada não está cadastrada na lista de tamanhos, digite um cor válida!")
-            self.valida_tamanho(dados_produto)
+                "ATENCAO: O tamanho digitada não está cadastrada na lista de tamanhos, digite um cor válida!")
+            #self.valida_tamanho(dados_produto)
+            return None
 
     def valida_categoria(self, dados_produto):
         categoria = self.__controlador_sistema.controlador_categorias.confere_categoria_tipo(
@@ -84,8 +100,9 @@ class ControladorProdutos():
             return categoria
         else:
             self.__tela_produtos.mostra_mensagem(
-                "ATENCAO:A cor digitada não está cadastrada na lista de categorias, digite um cor válida!")
-            self.valida_categoria(dados_produto)
+                "ATENCAO:A categoria digitada não está cadastrada na lista de categorias, digite um cor válida!")
+            #self.valida_categoria(dados_produto)
+            return None
 
     def lista_produto(self):
         self.__tela_produtos.mostra_produto(self.__produtos)

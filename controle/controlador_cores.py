@@ -33,10 +33,10 @@ class ControladorCores():
 
   def alterar_cor(self):
     self.__tela_cor.mostra_mensagem("ATENÇÃO: Digite o nome da cor que você deseja alterar")
-    corAntiga = input().upper()
+    corAntiga = self.__tela_cor.seleciona_cor().upper()
     corAntiga = corAntiga.strip()
     self.__tela_cor.mostra_mensagem("ATENÇÃO: Digite o nome da cor pelo qual você deseja substituir")
-    corNova = input().upper()
+    corNova =self.__tela_cor.seleciona_cor().upper()
     corNova = corNova.strip()
     verefica = False
     verefica1 = False

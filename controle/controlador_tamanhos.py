@@ -37,11 +37,12 @@ class ControladorTamanhos():
     def alterar_tamanho(self):
         self.__tela_tamanho.mostra_mensagem(
             "ATENÇÃO: Digite a descrição do tamanho que você deseja alterar")
-        tamanhoAntigo = input().upper()
+        tamanhoAntigo = self.__tela_tamanho.seleciona_tamanho()
+        tamanhoAntigo = tamanhoAntigo.upper()
         tamanhoAntigo = tamanhoAntigo.strip()
         self.__tela_tamanho.mostra_mensagem(
             "ATENÇÃO: Digite a descrição do tamanho pelo qual você deseja substituir")
-        tamanhoNovo = input().upper()
+        tamanhoNovo = self.__tela_tamanho.seleciona_tamanho().upper()
         tamanhoNovo = tamanhoNovo.strip()
         verefica1 = False
         verefica = False

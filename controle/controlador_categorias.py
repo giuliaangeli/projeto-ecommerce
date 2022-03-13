@@ -35,28 +35,30 @@ class ControladorCategorias():
 
 
   def alterar_categoria(self):
-    self.__tela_categoria.mostra_mensagem("ATENÇÃO: Digite a categoria que deseja alterar")
-    antiga_categoria = input().upper()
-    antiga_categoria = antiga_categoria.strip()
-    self.__tela_categoria.mostra_mensagem("ATENÇÃO: Digite a categoria pela qual você deseja alterar")
-    nova_categoria = input().upper()
-    nova_categoria = nova_categoria.strip()
-    verefica1 = False
-    verefica = False
-    for cor in self.__categorias:
-      if cor.tipo == antiga_categoria:
-        verefica = True
-    for cor in self.__categorias:
-      if cor.tipo == nova_categoria:
-        verefica1 = True
-        self.__tela_categoria.mostra_mensagem("ATENÇÃO: A categoria que deseja alterada não se encontra na lista")
-    if nova_categoria == None and antiga_categoria != None:
-      for cor in self.__categorias:
-        if cor.tipo == antiga_categoria:
-          cor.tipo = nova_categoria
-          self.__tela_categoria.mostra_mensagem("ATENÇÃO: Categoria alterada com sucesso")
-    elif nova_categoria != None:
-      self.__tela_categoria.mostra_mensagem("ATENÇÃO: A categoria que deseja alterada não se encontra na lista")
+        self.__tela_categoria.mostra_mensagem("ATENÇÃO: Digite o tipo da categoria que você deseja alterar")
+        categoriaAntigo = self.__tela_categoria.seleciona_categoria()
+        categoriaAntigo = categoriaAntigo.upper()
+        categoriaAntigo = categoriaAntigo.strip()
+        self.__tela_categoria.mostra_mensagem("ATENÇÃO: Digite o tipo da categoria pelo qual você deseja substituir")
+        categoriaNova = self.__tela_categoria.seleciona_categoria().upper()
+        categoriaNova = categoriaNova.strip()
+        verefica1 = False
+        verefica = False
+        for tamanho in self.__categorias:
+            if tamanho.tipo == categoriaAntigo:
+                verefica = True
+            if tamanho.tipo == categoriaNova:
+                verefica1 = True
+                self.__tela_categoria.mostra_mensagem(
+                    "ATENÇÃO: O tamanho que você deseja alterar já se encontra na lista")
+        if verefica == True and verefica1 != True:
+            for tamanho in self.__categorias:
+                if tamanho.tipo == categoriaAntigo:
+                    self.__tela_categoria.mostra_mensagem("ATENÇÃO: Tamanho alterado com suesso")
+                    tamanho.tipo = categoriaNova
+        if verefica == False:
+            self.__tela_categoria.mostra_mensagem(
+                "ATENÇÃO: O trabalho que deseja alterar não se encontra na lista de cores")
         
 
   # Sugestão: se a lista estiver vazia, mostrar a mensagem de lista vazia
@@ -65,18 +67,13 @@ class ControladorCategorias():
     self.__tela_categoria.mostra_categoria(self.__categorias)
 
   def excluir_categoria(self):
-    try:
-      tipo = self.__tela_categoria.seleciona_categoria()
-      for categoria in self.__categorias:
-        if categoria.tipo == tipo:
-          self.__categorias.remove(categoria)
-          raise Cadastrado
-        else:
-          raise JaCadastrado
-    except JaCadastrado as j:
-      self.__tela_categoria.mostra_mensagem("Categoria" + str(j))
-    except Cadastrado as i:
-      self.__tela_categoria.mostra_mensagem("A categoria foi" + str(i))
+    tipo = self.__tela_categoria.seleciona_categoria()
+    for categoria in self.__categorias:
+      if categoria.tipo == tipo:
+        self.__categorias.remove(categoria)
+        self.__tela_categoria.mostra_mensagem("ATENÇÃO: Categoria removido")
+      else:
+        self.__tela_categoria.mostra_mensagem("ATENÇÃO: Esee categoria não está cadastrado")
 
     
   def retornar_menu__produto(self, adm):
