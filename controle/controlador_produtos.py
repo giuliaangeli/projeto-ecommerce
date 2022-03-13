@@ -112,20 +112,15 @@ class ControladorProdutos():
                                             "descricao_tamanho": produto.tamanho.descricao, "tipo_categoria": produto.categoria.tipo})
 
     def excluir_produto(self):
-        self.__controlador_sistema.controlador_cores.lista_cor()
-        self.__controlador_sistema.controlador_tamanhos.lista_tamanho()
-        self.__controlador_sistema.controlador_categorias.lista_categoria()
+        self.lista_produto()
+        codigo_produto = self.__tela_produtos.seleciona_produto()
+        produto = self.pega_produto_por_codigo(int(codigo_produto))
 
-        codigo = self.__tela_produtos.seleciona_produto()
-        for produto in self.__produtos:
-            if produto.codigo == codigo:
-                self.__produtos.remove(produto)
-                self.__tela_produtos.mostra_mensagem(
-                    "ATENÇÃO: Produto removido com sucesso")
-                return None
-            else:
-                self.__tela_produtos.mostra_mensagem(
-                    "ATENCAO: Produto não existente")
+        if (produto is not None) and (produto in self.__produtos):
+            self.__produtos.remove(produto)
+            self.lista_produto()
+        else:
+            self.__tela_produtos.mostra_mensagem("ATENCAO: Produto não existente")
 
     def confere_produto_cor(self, cor):
         for produto in self.__produtos:
@@ -153,7 +148,8 @@ class ControladorProdutos():
 
         self.__tela_produtos.mostra_mensagem(
             "ATENÇÃO: O código digitado não corresponde a nenhum produto cadastrado, digite um código válido!")
-        self.confere_produto_codigo()
+        #self.confere_produto_codigo()
+        return None
 
     def alterar_produto(self):
         codigo1 = input('Digite o codigo do produto')
