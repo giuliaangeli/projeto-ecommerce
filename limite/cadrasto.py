@@ -1,3 +1,3 @@
 class Cadastrado(Exception):
     def __init__(self):
-        super().__init__("cadastrado!")
+        super().__init__("cadastrado !")
