@@ -209,7 +209,7 @@ class TelaPessoa():
                 self.mostra_mensagem("É preciso digitar algo")
                 self.close()
                 return self.pega_cpf()
-            cpf = values
+            cpf = values['cpf']
             self.close()
             return cpf
 
