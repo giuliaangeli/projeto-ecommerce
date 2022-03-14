@@ -25,12 +25,10 @@ class TelaHistorico():
                 opcao = 2
             if values['3']:
                 opcao = 3
-            if values['4']:
-                opcao = 4
             if button == "Voltar":
-                opcao = 5
+                opcao = 4
             if button == "Sair":
-                opcao = 6
+                opcao = 5
             self.close()
 
         self.close()
@@ -117,9 +115,8 @@ class TelaHistorico():
             [sg.Text('HISTÓRICO', font=("Helvica", 25))],
             [sg.Text('Escolha sua opção', font=("Helvica", 15))],
             [sg.Radio('Ver Histórico de Vendas', "RD1", key='1')],
-            [sg.Radio('Alterar Histórico de Vendas', "RD1", key='2')],
-            [sg.Radio('Incluir uma Venda no Histórico', "RD1", key='3')],
-            [sg.Radio('Excluir uma Venda do Histórico', "RD1", key='4')],
+            [sg.Radio('Incluir uma Venda no Histórico', "RD1", key='2')],
+            [sg.Radio('Excluir uma Venda do Histórico', "RD1", key='3')],
             [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
 
         ]
@@ -171,7 +168,7 @@ class TelaHistorico():
             [sg.Text('CATEGORIA', font=("Helvica", 25))],
             [sg.Text('Escolha sua opção', font=("Helvica", 15))],
             [sg.Radio('Todas as Categorias', "RD1", key='1')],
-            [sg.Radio('Escolher uma Categorias', "RD1", key='2')],
+            [sg.Radio('Escolher uma Categoria', "RD1", key='2')],
             [sg.Button('Confirmar')]
 
         ]
@@ -210,15 +207,15 @@ class TelaHistorico():
 
         sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
-            [sg.Text('DADOS CATEGORIAS', font=("Helvica", 25))],
-            [sg.Text('Tamanho:', size=(15, 1)),
-             sg.InputText('', key='tamanho')],
+            [sg.Text('SELECIONAR TAMANHO', font=("Helvica", 25))],
+            [sg.Text('Digite o tamanho que deseja selecionar:',font=("Helvica", 15))],
+            [sg.Text('TAMANHO:', size=(15, 1)), sg.InputText('', key='tamanho')],
             [sg.Button('Confirmar')]
         ]
         self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
         button, values = self.open()
-        tamanho = values['tamanho']
+        tamanho = (values['tamanho']).upper()
         self.close()
         return tamanho
 
@@ -226,16 +223,16 @@ class TelaHistorico():
         
         sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
-            [sg.Text('DADOS CATEGORIAS', font=("Helvica", 25))],
-            [sg.Text('Categoria:', size=(15, 1)),
-             sg.InputText('', key='categoria')],
+            [sg.Text('SELECIONAR CATEGORIA', font=("Helvica", 25))],
+            [sg.Text('Digite a categoria que deseja selecionar:',font=("Helvica", 15))],
+            [sg.Text('CATEGORIA:', size=(15, 1)), sg.InputText('', key='categoria')],
             [sg.Button('Confirmar')]
 
         ]
         self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
         button, values = self.open()
-        categoria = values['categoria']
+        categoria = (values['categoria']).upper()
 
         self.close()
         return categoria
@@ -257,37 +254,63 @@ class TelaHistorico():
     def escolha_cor(self):
         sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
-            [sg.Text('SELECIONAR PRODUTO', font=("Helvica", 25))],
-            [sg.Text('Digite o codigo do produto que deseja selecionar:',
-                     font=("Helvica", 15))],
-            [sg.Text('codigo:', size=(15, 1)), sg.InputText('', key='codigo')],
+            [sg.Text('SELECIONAR COR', font=("Helvica", 25))],
+            [sg.Text('Digite o nome da cor que deseja selecionar:',font=("Helvica", 15))],
+            [sg.Text('COR:', size=(15, 1)), sg.InputText('', key='codigo')],
             [sg.Button('Confirmar')]
         ]
         self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
         button, values = self.open()
-        codigo = values['codigo']
+        codigo = (values['codigo']).upper()
         self.close()
         return codigo
 
     def escolha_cliente(self):
-        cpf = input().upper()
-        cpf = cpf.strip()
-        return cpf
+        sg.ChangeLookAndFeel('DarkGrey3')
+        layout = [
+            [sg.Text('SELECIONAR PESSOA', font=("Helvica", 25))],
+            [sg.Text('Digite o CPF da pessoa que deseja selecionar:',font=("Helvica", 15))],
+            [sg.Text('CPF:', size=(15, 1)), sg.InputText('', key='cpf')],
+            [sg.Button('Confirmar')]
+        ]
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
+
+        button, values = self.open()
+        if button == "Voltar" or button == "Sair":
+            return button
+        
+        else:
+            cpf = (values['cpf']).strip()
+            self.close()
+            return cpf
 
     def mostra_mensagem(self, msg):
         sg.popup("", msg)
-
+    
     def entrada_incorreta(self):
-        opcoes = ['[1] Tentar Novamente','[2] Voltar para o menu anterior']
-        
-        for item in opcoes:
-            print(item)
-
-        print(linha())
-
-        opcao = leiaInt('Digite sua opção: ')
+        opcao  = - 1
+        while opcao == -1:
+            self.entrada_incorreta_componentes()
+            button, values = self.__window.Read() 
+            print(button)
+            if button == "Tentar novamente":
+                opcao = 1
+            if button == "Voltar":
+                opcao = 2
+            self.close()
+            print(opcao)
+        self.close()
         return opcao
+
+    def entrada_incorreta_componentes(self):
+        sg.ChangeLookAndFeel('DarkGrey3')
+        layout = [
+            [sg.Text('ENTRADA INCORRETA', font=("Helvica", 25))],
+            [sg.Text('Escolha sua opção', font=("Helvica", 15))],
+            [sg.Button('Tentar novamente'), sg.Button('Voltar')]
+        ]
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
     def close(self):
         self.__window.Close()
