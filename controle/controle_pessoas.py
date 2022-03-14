@@ -167,14 +167,19 @@ class ControladorPessoa():
                 self.abre_tela_adm(pessoa)
             
             else:
-                pessoa.nome = novos_dados_adm["nome"]
-                pessoa.cpf = novos_dados_adm["cpf"]
-                pessoa.telefone = novos_dados_adm["telefone"]
-                pessoa.endereco = novos_dados_adm["endereco"]
-                pessoa.email = novos_dados_adm["email"]
-                pessoa.senha = novos_dados_adm["senha"]
-                pessoa.salario = novos_dados_adm["salario"]
-                self.__tela_pessoa.mostra_mensagem("\n Dados alterados com sucesso!\n")
+                adm_cpf = self.confere_usuario_cpf(novos_dados_adm["cpf"])
+                adm_email = self.confere_usuario_email(novos_dados_adm["email"])
+                if adm_cpf == None and adm_email == None:                
+                    pessoa.nome = novos_dados_adm["nome"]
+                    pessoa.cpf = novos_dados_adm["cpf"]
+                    pessoa.telefone = novos_dados_adm["telefone"]
+                    pessoa.endereco = novos_dados_adm["endereco"]
+                    pessoa.email = novos_dados_adm["email"]
+                    pessoa.senha = novos_dados_adm["senha"]
+                    pessoa.salario = novos_dados_adm["salario"]
+                    self.__tela_pessoa.mostra_mensagem("\n Dados alterados com sucesso!\n")
+                else:
+                    self.__tela_pessoa.mostra_mensagem("ATENÇÃO: O CPF ou o e-mail digitado já estão cadastrados")
 
         elif isinstance(pessoa, Usuario):
             
@@ -186,13 +191,18 @@ class ControladorPessoa():
                 self.abre_tela_usuario(pessoa)
             
             else:
-                pessoa.nome = novos_dados_usuario["nome"]
-                pessoa.cpf = novos_dados_usuario["cpf"]
-                pessoa.telefone = novos_dados_usuario["telefone"]
-                pessoa.endereco = novos_dados_usuario["endereco"]
-                pessoa.email = novos_dados_usuario["email"]
-                pessoa.senha = novos_dados_usuario["senha"]
-                self.__tela_pessoa.mostra_mensagem("\n Dados alterados com sucesso!\n")
+                usuario_cpf = self.confere_usuario_cpf(novos_dados_usuario["cpf"])
+                usuario_email = self.confere_usuario_email(novos_dados_usuario["email"])
+                if usuario_cpf == None and usuario_email == None:                
+                    pessoa.nome = novos_dados_usuario["nome"]
+                    pessoa.cpf = novos_dados_usuario["cpf"]
+                    pessoa.telefone = novos_dados_usuario["telefone"]
+                    pessoa.endereco = novos_dados_usuario["endereco"]
+                    pessoa.email = novos_dados_usuario["email"]
+                    pessoa.senha = novos_dados_usuario["senha"]
+                    self.__tela_pessoa.mostra_mensagem("\n Dados alterados com sucesso!\n")
+                else:
+                    self.__tela_pessoa.mostra_mensagem("ATENÇÃO: O CPF ou o e-mail digitado já estão cadastrados")
 
     def listar_dados(self, pessoa, funcao = 0):
 
