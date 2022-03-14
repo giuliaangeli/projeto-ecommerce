@@ -17,8 +17,8 @@ class ProdutoDAO(DAO):
         if((produto is not None) and isinstance(produto, Produto) and isinstance(produto.cor, Cor) and isinstance(produto.categoria, Categoria) and isinstance(produto.tamanho, Tamanho) and isinstance(produto.codigo, int)):
             super().update(produto.codigo, produto)
 
-    def get(self, key:str):
-        if isinstance(key, str):
+    def get(self, key:int):
+        if isinstance(key, int):
             return super().get(key)
 
     def remove(self, key:int):

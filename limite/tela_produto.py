@@ -145,7 +145,7 @@ class TelaProduto():
     def mostra_produto(self, dados_produto):
         string_todos_produtos = ""
         for produto in dados_produto:
-            string_todos_produtos = string_todos_produtos + "CODIGO DO PRODUTO: " + str(produto.codigo) + '\n'
+            string_todos_produtos = string_todos_produtos + "CODIGO DO PRODUTO: " + produto.codigo + '\n'
             string_todos_produtos = string_todos_produtos + "COR DO PRODUTO: " + produto.cor.nome + '\n'
             string_todos_produtos = string_todos_produtos + "TAMANHO DA PRODUTO: " + produto.tamanho.descricao + '\n'
             string_todos_produtos = string_todos_produtos + "CATEGORIA DA PRODUTO: " + produto.categoria.tipo + '\n\n'
