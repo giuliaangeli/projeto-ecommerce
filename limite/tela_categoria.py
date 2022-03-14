@@ -10,7 +10,7 @@ class TelaCategoria():
     # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
 
     def tela_opcoes(self):
-        cabecalho('MENU CATEGORIAS')
+
         opcao = - 1
         while opcao == -1:
             self.init_opcoes()
@@ -67,10 +67,37 @@ class TelaCategoria():
                 self.mostra_mensagem("É preciso digitar algo")
                 self.close()
                 return self.pega_dados_categoria()
-            tipo = values
-
+            tipo= (values['tipo']).upper()
             self.close()
             return tipo
+
+    def alterar_dados_categoria(self):
+
+        sg.ChangeLookAndFeel('DarkGrey3')
+        layout = [
+            [sg.Text('ALTERAR DADOS CATEGORIAS ', font=("Helvica", 25))],
+            [sg.Text('Tipo Categoria Antigo:', size=(15, 1)), sg.InputText('', key='tipo_antigo')],
+            [sg.Text('Tipo Categoria Novo:', size=(15, 1)), sg.InputText('', key='tipo_novo')],
+            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
+        ]
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
+
+        button, values = self.open()
+    
+        if button == "Sair" or button == "Voltar":
+            self.close()
+            return button
+        
+        else:
+            if len(values['tipo_antigo']) == 0 or len(values['tipo_novo']) == 0:
+                self.mostra_mensagem("É preciso digitar algo")
+                self.close()
+                return self.alterar_dados_categoria()
+
+            tipo_antigo = (values['tipo_antigo']).upper()
+            tipo_novo= (values['tipo_novo']).upper()
+            self.close()
+            return {"tipo_antigo": tipo_antigo, "tipo_novo": tipo_novo}
 
     # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
     def mostra_categoria(self, dados_categoria):
@@ -79,28 +106,6 @@ class TelaCategoria():
         for categoria in dados_categoria:
             string_todos_categorias = string_todos_categorias + categoria.tipo + '\n'
         sg.Popup('LISTA DE CATEGORIA ', string_todos_categorias)
-
-    # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
-    def seleciona_categoria(self):
-        sg.ChangeLookAndFeel('DarkGrey3')
-        layout = [
-            [sg.Text('SELECIONAR CATEGORIA ', font=("Helvica", 25))],
-            [sg.Text('Digite o tipo da categoria que deseja selecionar:',
-                     font=("Helvica", 15))],
-            [sg.Text('tipo:', size=(15, 1)), sg.InputText('', key='tipo')],
-            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
-        ]
-        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
-        button, values = self.open()
-        if button == "Sair" or button == "Voltar":
-            return button
-        
-        else:
-            tipo = values['tipo']
-            tipo = str(tipo)
-            tipo = tipo.upper()
-            self.close()
-            return tipo
 
     def mostra_mensagem(self, msg):
         sg.popup("", msg)
