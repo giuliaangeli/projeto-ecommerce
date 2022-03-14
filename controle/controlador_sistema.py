@@ -45,10 +45,10 @@ class ControladorSistema:
 
     def inicializa_sistema(self):
         self.__controle_pessoas.instancia_pessoas()
-        self.__controlador_cores.instancia_cor()
-        self.__controlador_tamanhos.instancia_tamanho()
+        #self.__controlador_cores.instancia_cor()
+        #self.__controlador_tamanhos.instancia_tamanho()
         #self.__controlador_categorias.instancia_categorias()
-        self.__controlador_produtos.instancia_produtos()
+        #self.__controlador_produtos.instancia_produtos()
         self.__controlador_historico.instancia_historico()
         self.abre_tela_inicial()
 

@@ -239,7 +239,7 @@ class ControladorProdutos():
             else:
                 lista_opcoes[opcao_escolhida](usuario)
 
-    def instancia_produtos(self):
+'''    def instancia_produtos(self):
         cor1 = self.__controlador_sistema.controlador_cores.confere_cor_nome(
             'VERMELHO')
         cor2 = self.__controlador_sistema.controlador_cores.confere_cor_nome(
@@ -263,4 +263,4 @@ class ControladorProdutos():
         produto3 = Produto(cor3, tamanho1, categoria1, 3)
         self.__produtos.append(produto1)
         self.__produtos.append(produto2)
-        self.__produtos.append(produto3)
+        self.__produtos.append(produto3)'''

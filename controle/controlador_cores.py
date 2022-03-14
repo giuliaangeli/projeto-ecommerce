@@ -1,16 +1,17 @@
 from limite.tela_cor import TelaCor
 from entidade.cor import Cor
 from limite.ja_cadastrado import JaCadastrado
+from DAOs.cor_dao import CorDAO
 
 class ControladorCores():
     # Fazer lançamento e tratamento de exceções, ao invés de apenas mostrar mensagem na tela.
     def __init__(self, controlador_sistema):
-        self.__cores = []
+        self.__cores_DAO = CorDAO()
         self.__controlador_sistema = controlador_sistema
         self.__tela_cor = TelaCor()
 
     def confere_cor_nome(self, nome):
-        for cor in self.__cores:
+        for cor in self.__cores_DAO.get_all():
             if (cor.nome == nome):
                 return cor
         return None
@@ -31,7 +32,7 @@ class ControladorCores():
         try:
             if dados_confere == None:
                 dados_cor = Cor(dados_cor)
-                self.__cores.append(dados_cor)
+                self.__cores_DAO.add(dados_cor)
                 self.__tela_cor.mostra_mensagem("ATENÇÃO: COR foi adicionada com sucesso!")
             else:
                 raise JaCadastrado
@@ -55,14 +56,14 @@ class ControladorCores():
                 self.__tela_cor.mostra_mensagem("ATENÇÃO: A COR pela qual você deseja trocar já está cadastrada!")
 
     def lista_cor(self):
-        self.__tela_cor.mostra_cor(self.__cores)
+        self.__tela_cor.mostra_cor(self.__cores_DAO.get_all())
 
     def excluir_cor(self, adm):
         nome = self.__tela_cor.pega_dados_cor()
         
-        for cor in self.__cores:
+        for cor in self.__cores_DAO.get_all():
             if cor.nome == nome:
-                self.__cores.remove(cor)
+                self.__cores_DAO.remove(cor.nome)
                 return self.__tela_cor.mostra_mensagem("ATENÇÃO: Cor removida com sucesso")
 
         self.__tela_cor.mostra_mensagem("ATENÇÃO: Cor não cadastrada")
@@ -71,7 +72,7 @@ class ControladorCores():
         self.__controlador_sistema.abre_tela()
 
     def confere_nome_cor(self, nome):
-        for cor in self.__cores:
+        for cor in self.__cores_DAO.get_all():
             if (cor.nome == nome):
                 return cor
         return None
@@ -92,7 +93,7 @@ class ControladorCores():
             else:
                 lista_opcoes[opcao_escolhida](adm)
 
-    def instancia_cor(self):
+    '''    def instancia_cor(self):
         vermelho = Cor('VERMELHO')
         laranja = Cor('LARANJA')
         rosa = Cor('ROSA')
@@ -103,7 +104,7 @@ class ControladorCores():
         self.__cores.append(laranja)
         self.__cores.append(rosa)
         self.__cores.append(amarelo)
-        self.__cores.append(verde)
+        self.__cores.append(verde)'''
 
     def imprime_cabecalho_cores_cadastradas(self):
         self.__tela_cor.cabecalho_cores_cadastradas()

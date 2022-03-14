@@ -11,7 +11,7 @@ class ControladorCategorias():
         self.__controlador_sistema = controlador_sistema
         self.__tela_categoria = TelaCategoria()
 
-    def confere_categoria_tipo(self, tipo):
+    def confere_categoria_tipo(self, tipo: str):
         for categoria in self.__categorias_DAO.get_all():
             if (categoria.tipo == tipo):
                 return categoria
@@ -62,7 +62,6 @@ class ControladorCategorias():
     # Sugestão: se a lista estiver vazia, mostrar a mensagem de lista vazia
 
     def lista_categoria(self):
-
         self.__tela_categoria.mostra_categoria(self.__categorias_DAO.get_all())
 
     def excluir_categoria(self, adm):
