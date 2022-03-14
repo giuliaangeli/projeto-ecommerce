@@ -11,7 +11,7 @@ class ProdutoDAO(DAO):
 
     def add(self, produto: Produto):
         if((produto is not None) and isinstance(produto, Produto) and isinstance(produto.cor, Cor) and isinstance(produto.categoria, Categoria) and isinstance(produto.tamanho, Tamanho) and isinstance(produto.codigo, int)):
-            super().add(produto.codigo,produto)
+            super().add(produto.codigo, produto)
 
     def update(self, produto: Produto):
         if((produto is not None) and isinstance(produto, Produto) and isinstance(produto.cor, Cor) and isinstance(produto.categoria, Categoria) and isinstance(produto.tamanho, Tamanho) and isinstance(produto.codigo, int)):
