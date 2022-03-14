@@ -111,7 +111,7 @@ class TelaSistema:
             [sg.Radio('Criar uma conta',"RD1", key='2')],
             [sg.Button('Confirmar'),sg.Button('Sair')]
         ]
-        self.__window = sg.Window('Sistema E-commerce').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
     def init_components1(self):
         #sg.theme_previewer()
         sg.ChangeLookAndFeel('DarkGrey3')
@@ -121,7 +121,7 @@ class TelaSistema:
             [sg.Radio('Login Cliente',"RD1", key='2')],
             [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
         ]
-        self.__window = sg.Window('Sistema E-commerce').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
     def init_components2(self):
 
@@ -132,7 +132,7 @@ class TelaSistema:
             [sg.Text('O que você deseja?', font=("Helvica",15))],
             [sg.Button('Tentar Novamente'), sg.Button('Voltar'), sg.Button('Sair')]
         ]
-        self.__window = sg.Window('Sistema E-commerce').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
     def init_components3(self):
         #sg.theme_previewer()
@@ -145,7 +145,7 @@ class TelaSistema:
             [sg.Radio('Histórico',"RD1", key='3')],
             [sg.Button('Confirmar'), sg.Button('Sair')]
         ]
-        self.__window = sg.Window('Sistema E-commerce').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
     def init_components4(self):
         #sg.theme_previewer()
@@ -158,4 +158,4 @@ class TelaSistema:
             [sg.Radio('Dados Pessoais',"RD1", key='3')],
             [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
         ]
-        self.__window = sg.Window('Sistema E-commerce').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')

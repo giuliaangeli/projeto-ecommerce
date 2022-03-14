@@ -87,7 +87,7 @@ class TelaProduto():
             [sg.Radio('Sair', "RD1", key='6')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema de produtos').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
     def init_opcoes1(self):
 
@@ -103,7 +103,7 @@ class TelaProduto():
             [sg.Radio('Sair', "RD1", key='6')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema de produtos').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
     def init_opcoes2(self):
 
@@ -117,7 +117,7 @@ class TelaProduto():
             [sg.Radio('Finalizar sessão', "RD1", key='4')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema de produtos').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
     # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
 
     def pega_dados_produto(self):
@@ -133,7 +133,7 @@ class TelaProduto():
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
 
         ]
-        self.__window = sg.Window('Sistema de categorias').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
         button, values = self.open()
         cor = values['cor']
@@ -164,7 +164,7 @@ class TelaProduto():
             [sg.Text('codigo:', size=(15, 1)), sg.InputText('', key='codigo')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Seleciona produto').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
         button, values = self.open()
         codigo = values['codigo']

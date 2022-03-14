@@ -68,7 +68,7 @@ class TelaCategoria():
             [sg.Radio('Sair', "RD1", key='6')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema de categorias').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
     # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
 
     def pega_dados_categoria(self):
@@ -79,7 +79,7 @@ class TelaCategoria():
             [sg.Text('Tipo:', size=(15, 1)), sg.InputText('', key='tipo')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema de categorias').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
         button, values = self.open()
 
@@ -108,8 +108,7 @@ class TelaCategoria():
             [sg.Button('Confirmar'), sg.Button(
                 'Voltar'), sg.Button('Sair')]
         ]
-        self.__window = sg.Window(
-            'Sistema E-commerce', layout, size=(700, 340), element_justification='c')
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
         button, values = self.open()
 

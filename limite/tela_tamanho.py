@@ -46,7 +46,7 @@ class TelaTamanho():
             [sg.Radio('Sair', "RD1", key='6')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema de tamanhos').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
     # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
 
     def pega_dados_tamanho(self):
@@ -58,8 +58,8 @@ class TelaTamanho():
            sg.InputText('', key='descricao')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema de tamanhos').Layout(layout)
-
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
+        
         button, values = self.open()
         if button == "Sair" or button == "Voltar":
             self.close()

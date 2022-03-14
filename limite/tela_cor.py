@@ -45,7 +45,7 @@ class TelaCor():
             [sg.Radio('Sair', "RD1", key='6')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema de cores').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
     # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
 
     def pega_dados_cor(self):
@@ -56,7 +56,7 @@ class TelaCor():
             [sg.Text('Nome:', size=(15, 1)), sg.InputText('', key='nome')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema de livros').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
         button, values = self.open()
         if button == "Sair" or button == "Voltar":
@@ -83,8 +83,7 @@ class TelaCor():
              sg.InputText('', key='nome_novo')],
             [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
         ]
-        self.__window = sg.Window(
-            'Sistema E-commerce', layout, size=(700, 340), element_justification='c')
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
         button, values = self.open()
 

@@ -131,7 +131,7 @@ class TelaHistorico():
             [sg.Radio('Encerrar Sessão', "RD1", key='6')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema de produtos').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
     def init_opcoes1(self):
        
@@ -145,7 +145,7 @@ class TelaHistorico():
             [sg.Radio(' Encerrar Sessão', "RD1", key='4')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema de produtos').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
     def init_opcoes2(self):
        
@@ -158,7 +158,7 @@ class TelaHistorico():
             [sg.Radio('Encerrar Sessão', "RD1", key='0')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema de produtos').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
     def init_opcoes3(self):
        
@@ -171,7 +171,7 @@ class TelaHistorico():
             [sg.Radio('Encerrar Sessão', "RD1", key='0')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema de produtos').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
     def init_opcoes4(self):
 
@@ -184,7 +184,7 @@ class TelaHistorico():
             [sg.Radio('Encerrar Sessão', "RD1", key='0')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema de produtos').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
     def init_opcoes5(self):
 
@@ -197,7 +197,7 @@ class TelaHistorico():
             [sg.Radio('Encerrar Sessão', "RD1", key='0')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema de produtos').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
     def escolha_cor(self):
         
@@ -208,7 +208,7 @@ class TelaHistorico():
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
 
         ]
-        self.__window = sg.Window('Sistema de COR').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
         button, values = self.open()
         cor = values['cor']
@@ -226,7 +226,7 @@ class TelaHistorico():
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
 
         ]
-        self.__window = sg.Window('Sistema de Tamanho').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
         button, values = self.open()
         tamanho = values['tamanho']
@@ -243,7 +243,7 @@ class TelaHistorico():
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
 
         ]
-        self.__window = sg.Window('Sistema de categorias').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
         button, values = self.open()
         categoria = values['categoria']
@@ -275,7 +275,7 @@ class TelaHistorico():
             [sg.Text('codigo:', size=(15, 1)), sg.InputText('', key='codigo')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Seleciona produto').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
         button, values = self.open()
         codigo = values['codigo']

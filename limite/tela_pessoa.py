@@ -88,7 +88,7 @@ class TelaPessoa():
             [sg.Radio('Encerrar Sessão', "RD1", key='6')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema E-commerce').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
     def init_opcoes1(self):
 
@@ -107,7 +107,7 @@ class TelaPessoa():
             [sg.Radio('Encerrar Sessão', "RD1", key='9')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema E-commerce').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
     def init_opcoes2(self):
 
@@ -122,7 +122,7 @@ class TelaPessoa():
             [sg.Radio('Encerrar Sessão', "RD1", key='5')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema E-commerce').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
     # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
 
     def pega_dados_usuario(self):
@@ -140,7 +140,7 @@ class TelaPessoa():
             [sg.Text('Senha:', size=(15, 1)), sg.InputText('', key='senha')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema E-commerce').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
         button, values = self.open()
         nome = values['nome']
         cpf = values['cpf']
@@ -169,7 +169,7 @@ class TelaPessoa():
              sg.InputText('', key='salario')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema E-commerce').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
         button, values = self.open()
         nome = values['nome']
@@ -192,7 +192,7 @@ class TelaPessoa():
             [sg.Text('Senha:', size=(15, 1)), sg.InputText('', key='senha')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema E-commerce').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
         button, values = self.open()
         email = values['email']
@@ -209,7 +209,7 @@ class TelaPessoa():
             [sg.Text('CPF:', size=(15, 1)), sg.InputText('', key='cpf')],
             [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema E-commerce').Layout(layout)
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
 
         button, values = self.open()
         if len(values['cpf']) == 0:
