@@ -33,7 +33,6 @@ class ControladorHistorico():
     #     self.recebe_dados_venda(usuario, produto)
 
     def recebe_dados_venda(self, usuario, produto):
-
         venda = Historico(usuario, produto)
         self.__historico.append(venda)
         self.__tela_historico.mostra_mensagem("ATENÇÃO: A venda foi adicionada ao histórico!")
@@ -289,11 +288,5 @@ class ControladorHistorico():
         self.__historico.append(venda4)
         self.__historico.append(venda5)
         self.__historico.append(venda6)
-
-        #'''for venda in self.__historico:
-         #   produto = venda.produto
-          #  self.__tela_historico.imprime_historico(produto)'''
-            
-
 
 
