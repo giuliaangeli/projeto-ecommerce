@@ -1,3 +1,4 @@
+from DAOs.produto_DAO import ProdutoDAO
 from controle.controlador_categorias import ControladorCategorias
 from controle.controlador_cores import ControladorCores
 from controle.controlador_tamanhos import ControladorTamanhos
@@ -7,7 +8,6 @@ from entidade.cor import Cor
 from entidade.categoria import Categoria
 from limite.tela_produto import TelaProduto
 from limite.tela_abstrata import cabecalho
-from DAOs.produto_DAO import ProdutoDAO
 from limite.cadrasto import Cadastrado
 from limite.ja_cadastrado import JaCadastrado
 # Fazer lançamento e tratamento de exceções, ao invés de apenas mostrar mensagem na tela.
@@ -17,11 +17,11 @@ class ControladorProdutos():
 
     def __init__(self, controlador_sistema):
         self.__controlador_sistema = controlador_sistema
-        self.__produtos = ProdutoDAO
+        self.__produtos = []
         self.__tela_produtos = TelaProduto()
 
     def retorna_lista_produtos(self):
-        return self.__produtos.get_all()
+        return self.__produtos
 
     def pega_produto_por_codigo(self, codigo: int):
         for produto in self.__produtos.get_all():
@@ -37,29 +37,37 @@ class ControladorProdutos():
             dados_produto = self.__tela_produtos.pega_dados_produto()
             print(dados_produto)
 
-            cor1 = self.valida_cor(dados_produto)
-            tamanho1 = self.valida_tamanho(dados_produto)
-            categoria1 = self.valida_categoria(dados_produto)
-            for produto in self.__produtos_DAO.get_all():
-                if produto.cor == cor1 and produto.tamanho == tamanho1 and produto.categoria == categoria1:
-                    self.__tela_produtos.mostra_mensagem("ATENCAO:O produto que você está tentando incluir já está na lista de produtos!")
-                    raise Cadastrado
-                    return None
-            if  cor1 != None and tamanho1 != None and categoria1 != None:
-                self.__tela_produtos.mostra_mensagem("ATENCAO:O produto foi adicionado a lista de produtos!")
-                codigo = len(self.__produtos_DAO.get_all()) + 1
-                novo_produto = Produto(cor1, tamanho1, categoria1, codigo)
-                self.__produtos_DAO.add(novo_produto)
-                raise Cadastrado
-                return None
+            cor1 = self.valida_cor(dados_produto['cor'])
+            tamanho1 = self.valida_tamanho(dados_produto['tamanho'])
+            categoria1 = self.valida_categoria(dados_produto['categoria'])
+            
+            if dados_produto == "Sair":
+                self.__controlador_sistema.encerra_sistema()
+
+            elif dados_produto == "Voltar":
+                self.abre_tela_produtos_adm(adm)
+            
             else:
-                raise Cadastrado
-                #self.__tela_produtos.mostra_mensagem("ATENCAO:O produto com elementos invalidos!")
+                cor1 = self.valida_cor(dados_produto)
+                tamanho1 = self.valida_tamanho(dados_produto)
+                categoria1 = self.valida_categoria(dados_produto)
+
+                for produto in self.__produtos:
+                    if produto.cor == cor1 and produto.tamanho == tamanho1 and produto.categoria == categoria1:
+                        self.__tela_produtos.mostra_mensagem(
+                            "ATENCAO:O produto que você está tentando incluir já está na lista de produtos!")
+                        return None
+                self.__tela_produtos.mostra_mensagem(
+                    "ATENCAO:O produto foi adicionado a lista de produtos!")
+                codigo = len(self.__produtos) + 1
+                novo_produto = Produto(cor1, tamanho1, categoria1, codigo)
+                self.__produtos.append(novo_produto)
+                return None
+
         except JaCadastrado as j:
             self.__tela_produtos.mostra_mensagem("Produto não foi" + str(j))
         except Cadastrado as i:
-            self.__tela_produtos.mostra_mensagem("Produto não foi" + str(i))
-
+            self.__tela_produtos.mostra_mensagem("O produto foi" + str(i))
 
     def valida_cor(self, dados_produto):
         cor = self.__controlador_sistema.controlador_cores.confere_cor_nome(dados_produto["cor"])
@@ -243,7 +251,7 @@ class ControladorProdutos():
             else:
                 lista_opcoes[opcao_escolhida](usuario)
 
-'''    def instancia_produtos(self):
+    def instancia_produtos(self):
         cor1 = self.__controlador_sistema.controlador_cores.confere_cor_nome(
             'VERMELHO')
         cor2 = self.__controlador_sistema.controlador_cores.confere_cor_nome(
@@ -267,6 +275,6 @@ class ControladorProdutos():
         produto3 = Produto(cor3, tamanho1, categoria1, 3)
         self.__produtos.append(produto1)
         self.__produtos.append(produto2)
-        self.__produtos.append(produto3)'''
+        self.__produtos.append(produto3)
 
 
