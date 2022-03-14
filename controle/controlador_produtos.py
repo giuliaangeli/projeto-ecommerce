@@ -1,3 +1,4 @@
+from DAOs.produto_DAO import ProdutoDAO
 from controle.controlador_categorias import ControladorCategorias
 from controle.controlador_cores import ControladorCores
 from controle.controlador_tamanhos import ControladorTamanhos
@@ -17,14 +18,15 @@ class ControladorProdutos():
 
     def __init__(self, controlador_sistema):
         self.__controlador_sistema = controlador_sistema
-        self.__produtos = []
+        #self.__produtos = []
+        self.__produtos_DAO = ProdutoDAO()
         self.__tela_produtos = TelaProduto()
 
     def retorna_lista_produtos(self):
-        return self.__produtos
+        return self.__produtos_DAO.get_all()
 
     def pega_produto_por_codigo(self, codigo: int):
-        for produto in self.__produtos:
+        for produto in self.__produtos_DAO.get_all():
             if(produto.codigo == codigo):
                 return produto
         return None
@@ -43,16 +45,16 @@ class ControladorProdutos():
             cor1 = self.valida_cor(dados_produto)
             tamanho1 = self.valida_tamanho(dados_produto)
             categoria1 = self.valida_categoria(dados_produto)
-            for produto in self.__produtos:
+            for produto in self.__produtos_DAO.get_all():
                 if produto.cor == cor1 and produto.tamanho == tamanho1 and produto.categoria == categoria1:
                     self.__tela_produtos.mostra_mensagem("ATENCAO:O produto que você está tentando incluir já está na lista de produtos!")
                     raise Cadastrado
                     return None
             if  cor1 != None and tamanho1 != None and categoria1 != None:
                 self.__tela_produtos.mostra_mensagem("ATENCAO:O produto foi adicionado a lista de produtos!")
-                codigo = len(self.__produtos) + 1
+                codigo = len(self.__produtos_DAO.get_all()) + 1
                 novo_produto = Produto(cor1, tamanho1, categoria1, codigo)
-                self.__produtos.append(novo_produto)
+                self.__produtos_DAO.add(novo_produto)
                 raise Cadastrado
                 return None
             else:
@@ -111,7 +113,7 @@ class ControladorProdutos():
             return None
 
     def lista_produto(self):
-        self.__tela_produtos.mostra_produto(self.__produtos)
+        self.__tela_produtos.mostra_produto(self.__produtos_DAO.get_all())
 
     def lista_produto_historico(self, produto):
         self.__tela_produtos.mostra_produto({"codigo": produto.codigo, "nome_cor": produto.cor.nome,
@@ -120,35 +122,35 @@ class ControladorProdutos():
     def excluir_produto(self):
         self.lista_produto()
         codigo_produto = self.__tela_produtos.seleciona_produto()
-        produto = self.pega_produto_por_codigo(int(codigo_produto))
+        codigo = self.pega_produto_por_codigo(int(codigo_produto))
 
-        if (produto is not None) and (produto in self.__produtos):
-            self.__produtos.remove(produto)
+        if (codigo is not None) and (codigo in self.__produtos_DAO.get_all()):
+            self.__produtos_DAO.remove(codigo.codigo)
             self.lista_produto()
         else:
             self.__tela_produtos.mostra_mensagem("ATENCAO: Produto não existente")
 
     def confere_produto_cor(self, cor):
-        for produto in self.__produtos:
+        for produto in self.__produtos_DAO.get_all():
             if (produto.cor == cor):
                 return produto
         return None
 
     def confere_produto_tamanho(self, tamanho):
-        for produto in self.__produtos:
+        for produto in self.__produtos_DAO.get_all():
             if (produto.tamanho == tamanho):
                 return produto
         return None
 
     def confere_produto_categoria(self, categoria):
-        for produto in self.__produtos:
+        for produto in self.__produtos_DAO.get_all():
             if (produto.categoria == categoria):
                 return produto
         return None
 
     def confere_produto_codigo(self):
         codigo = int(self.__tela_produtos.seleciona_produto())
-        for produto in self.__produtos:
+        for produto in self.__produtos_DAO.get_all():
             if produto.codigo == codigo:
                 return produto
 
@@ -162,7 +164,7 @@ class ControladorProdutos():
         codigo_produto = self.__tela_produtos.seleciona_produto()
         produto = self.pega_produto_por_codigo(int(codigo_produto))
 
-        if (produto is not None) and (produto in self.__produtos):
+        if (produto is not None) and (produto in self.__produtos_DAO.get_all()):
             cabecalho('CORES CADASTRADAS')
             self.__controlador_sistema.controlador_cores.lista_cor()
             cabecalho('TAMANHOS CADASTRADOS')
@@ -175,7 +177,7 @@ class ControladorProdutos():
             cor = self.valida_cor(dados_produto)
             tamanho = self.valida_tamanho(dados_produto)
             categoria = self.valida_categoria(dados_produto)
-            for produto in self.__produtos:
+            for produto in self.__produtos_DAO.get_all():
                 produto.cor = cor
                 produto.tamanho = tamanho
                 produto.categoria = categoria
@@ -243,7 +245,7 @@ class ControladorProdutos():
             else:
                 lista_opcoes[opcao_escolhida](usuario)
 
-    def instancia_produtos(self):
+'''    def instancia_produtos(self):
         cor1 = self.__controlador_sistema.controlador_cores.confere_cor_nome(
             'VERMELHO')
         cor2 = self.__controlador_sistema.controlador_cores.confere_cor_nome(
@@ -268,3 +270,4 @@ class ControladorProdutos():
         self.__produtos.append(produto1)
         self.__produtos.append(produto2)
         self.__produtos.append(produto3)
+'''

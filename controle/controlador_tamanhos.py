@@ -2,17 +2,19 @@ from limite.tela_tamanho import TelaTamanho
 from entidade.tamanho import Tamanho
 from limite.cadrasto import Cadastrado
 from limite.ja_cadastrado import JaCadastrado
+from DAOs.tamanho_daos import TamanhoDAO
 
 
 class ControladorTamanhos():
     # Fazer lançamento e tratamento de exceções, ao invés de apenas mostrar mensagem na tela.
     def __init__(self, controlador_sistema):
-        self.__tamanhos = []
+        #self.__tamanhos = []
+        self.__tamanhos_DAO = TamanhoDAO()
         self.__controlador_sistema = controlador_sistema
         self.__tela_tamanho = TelaTamanho()
 
-    def confere_tamanho_descricao(self, descricao):
-        for tamanho in self.__tamanhos:
+    def confere_tamanho_descricao(self, descricao: str):
+        for tamanho in self.__tamanhos_DAO.get_all():
             if (tamanho.descricao == descricao):
                 return tamanho
         return None
@@ -25,7 +27,7 @@ class ControladorTamanhos():
         try:
             if nova_tamanho == None:
                 categoria = Tamanho(dados_tamanho["descricao"])
-                self.__tamanhos.append(categoria)
+                self.__tamanhos_DAO.add(categoria)
                 raise Cadastrado
             else:
                 raise JaCadastrado
@@ -46,7 +48,7 @@ class ControladorTamanhos():
         tamanhoNovo = tamanhoNovo.strip()
         verefica1 = False
         verefica = False
-        for tamanho in self.__tamanhos:
+        for tamanho in self.__tamanhos_DAO.get_all():
             if tamanho.descricao == tamanhoAntigo:
                 verefica = True
             if tamanho.descricao == tamanhoNovo:
@@ -54,7 +56,7 @@ class ControladorTamanhos():
                 self.__tela_tamanho.mostra_mensagem(
                     "ATENÇÃO: O tamanho que você deseja alterar já se encontra na lista")
         if verefica == True and verefica1 != True:
-            for tamanho in self.__tamanhos:
+            for tamanho in self.__tamanhos_DAO.get_all():
                 if tamanho.descricao == tamanhoAntigo:
                     self.__tela_tamanho.mostra_mensagem(
                         "ATENÇÃO: Tamanho alterado com suesso")
@@ -66,18 +68,17 @@ class ControladorTamanhos():
     # Sugestão: se a lista estiver vazia, mostrar a mensagem de lista vazia
     def lista_tamanho(self):
         
-        self.__tela_tamanho.mostra_tamanho(self.__tamanhos)
+        self.__tela_tamanho.mostra_tamanho(self.__tamanhos_DAO.get_all())
 
     def excluir_tamanho(self):
-        descricao = self.__tela_tamanho.seleciona_tamanho()
-        for tamanho in self.__tamanhos:
-            if tamanho.descricao == descricao:
-                    self.__tamanhos.remove(tamanho)
-                    self.__tela_tamanho.mostra_mensagem(
-                        "ATENÇÃO: Tamanho removido")
-            else:
-                self.__tela_tamanho.mostra_mensagem(
-                    "ATENÇÃO: Esee tamanho não está cadastrado")
+        descricao_tamanho = self.__tela_tamanho.seleciona_tamanho()
+        tamanho = self.confere_tamanho_descricao(descricao_tamanho)
+        if(tamanho is not None):
+        #self.__amigos.remove(amigo)
+            self.__tamanhos_DAO.remove(tamanho.descricao)
+            self.lista_tamanho()
+        else:
+            self.__tela_tamanho.mostra_mensagem("ATENCAO: Tamanho não existente")
 
     def retornar_menu__produto(self, adm):
         self.__controlador_sistema.controlador_produtos.menu_incluir_produto(
@@ -95,14 +96,14 @@ class ControladorTamanhos():
             else:
                 lista_opcoes[opcao_escolhida]()
 
-    def instancia_tamanho(self):
+            '''    def instancia_tamanho(self):
         tamanho1 = Tamanho('P')
         tamanho2 = Tamanho('M')
         tamanho3 = Tamanho('G')
 
         self.__tamanhos.append(tamanho1)
         self.__tamanhos.append(tamanho2)
-        self.__tamanhos.append(tamanho3)
+        self.__tamanhos.append(tamanho3)'''
 
     def imprime_cabecalho_tamanhos_cadastrados(self):
         self.__tela_tamanho.cabecalho_tamanhos_cadastrados()
