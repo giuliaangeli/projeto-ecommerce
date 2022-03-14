@@ -65,10 +65,37 @@ class TelaCor():
                 self.mostra_mensagem("É preciso digitar algo")
                 self.close()
                 return self.pega_dados_cor()
-            nome = values
-
+            nome = (values['nome']).upper()
             self.close()
             return nome
+
+    def alterar_dados_cor(self):
+
+        sg.ChangeLookAndFeel('DarkGrey3')
+        layout = [
+            [sg.Text('ALTERAR DADOS COR ', font=("Helvica", 25))],
+            [sg.Text('Nome Cor Antigo:', size=(15, 1)), sg.InputText('', key='nome_antigo')],
+            [sg.Text('Nome Cor Novo:', size=(15, 1)), sg.InputText('', key='nome_novo')],
+            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
+        ]
+        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
+
+        button, values = self.open()
+    
+        if button == "Sair" or button == "Voltar":
+            self.close()
+            return button
+        
+        else:
+            if len(values['nome_antigo']) == 0 or len(values['nome_novo']) == 0:
+                self.mostra_mensagem("É preciso digitar algo")
+                self.close()
+                return self.alterar_dados_cor()
+
+            nome_antigo = (values['nome_antigo']).upper()
+            nome_novo= (values['nome_novo']).upper()
+            self.close()
+            return {"nome_antigo": nome_antigo, "nome_novo": nome_novo}
 
     # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
     def mostra_cor(self, dados_cor):
@@ -76,28 +103,6 @@ class TelaCor():
         for cor in dados_cor:
             string_todas_cores = string_todas_cores + cor.nome + '\n'
         sg.Popup('LISTA DE COR ', string_todas_cores)
-
-    # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
-    def seleciona_cor(self):
-        sg.ChangeLookAndFeel('DarkGrey3')
-        layout = [
-            [sg.Text('SELECIONAR COR ', font=("Helvica", 25))],
-            [sg.Text('Digite o nome da cor que deseja selecionar:',
-                     font=("Helvica", 15))],
-            [sg.Text('nome:', size=(15, 1)), sg.InputText('', key='nome')],
-            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
-        ]
-        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
-
-        button, values = self.open()
-        if button == "Sair" or button == "Voltar":
-            self.close()
-            return button
-        
-        else:
-            nome = values['nome']
-            self.close()
-            return nome
 
     def mostra_mensagem(self, msg):
         sg.popup("", msg)
