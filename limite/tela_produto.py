@@ -147,8 +147,8 @@ class TelaProduto():
         for produto in dados_produto:
             string_todos_produtos = string_todos_produtos + "CODIGO DO PRODUTO: " + produto.codigo + '\n'
             string_todos_produtos = string_todos_produtos + "COR DO PRODUTO: " + produto.cor.nome + '\n'
-            string_todos_produtos = string_todos_produtos + "TAMANHO DA PRODUTO: " + produto.tamanho.descricao + '\n'
-            string_todos_produtos = string_todos_produtos + "CATEGORIA DA PRODUTO: " + produto.categoria.tipo + '\n\n'
+            string_todos_produtos = string_todos_produtos + "TAMANHO DO PRODUTO: " + produto.tamanho.descricao + '\n'
+            string_todos_produtos = string_todos_produtos + "CATEGORIA DO PRODUTO: " + produto.categoria.tipo + '\n\n'
 
         sg.Popup('LISTA DE PRODUTO ', string_todos_produtos)
 

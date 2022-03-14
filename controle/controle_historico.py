@@ -270,8 +270,7 @@ class ControladorHistorico():
     #             lista_opcoes[opcao_escolhida](adm)
     
     def instancia_historico(self):
-        pass
-        '''        usuario1 = self.__controlador_sistema.controlador_pessoas.confere_usuario_cpf('09641787969')
+        usuario1 = self.__controlador_sistema.controlador_pessoas.confere_usuario_cpf('09641787969')
         usuario2 = self.__controlador_sistema.controlador_pessoas.confere_usuario_cpf('99900011199')
         produto1 = self.__controlador_sistema.controlador_produtos.pega_produto_por_codigo(1)
         produto2 = self.__controlador_sistema.controlador_produtos.pega_produto_por_codigo(2)
@@ -290,7 +289,7 @@ class ControladorHistorico():
         self.__historico.append(venda3)
         self.__historico.append(venda4)
         self.__historico.append(venda5)
-        self.__historico.append(venda6)'''
+        self.__historico.append(venda6)
 
         #'''for venda in self.__historico:
          #   produto = venda.produto
