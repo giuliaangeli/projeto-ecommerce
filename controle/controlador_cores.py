@@ -1,6 +1,6 @@
 from limite.tela_cor import TelaCor
 from entidade.cor import Cor
-
+from limite.ja_cadastrado import JaCadastrado
 
 class ControladorCores():
     # Fazer lançamento e tratamento de exceções, ao invés de apenas mostrar mensagem na tela.
@@ -27,53 +27,45 @@ class ControladorCores():
         dados_cor = self.__tela_cor.pega_dados_cor()
         dados_cor =  self.confere_output(adm, dados_cor)
         dados_confere = self.confere_nome_cor(dados_cor)
-        if dados_confere == None:
-            dados_cor = Cor(dados_cor)
-            self.__cores.append(dados_cor)
-            self.__tela_cor.mostra_mensagem(
-                "ATENÇÃO: COR foi adicionada com sucesso!")
-        else:
-            self.__tela_cor.mostra_mensagem("ATENÇÃO: Essa COR já cadastrada!")
+
+        try:
+            if dados_confere == None:
+                dados_cor = Cor(dados_cor)
+                self.__cores.append(dados_cor)
+                self.__tela_cor.mostra_mensagem("ATENÇÃO: COR foi adicionada com sucesso!")
+            else:
+                raise JaCadastrado
+        except JaCadastrado as j:
+            self.__tela_cor.mostra_mensagem("Essa COR " + str(j))
 
     def alterar_cor(self, adm):
-        self.__tela_cor.mostra_mensagem(
-            "ATENÇÃO: Digite o nome da cor que você deseja alterar")
-        corAntiga = input().upper()
-        corAntiga = corAntiga.strip()
-        self.__tela_cor.mostra_mensagem(
-            "ATENÇÃO: Digite o nome da cor pelo qual você deseja substituir")
-        corNova = input().upper()
-        corNova = corNova.strip()
-        verefica = False
-        verefica1 = False
-        for cor in self.__cores:
-            if cor.nome == corAntiga:
-                verefica = True
-        for cor in self.__cores:
-            if cor.nome == corNova:
-                verefica1 = True
-        if verefica == True and verefica1 != True:
-            for cor in self.__cores:
-                if cor.nome == corAntiga:
-                    cor.nome = corNova
-                    self.__tela_cor.mostra_mensagem(
-                        "ATENÇÃO: Cor alterada com sucesso")
+        dados_nome = self.__tela_cor.alterar_dados_cor()
+        dados_nome = self.confere_output(adm, dados_nome)
+        nome_antigo = self.confere_cor_nome(dados_nome["nome_antigo"])
+
+        if nome_antigo == None:
+            self.__tela_cor.mostra_mensagem("ATENÇÃO: A COR que você deseja trocar não existe!")
+
         else:
-            self.__tela_cor.mostra_mensagem(
-                "ATENÇÃO: A cor que deseja alterar não se encontra na lista de cores")
+            nome_novo = self.confere_cor_nome(dados_nome["nome_novo"])
+            if nome_novo == None:
+                nome_antigo.nome = dados_nome["nome_novo"]
+                self.__tela_cor.mostra_mensagem("ATENÇÃO: A COR foi alterada com sucesso!")
+            else:
+                self.__tela_cor.mostra_mensagem("ATENÇÃO: A COR pela qual você deseja trocar já está cadastrada!")
 
     def lista_cor(self):
         self.__tela_cor.mostra_cor(self.__cores)
 
     def excluir_cor(self, adm):
-        nome = self.__tela_cor.seleciona_cor()
+        nome = self.__tela_cor.pega_dados_cor()
+
         for cor in self.__cores:
             if cor.nome == nome:
                 self.__cores.remove(cor)
-                self.__tela_cor.mostra_mensagem(
-                    "ATENÇÃO: Cor removida com sucesso")
-            else:
-                self.__tela_cor.mostra_mensagem("ATENÇÃO: Cor não cadastrada")
+                return self.__tela_cor.mostra_mensagem("ATENÇÃO: Cor removida com sucesso")
+
+        self.__tela_cor.mostra_mensagem("ATENÇÃO: Cor não cadastrada")
 
     def retornar(self):
         self.__controlador_sistema.abre_tela()
