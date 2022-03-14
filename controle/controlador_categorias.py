@@ -27,45 +27,36 @@ class ControladorCategorias():
     def incluir_categoria(self, adm):
         dados_categoria = self.__tela_categoria.pega_dados_categoria()
         dados_categoria = self.confere_output(adm, dados_categoria)
-        nova_categoria = self.confere_categoria_tipo(dados_categoria["tipo"])
+        nova_categoria = self.confere_categoria_tipo(dados_categoria)
 
         try:
             if nova_categoria == None:
-                categoria = Categoria(dados_categoria["tipo"])
+
+                categoria = Categoria(dados_categoria)
                 self.__categorias.append(categoria)
-                self.__tela_categoria.mostra_mensagem(
-                    "ATENÇÃO: Categoria adicionada com sucesso")
+                self.__tela_categoria.mostra_mensagem("ATENÇÃO: CATEGORIA adicionada com sucesso")
+            
             else:
                 raise JaCadastrado
+
         except JaCadastrado as j:
-            self.__tela_categoria.mostra_mensagem("Categoria" + str(j))
+            self.__tela_categoria.mostra_mensagem("Essa CATEGORIA " + str(j))
 
     def alterar_categoria(self, adm):
-        self.__tela_categoria.mostra_mensagem("ATENÇÃO: Digite a categoria que deseja alterar")
-        antiga_categoria = input().upper()
-        antiga_categoria = antiga_categoria.strip()
-        self.__tela_categoria.mostra_mensagem("ATENÇÃO: Digite a categoria pela qual você deseja alterar")
-        nova_categoria = input().upper()
-        nova_categoria = nova_categoria.strip()
-        verefica1 = False
-        verefica = False
-        for cor in self.__categorias:
-            if cor.tipo == antiga_categoria:
-                verefica = True
-        for cor in self.__categorias:
-            if cor.tipo == nova_categoria:
-                verefica1 = True
-                self.__tela_categoria.mostra_mensagem(
-                    "ATENÇÃO: A categoria que deseja alterada não se encontra na lista")
-        if nova_categoria == None and antiga_categoria != None:
-            for cor in self.__categorias:
-                if cor.tipo == antiga_categoria:
-                    cor.tipo = nova_categoria
-                    self.__tela_categoria.mostra_mensagem(
-                        "ATENÇÃO: Categoria alterada com sucesso")
-        elif nova_categoria != None:
-            self.__tela_categoria.mostra_mensagem(
-                "ATENÇÃO: A categoria que deseja alterada não se encontra na lista")
+        dados_tipo = self.__tela_categoria.alterar_dados_categoria()
+        dados_tipo = self.confere_output(adm, dados_tipo)
+        tipo_antigo = self.confere_categoria_tipo(dados_tipo["tipo_antigo"])
+
+        if tipo_antigo == None:
+            self.__tela_categoria.mostra_mensagem("ATENÇÃO: A CATEGORIA que você deseja trocar não existe!")
+
+        else:
+            tipo_novo = self.confere_categoria_tipo(dados_tipo["tipo_novo"])
+            if tipo_novo == None:
+                tipo_antigo.tipo = dados_tipo["tipo_novo"]
+                self.__tela_categoria.mostra_mensagem("ATENÇÃO: A CATEGORIA foi alterada com sucesso!")
+            else:
+                self.__tela_categoria.mostra_mensagem("ATENÇÃO: A CATEGORIA pela qual você deseja trocar já está cadastrada!")
 
     # Sugestão: se a lista estiver vazia, mostrar a mensagem de lista vazia
 
@@ -74,15 +65,14 @@ class ControladorCategorias():
         self.__tela_categoria.mostra_categoria(self.__categorias)
 
     def excluir_categoria(self, adm):
-        tipo = self.__tela_categoria.seleciona_categoria()
+        tipo = self.__tela_categoria.pega_dados_categoria()
+        
         for categoria in self.__categorias:
             if categoria.tipo == tipo:
                 self.__categorias.remove(categoria)
-                self.__tela_categoria.mostra_mensagem(
-                    "ATENÇÃO: Categoria removida")
-            else:
-                self.__tela_categoria.mostra_mensagem(
-                    "ATENÇÃO: Categoria não está cadastrada")
+                return self.__tela_categoria.mostra_mensagem("ATENÇÃO: Categoria removida com sucesso")
+        
+        self.__tela_categoria.mostra_mensagem("ATENÇÃO: Categoria não cadastrada")
 
     def retornar_menu__produto(self, adm):
         self.__controlador_sistema.controlador_produtos.menu_incluir_produto(adm)
