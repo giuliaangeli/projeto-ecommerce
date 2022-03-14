@@ -37,9 +37,9 @@ class ControladorProdutos():
             dados_produto = self.__tela_produtos.pega_dados_produto()
             print(dados_produto)
 
-            cor1 = self.valida_cor(dados_produto['cor'])
-            tamanho1 = self.valida_tamanho(dados_produto['tamanho'])
-            categoria1 = self.valida_categoria(dados_produto['categoria'])
+            cor1 = self.valida_cor(dados_produto)
+            tamanho1 = self.valida_tamanho(dados_produto)
+            categoria1 = self.valida_categoria(dados_produto)
             
             if dados_produto == "Sair":
                 self.__controlador_sistema.encerra_sistema()
