@@ -10,6 +10,7 @@ class TelaCor():
     # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
 
     def tela_opcoes(self):
+        cabecalho('MENU CORES')
         opcao = - 1
         while opcao == -1:
             self.init_opcoes()
@@ -22,9 +23,9 @@ class TelaCor():
                 opcao = 3
             if values['4']:
                 opcao = 4
-            if button == "Voltar":
+            if values['5']:
                 opcao = 5
-            if button == "Sair":
+            if values['6'] or button in (None, 'Cancelar'):
                 opcao = 6
             self.close()
         self.close()
@@ -40,26 +41,28 @@ class TelaCor():
             [sg.Radio('Alterar cor', "RD1", key='2')],
             [sg.Radio('Listar cor', "RD1", key='3')],
             [sg.Radio('Excluir cor', "RD1", key='4')],
-            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
+            [sg.Radio('Voltar ao menu anterior', "RD1", key='5')],
+            [sg.Radio('Sair', "RD1", key='6')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
+        self.__window = sg.Window('Sistema de cores').Layout(layout)
     # fazer aqui tratamento dos dados, caso a entrada seja diferente do esperado
 
     def pega_dados_cor(self):
-
+        print("DADOS COR ")
         sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
             [sg.Text('DADOS COR ', font=("Helvica", 25))],
             [sg.Text('Nome:', size=(15, 1)), sg.InputText('', key='nome')],
-            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
+        self.__window = sg.Window('Sistema de livros').Layout(layout)
 
         button, values = self.open()
         if button == "Sair" or button == "Voltar":
             self.close()
             return button
-        
+
         else:
             if len(values['nome']) == 0:
                 self.mostra_mensagem("É preciso digitar algo")
@@ -74,18 +77,21 @@ class TelaCor():
         sg.ChangeLookAndFeel('DarkGrey3')
         layout = [
             [sg.Text('ALTERAR DADOS COR ', font=("Helvica", 25))],
-            [sg.Text('Nome Cor Antigo:', size=(15, 1)), sg.InputText('', key='nome_antigo')],
-            [sg.Text('Nome Cor Novo:', size=(15, 1)), sg.InputText('', key='nome_novo')],
+            [sg.Text('Nome Cor Antigo:', size=(15, 1)),
+             sg.InputText('', key='nome_antigo')],
+            [sg.Text('Nome Cor Novo:', size=(15, 1)),
+             sg.InputText('', key='nome_novo')],
             [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
         ]
-        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
+        self.__window = sg.Window(
+            'Sistema E-commerce', layout, size=(700, 340), element_justification='c')
 
         button, values = self.open()
-    
+
         if button == "Sair" or button == "Voltar":
             self.close()
             return button
-        
+
         else:
             if len(values['nome_antigo']) == 0 or len(values['nome_novo']) == 0:
                 self.mostra_mensagem("É preciso digitar algo")
@@ -93,7 +99,7 @@ class TelaCor():
                 return self.alterar_dados_cor()
 
             nome_antigo = (values['nome_antigo']).upper()
-            nome_novo= (values['nome_novo']).upper()
+            nome_novo = (values['nome_novo']).upper()
             self.close()
             return {"nome_antigo": nome_antigo, "nome_novo": nome_novo}
 

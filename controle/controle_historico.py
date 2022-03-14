@@ -19,9 +19,9 @@ class ControladorHistorico():
     def historico(self):
         return self.__historico
 
-    def incluir_historico(self, pessoa):
+    def incluir_historico(self):
         usuario = self.__controlador_sistema.controlador_pessoas.confere_usuario_cpf_historico()
-        produto = self.__controlador_sistema.controlador_produtos.confere_produto_codigo(pessoa)
+        produto = self.__controlador_sistema.controlador_produtos.confere_produto_codigo()
         self.recebe_dados_venda(usuario, produto)
 
     def recebe_dados_venda(self, usuario, produto):
@@ -29,9 +29,9 @@ class ControladorHistorico():
         self.__historico.append(venda)
         self.__tela_historico.mostra_mensagem("ATENÇÃO: A venda foi adicionada ao histórico!")
 
-    def confere_venda_historico(self, pessoa):
+    def confere_venda_historico(self):
         usuario = self.__controlador_sistema.controle_pessoas.confere_usuario_cpf_historico()
-        produto = self.__controlador_sistema.controlador_produtos.confere_produto_codigo(pessoa)
+        produto = self.__controlador_sistema.controlador_produtos.confere_produto_codigo()
         venda_para_validar = Historico(usuario, produto)
 
         for venda in self.__historico:
@@ -39,15 +39,15 @@ class ControladorHistorico():
                 return venda
             else:
                 self.__tela_historico.mostra_mensagem("ATENÇÃO: A venda informada não consta no histórico, tente novamente!")
-                self.confere_venda_historico(pessoa)
+                self.confere_venda_historico()
 
-    def excluir_historico(self, pessoa):
-        venda_excluir = self.confere_venda_historico(pessoa)
+    def excluir_historico(self):
+        venda_excluir = self.confere_venda_historico()
         self.__historico.remove(venda_excluir)
 
-    def alterar_historico_produto(self, pessoa):
-        venda_alterar = self.confere_venda_historico(pessoa)
-        produto_alterado = self.__controlador_sistema.controlador_produtos.confere_produto_codigo(pessoa)
+    def alterar_historico_produto(self):
+        venda_alterar = self.confere_venda_historico()
+        produto_alterado = self.__controlador_sistema.controlador_produtos.confere_produto_codigo()
         venda_alterar.produto = produto_alterado
 
     def listar_historico_usuario(self, usuario):
@@ -238,27 +238,27 @@ class ControladorHistorico():
 
     def abrir_menu_filtro_adm(self, adm):
 
-        lista_opcoes = {1: self.listar_historico_simples, 2: self.listar_historico_personalizado, 3: self.__controlador_sistema.controla_menu_principal_adm, 4: self.__controlador_sistema.encerra_sistema}
+        lista_opcoes = {1: self.listar_historico_simples, 2: self.listar_historico_personalizado}
         
         continua = True
         while continua:
             opcao_escolhida = self.__tela_historico.menu_opcao_filtro()
-            if opcao_escolhida == 1 or opcao_escolhida == 4:
+            if opcao_escolhida == 1:
                 lista_opcoes[opcao_escolhida]()
             else:
                 lista_opcoes[opcao_escolhida](adm)
 
     def abrir_menu_historico_adm(self, adm):
          
-        lista_opcoes = {1: self.abrir_menu_filtro_adm, 2: self.alterar_historico_produto, 3: self.incluir_historico, 4: self.excluir_historico, 5: self.__controlador_sistema.controla_menu_principal_adm, 6: self.__controlador_sistema.encerra_sistema}
+        lista_opcoes = {1: self.abrir_menu_filtro_adm, 2: self.alterar_historico_produto, 3: self.incluir_historico, 4: self.excluir_historico}
         
         continua = True
         while continua:
             opcao_escolhida = self.__tela_historico.menu_principal_adm()
-            if opcao_escolhida == 6:
-                lista_opcoes[opcao_escolhida]()
-            else:
+            if opcao_escolhida == 1 or opcao_escolhida == 5:
                 lista_opcoes[opcao_escolhida](adm)
+            else:
+                lista_opcoes[opcao_escolhida]()
     
     def instancia_historico(self):
         usuario1 = self.__controlador_sistema.controlador_pessoas.confere_usuario_cpf('09641787969')

@@ -2,6 +2,8 @@ from entidade.adm import Adm
 from entidade.usuario import Usuario
 from limite.tela_pessoa import TelaPessoa
 from limite.tela_abstrata import *
+from limite.cadrasto import Cadastrado
+from limite.ja_cadastrado import JaCadastrado
 
 
 class ControladorPessoa():
@@ -56,70 +58,51 @@ class ControladorPessoa():
     def confere_login(self, tipo_pessoa: int):
         dados_login = self.__tela_pessoa.pega_dados_login()
 
-        if dados_login == "Sair":
-            self.__controlador_sistema.encerra_sistema()
+        #se for adm
+        if tipo_pessoa == 1:
+            for adm in self.__adms:
+                if(adm.email == dados_login['email']) and (adm.senha == dados_login['senha']):
+                    return adm
+            return None
 
-        elif dados_login == "Voltar":
-            self.__controlador_sistema.controla_tela_login()
-
+        #se for usuário
         else:
-            #se for adm
-            if tipo_pessoa == 1:
-                for adm in self.__adms:
-                    if(adm.email == dados_login['email']) and (adm.senha == dados_login['senha']):
-                        return adm
-                return None
+            for usuario in self.__usuarios:
+                if(usuario.email == dados_login['email']) and (usuario.senha == dados_login['senha']):
+                    return usuario
+            return None
 
-            #se for usuário
-            else:
-                for usuario in self.__usuarios:
-                    if(usuario.email == dados_login['email']) and (usuario.senha == dados_login['senha']):
-                        return usuario
-                return None
-
-    def incluir_usuario(self, pessoa):
+    def incluir_usuario(self):
         dados_novo_usuario = self.__tela_pessoa.pega_dados_usuario()
-        if dados_novo_usuario == "Sair":
-            self.__controlador_sistema.encerra_sistema()
-        
-        elif dados_novo_usuario == "Voltar":
-            if isinstance(pessoa, Adm):
-                return self.abre_tela_adm(pessoa)
-
-            else:
-                return self.__controlador_sistema.abre_tela_inicial()
-
-        else:
-            usuario_cpf = self.confere_usuario_cpf(dados_novo_usuario["cpf"])
-            usuario_email = self.confere_usuario_email(dados_novo_usuario["email"])
+        usuario_cpf = self.confere_usuario_cpf(dados_novo_usuario["cpf"])
+        usuario_email = self.confere_usuario_email(dados_novo_usuario["email"])
+        try:
             if usuario_cpf == None and usuario_email == None:
                 novo_usuario = Usuario(dados_novo_usuario["nome"], dados_novo_usuario["cpf"], dados_novo_usuario["telefone"], dados_novo_usuario["endereco"], dados_novo_usuario["email"], dados_novo_usuario["senha"])
                 self.__usuarios.append(novo_usuario)
-                self.__tela_pessoa.mostra_mensagem("ATENÇÃO: Seu cadastro foi realizado com sucesso!")
-                return novo_usuario
+                raise Cadastrado
             else:
-                self.__tela_pessoa.mostra_mensagem("ATENÇÃO: O CPF ou o e-mail digitado já estão cadastrados")
-                return None
+                raise JaCadastrado
+        except JaCadastrado as j:
+            self.__tela_pessoa.mostra_mensagem("Usuario" + str(j))
+        except Cadastrado as i:
+            self.__tela_pessoa.mostra_mensagem("O usuario foi" + "" + str(i))
         
-    def incluir_adm(self, pessoa):
+    def incluir_adm(self):
         dados_novo_adm = self.__tela_pessoa.pega_dado_adm()
-
-        if dados_novo_adm == "Sair":
-            self.__controlador_sistema.encerra_sistema()
-        
-        elif dados_novo_adm == "Voltar":
-            self.abre_tela_adm(pessoa)
-        
-        else:
-            adm_cpf = self.confere_adm_cpf(dados_novo_adm["cpf"])
-            adm_email = self.confere_adm_email(dados_novo_adm["email"])
+        adm_cpf = self.confere_adm_cpf(dados_novo_adm["cpf"])
+        adm_email = self.confere_adm_email(dados_novo_adm["email"])
+        try:
             if adm_cpf == None and adm_email == None:
                 novo_adm = Adm(dados_novo_adm["nome"], dados_novo_adm["cpf"], dados_novo_adm["telefone"], dados_novo_adm["endereco"], dados_novo_adm["email"], dados_novo_adm["senha"], dados_novo_adm["salario"])
                 self.__adms.append(novo_adm)
-                self.__tela_pessoa.mostra_mensagem("Administrador adicionado com sucesso!")
-
+                raise Cadastrado
             else:
-                self.__tela_pessoa.mostra_mensagem("ATENÇÃO: O CPF ou o e-mail digitado já estão cadastrados")
+                raise JaCadastrado
+        except JaCadastrado as j:
+            self.__tela_pessoa.mostra_mensagem("ADM" + str(j))
+        except Cadastrado as i:
+            self.__tela_pessoa.mostra_mensagem("O ADM foi" + "" + str(i))
 
     def excluir_pessoa(self, pessoa, tipo_pessoa_excluir):
         
@@ -130,6 +113,7 @@ class ControladorPessoa():
         if isinstance(pessoa, Adm):
 
             if tipo_pessoa_excluir == 1:
+                cabecalho('DIGITE O CPF DO ADM QUE DESEJA EXCLUIR')
                 cpf = self.__tela_pessoa.pega_cpf()
                 for adm in self.__adms:
                     if adm.cpf == cpf:
@@ -140,6 +124,7 @@ class ControladorPessoa():
                     self.__tela_pessoa.mostra_mensagem("ATENÇÃO: Esse administrador não está cadastrado")
 
             else:
+                cabecalho('DIGITE O CPF DO USUÁRIO QUE DESEJA EXCLUIR')
                 cpf = self.__tela_pessoa.pega_cpf()
                 for usuario in self.__usuarios:
                     if usuario.cpf == cpf:
@@ -231,23 +216,23 @@ class ControladorPessoa():
 
     def abre_tela_adm(self, adm):
 
-        lista_opcoes = {1: self.incluir_adm, 2: self.excluir_pessoa, 3: self.listar_dados, 4: self.alterar_pessoa , 5: self.incluir_usuario, 6: self.excluir_pessoa, 7: self.listar_dados , 8: self.retornar_menu_adm, 9: self.__controlador_sistema.encerra_sistema}
+        lista_opcoes = {1: self.incluir_adm, 2: self.excluir_pessoa, 3: self.listar_dados, 4: self.alterar_pessoa , 5: self.incluir_usuario, 6: self.excluir_pessoa, 7: self.listar_dados , 8: self.retornar_menu_adm, 9: self.__controlador_sistema.abre_tela_inicial}
 
         continua = True
         while continua:
             opcao_escolhida = self.__tela_pessoa.tela_pessoa_adm()
             if opcao_escolhida == 2 or opcao_escolhida == 3:
                 lista_opcoes[opcao_escolhida](adm,1)
-            elif opcao_escolhida == 9:
-                lista_opcoes[opcao_escolhida]()
+            elif opcao_escolhida == 4 or opcao_escolhida == 8:
+                lista_opcoes[opcao_escolhida](adm)
             elif opcao_escolhida == 6 or opcao_escolhida == 7:
                 lista_opcoes[opcao_escolhida](adm,2)
             else:
-                lista_opcoes[opcao_escolhida](adm)
+                lista_opcoes[opcao_escolhida]()
     
     def abre_tela_usuario(self, usuario):
     
-        lista_opcoes = {1: self.listar_dados, 2: self.alterar_pessoa , 3: self.excluir_pessoa, 4: self.retornar_menu_usuario, 5: self.__controlador_sistema.encerra_sistema}
+        lista_opcoes = {1: self.listar_dados, 2: self.alterar_pessoa , 3: self.excluir_pessoa, 4: self.retornar_menu_usuario, 5: self.__controlador_sistema.abre_tela_inicial}
 
         continua = True
         while continua:

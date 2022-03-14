@@ -13,8 +13,8 @@ class TelaHistorico():
         self.init_opcoes3()
         self.init_opcoes4()
         self.init_opcoes5()
-
     def menu_principal_adm(self):
+        cabecalho('MENU HISTORICO')
         opcao  = - 1
         while opcao == -1:
             self.init_opcoes()
@@ -27,17 +27,17 @@ class TelaHistorico():
                 opcao = 3
             if values['4']:
                 opcao = 4
-            if button == "Voltar":
+            if values['5']:
                 opcao = 5
-            if button == "Sair":
+        # cobre os casos de voltar, não clicar em nada e fechar janela, ou clicar cancelar
+            if values['6'] or button in (None,'Cancelar'):
                 opcao = 6
             self.close()
-
         self.close()
         return opcao
-
     def menu_opcao_filtro(self):
 
+        cabecalho('MENU HISTORICO')
         opcao  = - 1
         while opcao == -1:
             self.init_opcoes1()
@@ -46,17 +46,16 @@ class TelaHistorico():
                 opcao = 1
             if values['2']:
                 opcao = 2
-            if button == "Voltar":
+            if values['3']:
                 opcao = 3
-            if button == "Sair":
+            if values['4'] or button in (None,'Cancelar'):
                 opcao = 4
             self.close()
-
         self.close()
         return opcao
 
     def filtro_cor(self):
-
+        cabecalho('MENU HISTORICO')
         opcao  = - 1
         while opcao == -1:
             self.init_opcoes2()
@@ -65,12 +64,14 @@ class TelaHistorico():
                 opcao = 1
             if values['2']:
                 opcao = 2
+            if values['0'] or button in (None,'Cancelar'):
+                opcao = 0
             self.close()
         self.close()
         return opcao
 
     def filtro_tamanho(self):
-
+        cabecalho('MENU HISTORICO')
         opcao  = - 1
         while opcao == -1:
             self.init_opcoes3()
@@ -79,11 +80,14 @@ class TelaHistorico():
                 opcao = 1
             if values['2']:
                 opcao = 2
+            if values['0'] or button in (None,'Cancelar'):
+                opcao = 0
             self.close()
         self.close()
         return opcao
 
     def filtro_categoria(self):
+        cabecalho('MENU HISTORICO')
         opcao  = - 1
         while opcao == -1:
             self.init_opcoes4()
@@ -92,12 +96,13 @@ class TelaHistorico():
                 opcao = 1
             if values['2']:
                 opcao = 2
+            if values['0'] or button in (None,'Cancelar'):
+                opcao = 0
             self.close()
         self.close()
         return opcao
-
     def filtro_cliente(self):
-
+        cabecalho('MENU HISTORICO')
         opcao  = - 1
         while opcao == -1:
             self.init_opcoes5()
@@ -106,6 +111,8 @@ class TelaHistorico():
                 opcao = 1
             if values['2']:
                 opcao = 2
+            if values['0'] or button in (None,'Cancelar'):
+                opcao = 0
             self.close()
         self.close()
         return opcao
@@ -120,10 +127,11 @@ class TelaHistorico():
             [sg.Radio('Alterar Histórico de Vendas', "RD1", key='2')],
             [sg.Radio('Incluir uma Venda no Histórico', "RD1", key='3')],
             [sg.Radio('Excluir uma Venda do Histórico', "RD1", key='4')],
-            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
-
+            [sg.Radio('Voltar ao Menu Anterior', "RD1", key='5')],
+            [sg.Radio('Encerrar Sessão', "RD1", key='6')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
+        self.__window = sg.Window('Sistema de produtos').Layout(layout)
 
     def init_opcoes1(self):
        
@@ -133,10 +141,11 @@ class TelaHistorico():
             [sg.Text('Escolha sua opção', font=("Helvica", 15))],
             [sg.Radio('Ver Todas as Vendas', "RD1", key='1')],
             [sg.Radio('Aplicar Filtro', "RD1", key='2')],
-            [sg.Button('Confirmar'), sg.Button('Voltar'), sg.Button('Sair')]
-
+            [sg.Radio('Voltar ao Menu Anterior', "RD1", key='3')],
+            [sg.Radio(' Encerrar Sessão', "RD1", key='4')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
+        self.__window = sg.Window('Sistema de produtos').Layout(layout)
 
     def init_opcoes2(self):
        
@@ -146,10 +155,10 @@ class TelaHistorico():
             [sg.Text('Escolha sua opção', font=("Helvica", 15))],
             [sg.Radio('Todas as Cores', "RD1", key='1')],
             [sg.Radio('Escolher uma Cor', "RD1", key='2')],
-            [sg.Button('Confirmar')]
-
+            [sg.Radio('Encerrar Sessão', "RD1", key='0')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
+        self.__window = sg.Window('Sistema de produtos').Layout(layout)
 
     def init_opcoes3(self):
        
@@ -159,10 +168,10 @@ class TelaHistorico():
             [sg.Text('Escolha sua opção', font=("Helvica", 15))],
             [sg.Radio('Todas os Tamanhos', "RD1", key='1')],
             [sg.Radio('Escolher um Tamanho', "RD1", key='2')],
-            [sg.Button('Confirmar')]
-
+            [sg.Radio('Encerrar Sessão', "RD1", key='0')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
+        self.__window = sg.Window('Sistema de produtos').Layout(layout)
 
     def init_opcoes4(self):
 
@@ -172,10 +181,10 @@ class TelaHistorico():
             [sg.Text('Escolha sua opção', font=("Helvica", 15))],
             [sg.Radio('Todas as Categorias', "RD1", key='1')],
             [sg.Radio('Escolher uma Categorias', "RD1", key='2')],
-            [sg.Button('Confirmar')]
-
+            [sg.Radio('Encerrar Sessão', "RD1", key='0')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
+        self.__window = sg.Window('Sistema de produtos').Layout(layout)
 
     def init_opcoes5(self):
 
@@ -185,10 +194,10 @@ class TelaHistorico():
             [sg.Text('Escolha sua opção', font=("Helvica", 15))],
             [sg.Radio('Todos os Clientes', "RD1", key='1')],
             [sg.Radio('Escolher um Cliente', "RD1", key='2')],
-            [sg.Button('Confirmar')]
-
+            [sg.Radio('Encerrar Sessão', "RD1", key='0')],
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
+        self.__window = sg.Window('Sistema de produtos').Layout(layout)
 
     def escolha_cor(self):
         
@@ -196,7 +205,8 @@ class TelaHistorico():
         layout = [
             [sg.Text('DADOS CATEGORIAS ', font=("Helvica", 25))],
             [sg.Text('Cor:', size=(15, 1)), sg.InputText('', key='cor')],
-            [sg.Button('Confirmar')]
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+
         ]
         self.__window = sg.Window('Sistema de COR').Layout(layout)
 
@@ -213,9 +223,10 @@ class TelaHistorico():
             [sg.Text('DADOS CATEGORIAS', font=("Helvica", 25))],
             [sg.Text('Tamanho:', size=(15, 1)),
              sg.InputText('', key='tamanho')],
-            [sg.Button('Confirmar')]
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
+
         ]
-        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
+        self.__window = sg.Window('Sistema de Tamanho').Layout(layout)
 
         button, values = self.open()
         tamanho = values['tamanho']
@@ -229,10 +240,10 @@ class TelaHistorico():
             [sg.Text('DADOS CATEGORIAS', font=("Helvica", 25))],
             [sg.Text('Categoria:', size=(15, 1)),
              sg.InputText('', key='categoria')],
-            [sg.Button('Confirmar')]
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
 
         ]
-        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
+        self.__window = sg.Window('Sistema de categorias').Layout(layout)
 
         button, values = self.open()
         categoria = values['categoria']
@@ -242,6 +253,7 @@ class TelaHistorico():
 
     def imprime_historico(self, relatorio):
         string_todos_produtos = ""
+        print(relatorio)
         
         for codigo in relatorio:
             produto = relatorio[codigo][0]
@@ -261,9 +273,9 @@ class TelaHistorico():
             [sg.Text('Digite o codigo do produto que deseja selecionar:',
                      font=("Helvica", 15))],
             [sg.Text('codigo:', size=(15, 1)), sg.InputText('', key='codigo')],
-            [sg.Button('Confirmar')]
+            [sg.Button('Confirmar'), sg.Cancel('Cancelar')]
         ]
-        self.__window = sg.Window('Sistema E-commerce', layout, size=(700,340),element_justification='c')
+        self.__window = sg.Window('Seleciona produto').Layout(layout)
 
         button, values = self.open()
         codigo = values['codigo']
@@ -271,6 +283,7 @@ class TelaHistorico():
         return codigo
 
     def escolha_cliente(self):
+        cabecalho('DIGITE O CPF DO CLIENTE')
         cpf = input().upper()
         cpf = cpf.strip()
         return cpf
@@ -279,6 +292,7 @@ class TelaHistorico():
         sg.popup("", msg)
 
     def entrada_incorreta(self):
+        cabecalho('SELECIONE UMA DAS OPÇÕES')
         opcoes = ['[1] Tentar Novamente','[2] Voltar para o menu anterior']
         
         for item in opcoes:

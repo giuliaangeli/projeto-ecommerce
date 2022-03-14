@@ -45,10 +45,10 @@ class ControladorSistema:
 
     def inicializa_sistema(self):
         self.__controle_pessoas.instancia_pessoas()
-        self.__controlador_cores.instancia_cor()
-        self.__controlador_tamanhos.instancia_tamanho()
-        self.__controlador_categorias.instancia_categorias()
-        self.__controlador_produtos.instancia_produtos()
+        #self.__controlador_cores.instancia_cor()
+        #self.__controlador_tamanhos.instancia_tamanho()
+        #self.__controlador_categorias.instancia_categorias()
+        #self.__controlador_produtos.instancia_produtos()
         self.__controlador_historico.instancia_historico()
         self.abre_tela_inicial()
 
@@ -81,7 +81,7 @@ class ControladorSistema:
             lista_opcoes[opcao_escolhida](usuario)
 
     def controla_produto_usuario(self, usuario):
-        self.__controlador_produtos.abre_menu_usuario(usuario)
+        self.__controlador_produtos.abri_menu_usuario(usuario)
 
     def controla_historico_usuario(self, usuario):
         self.__controlador_historico.listar_historico_usuario(usuario)
@@ -122,8 +122,7 @@ class ControladorSistema:
         lista_opcoes[opcao_escolhida]()
 
     def incluir_usuario(self):
-        novo_usuario = None
-        usuario = self.__controle_pessoas.incluir_usuario(novo_usuario)
+        usuario = self.__controle_pessoas.incluir_usuario()
         if usuario is not None:
             self.abre_tela_inicial()
         else: 
