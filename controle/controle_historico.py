@@ -19,10 +19,18 @@ class ControladorHistorico():
     def historico(self):
         return self.__historico
 
-    def incluir_historico(self, pessoa):
-        usuario = self.__controlador_sistema.controlador_pessoas.confere_usuario_cpf_historico()
-        produto = self.__controlador_sistema.controlador_produtos.confere_produto_codigo(pessoa)
-        self.recebe_dados_venda(usuario, produto)
+    def confere_output(self, adm, output):
+        if output == "Sair":
+            self.__controlador_sistema.encerra_sistema()
+        elif output == "Voltar":
+            self.abre_tela(adm)
+        else:
+            return output
+
+    # def incluir_historico(self, pessoa):
+    #     usuario = self.__controlador_sistema.controlador_pessoas.confere_usuario_cpf_historico()
+    #     produto = self.__controlador_sistema.controlador_produtos.confere_produto_codigo(pessoa)
+    #     self.recebe_dados_venda(usuario, produto)
 
     def recebe_dados_venda(self, usuario, produto):
         venda = Historico(usuario, produto)
@@ -41,14 +49,9 @@ class ControladorHistorico():
                 self.__tela_historico.mostra_mensagem("ATENÇÃO: A venda informada não consta no histórico, tente novamente!")
                 self.confere_venda_historico(pessoa)
 
-    def excluir_historico(self, pessoa):
-        venda_excluir = self.confere_venda_historico(pessoa)
-        self.__historico.remove(venda_excluir)
-
-    def alterar_historico_produto(self, pessoa):
-        venda_alterar = self.confere_venda_historico(pessoa)
-        produto_alterado = self.__controlador_sistema.controlador_produtos.confere_produto_codigo(pessoa)
-        venda_alterar.produto = produto_alterado
+    # def excluir_historico(self, pessoa):
+    #     venda_excluir = self.confere_venda_historico(pessoa)
+    #     self.__historico.remove(venda_excluir)
 
     def listar_historico_usuario(self, usuario):
         historico_usuario = []
@@ -91,6 +94,7 @@ class ControladorHistorico():
     def listar_historico_por_pessoa(self, adm):
         historico_pessoa = []
         opcao_pessoa = self.__tela_historico.filtro_cliente()
+        opcao_pessoa = self.confere_output(adm, opcao_pessoa)
 
         if opcao_pessoa == 1:
             return self.__historico
@@ -119,6 +123,7 @@ class ControladorHistorico():
     def filtra_lista_por_cor(self, lista, adm):
         lista_filtrada_cor = []
         opcao_cor = self.__tela_historico.filtro_cor()
+        opcao_cor = self.confere_output(adm, opcao_cor)
 
         if opcao_cor == 1:
             return lista
@@ -136,6 +141,7 @@ class ControladorHistorico():
     def filtrar_lista_por_tamanho(self, lista, adm):
         lista_filtrada_tamanho = []
         opcao_tamanho = self.__tela_historico.filtro_tamanho()
+        opcao_tamanho = self.confere_output(adm, opcao_tamanho)
 
         if opcao_tamanho == 1:
             return lista
@@ -154,6 +160,7 @@ class ControladorHistorico():
     def filtrar_lista_por_categoria(self, lista, adm):
         lista_filtrada_categoria = []
         opcao_categoria = self.__tela_historico.filtro_categoria()
+        opcao_categoria = self.confere_output(adm, opcao_categoria)
 
         if opcao_categoria == 1:
             return lista
@@ -248,17 +255,17 @@ class ControladorHistorico():
             else:
                 lista_opcoes[opcao_escolhida](adm)
 
-    def abrir_menu_historico_adm(self, adm):
+    # def abrir_menu_historico_adm(self, adm):
          
-        lista_opcoes = {1: self.abrir_menu_filtro_adm, 2: self.alterar_historico_produto, 3: self.incluir_historico, 4: self.excluir_historico, 5: self.__controlador_sistema.controla_menu_principal_adm, 6: self.__controlador_sistema.encerra_sistema}
+    #     lista_opcoes = {1: self.abrir_menu_filtro_adm, 2: self.incluir_historico, 3: self.excluir_historico, 4: self.__controlador_sistema.controla_menu_principal_adm, 5: self.__controlador_sistema.encerra_sistema}
         
-        continua = True
-        while continua:
-            opcao_escolhida = self.__tela_historico.menu_principal_adm()
-            if opcao_escolhida == 6:
-                lista_opcoes[opcao_escolhida]()
-            else:
-                lista_opcoes[opcao_escolhida](adm)
+    #     continua = True
+    #     while continua:
+    #         opcao_escolhida = self.__tela_historico.menu_principal_adm()
+    #         if opcao_escolhida == 5:
+    #             lista_opcoes[opcao_escolhida]()
+    #         else:
+    #             lista_opcoes[opcao_escolhida](adm)
     
     def instancia_historico(self):
         usuario1 = self.__controlador_sistema.controlador_pessoas.confere_usuario_cpf('09641787969')

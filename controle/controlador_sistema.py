@@ -70,7 +70,7 @@ class ControladorSistema:
         self.__controlador_produtos.abre_tela_produtos_adm(adm)
 
     def controla_historico_adm(self, adm):
-        self.__controlador_historico.abrir_menu_historico_adm(adm)
+        self.__controlador_historico.abrir_menu_filtro_adm(adm)
 
     def controla_menu_principal_usuario(self, usuario):
         lista_opcoes = {1: self.controla_produto_usuario, 2: self.controla_historico_usuario, 3: self.controla_pessoas_usuario, 4: self.inicializa_sistema}
