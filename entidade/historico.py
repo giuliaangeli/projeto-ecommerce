@@ -1,4 +1,3 @@
-
 from entidade.produto import Produto
 from entidade.usuario import Usuario
 
