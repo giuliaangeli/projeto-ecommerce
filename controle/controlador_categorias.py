@@ -12,7 +12,7 @@ class ControladorCategorias():
         self.__tela_categoria = TelaCategoria()
 
     def confere_categoria_tipo(self, tipo):
-        for categoria in self.__categorias_DAO.get():
+        for categoria in self.__categorias_DAO.get_all():
             if (categoria.tipo == tipo):
                 return categoria
         return None
