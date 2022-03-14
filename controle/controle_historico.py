@@ -33,9 +33,8 @@ class ControladorHistorico():
     #     self.recebe_dados_venda(usuario, produto)
 
     def recebe_dados_venda(self, usuario, produto):
-        codigo = len(self.__historico) + 1
-        venda = Historico(usuario, produto, codigo)
-        print(venda.codigo)
+
+        venda = Historico(usuario, produto)
         self.__historico.append(venda)
         self.__tela_historico.mostra_mensagem("ATENÇÃO: A venda foi adicionada ao histórico!")
 
@@ -276,12 +275,12 @@ class ControladorHistorico():
         produto2 = self.__controlador_sistema.controlador_produtos.pega_produto_por_codigo(2)
         produto3 = self.__controlador_sistema.controlador_produtos.pega_produto_por_codigo(3)
 
-        venda1 = Historico(usuario1, produto1,1)
-        venda2 = Historico(usuario1, produto2,2)
-        venda3 = Historico(usuario1, produto2,3)
-        venda4 = Historico(usuario1, produto3,4)
-        venda5 = Historico(usuario1, produto3,5)
-        venda6 = Historico(usuario1, produto3,6)
+        venda1 = Historico(usuario1, produto1)
+        venda2 = Historico(usuario1, produto2)
+        venda3 = Historico(usuario1, produto2)
+        venda4 = Historico(usuario1, produto3)
+        venda5 = Historico(usuario1, produto3)
+        venda6 = Historico(usuario1, produto3)
 
         #Coloca venda na lista de Historicos
         self.__historico.append(venda1)

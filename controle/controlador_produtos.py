@@ -24,7 +24,7 @@ class ControladorProdutos():
         return self.__produtos
 
     def pega_produto_por_codigo(self, codigo: int):
-        for produto in self.__produtos.get_all():
+        for produto in self.__produtos:
             if(produto.codigo == codigo):
                 return produto
         return None

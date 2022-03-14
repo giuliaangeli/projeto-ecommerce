@@ -4,12 +4,12 @@ from entidade.usuario import Usuario
 
 
 class Historico:
-    def __init__(self, usuario, produto, codigo):
+    def __init__(self, usuario, produto):
         if isinstance(usuario, Usuario):
             self.__usuario =  usuario
         if isinstance(produto, Produto):
             self.__produto = produto
-        self.__cogigo = codigo
+
     @property
     def usuario(self):
         return self.__usuario
